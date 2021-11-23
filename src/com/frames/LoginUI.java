@@ -2,6 +2,11 @@
 package com.frames;
 
 import java.awt.Image;
+//import java.io.BufferedWriter;
+//import java.io.FileReader;
+//import java.io.FileWriter;
+//import java.io.IOException;
+
 import javax.swing.ImageIcon;
 
 public class LoginUI extends javax.swing.JFrame {
@@ -199,6 +204,19 @@ public class LoginUI extends javax.swing.JFrame {
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
         MainUI Main = new MainUI();
+        /*
+        try {
+            FileWriter File = new FileWriter("File.txt",true);
+            BufferedWriter Buffer = new BufferedWriter(File);
+            String Nombre = "";
+            Nombre = "a";
+            Buffer.write(Nombre);
+            Buffer.flush();
+            File.close();
+        } catch (IOException MM) {
+            System.out.println("Error: "+MM.getMessage());
+        }
+        */
         Main.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnIngresarActionPerformed
