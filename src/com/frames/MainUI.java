@@ -16,7 +16,6 @@ public class MainUI extends javax.swing.JFrame {
         //setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
 
-    @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -311,15 +310,15 @@ public class MainUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnUsuariosMouseClicked
 
     private void btnInformacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInformacionMouseClicked
-        // TODO add your handling code here:
+        // Codigo
     }//GEN-LAST:event_btnInformacionMouseClicked
 
     private void btnInformacionMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInformacionMouseEntered
-        // TODO add your handling code here:
+        // Codigo
     }//GEN-LAST:event_btnInformacionMouseEntered
 
     private void btnInformacionMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInformacionMouseExited
-        // TODO add your handling code here:
+        // Codigo
     }//GEN-LAST:event_btnInformacionMouseExited
 
     public static void main(String args[]) {

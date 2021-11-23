@@ -1,4 +1,4 @@
-package sistema_alumnos;
+package com.classes;
 
 import java.io.BufferedReader;
 import java.io.File;
