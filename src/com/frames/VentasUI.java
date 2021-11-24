@@ -11,17 +11,18 @@ public class VentasUI extends javax.swing.JFrame {
 
         setTitle("Ventas");
         setAlwaysOnTop(true);
-        setPreferredSize(new java.awt.Dimension(900, 550));
+        setPreferredSize(new java.awt.Dimension(515, 423));
+        setResizable(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 900, Short.MAX_VALUE)
+            .addGap(0, 515, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 550, Short.MAX_VALUE)
+            .addGap(0, 420, Short.MAX_VALUE)
         );
 
         pack();

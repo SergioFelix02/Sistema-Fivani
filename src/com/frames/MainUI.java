@@ -23,6 +23,9 @@ public class MainUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        panel1 = new javax.swing.JPanel();
+        btnCerrar = new javax.swing.JLabel();
+        btnMinimizar = new javax.swing.JLabel();
         panel = new javax.swing.JPanel();
         lbl_icon = new javax.swing.JLabel();
         btnProductos = new javax.swing.JLabel();
@@ -35,17 +38,41 @@ public class MainUI extends javax.swing.JFrame {
         barProductos = new javax.swing.JPanel();
         barUsuarios = new javax.swing.JPanel();
         bg = new javax.swing.JPanel();
-        panel1 = new javax.swing.JPanel();
-        btnCerrar = new javax.swing.JLabel();
-        btnMinimizar = new javax.swing.JLabel();
+
+        panel1.setBackground(new java.awt.Color(0, 90, 195));
+        panel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnCerrar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnCerrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCerrar.setPreferredSize(new java.awt.Dimension(100, 100));
+        btnCerrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnCerrarMouseClicked(evt);
+            }
+        });
+        panel1.add(btnCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 0, 30, 30));
+
+        btnMinimizar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnMinimizar.setPreferredSize(new java.awt.Dimension(100, 100));
+        btnMinimizar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnMinimizarMouseClicked(evt);
+            }
+        });
+        panel1.add(btnMinimizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 0, 30, 30));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Refaccionaria Fivani");
         setAlwaysOnTop(true);
         setFocusable(false);
         setFocusableWindowState(false);
-        setUndecorated(true);
         setResizable(false);
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentMoved(java.awt.event.ComponentEvent evt) {
+                formComponentMoved(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         panel.setBackground(new java.awt.Color(0, 90, 195));
@@ -216,7 +243,7 @@ public class MainUI extends javax.swing.JFrame {
         panelLayout.setVerticalGroup(
             panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelLayout.createSequentialGroup()
-                .addGap(60, 60, 60)
+                .addGap(50, 50, 50)
                 .addComponent(lbl_icon, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(39, 39, 39)
                 .addComponent(btnVentas)
@@ -234,7 +261,7 @@ public class MainUI extends javax.swing.JFrame {
                 .addComponent(btnSalir)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(barSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 108, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 118, Short.MAX_VALUE)
                 .addComponent(btnInformacion)
                 .addContainerGap())
         );
@@ -243,32 +270,6 @@ public class MainUI extends javax.swing.JFrame {
 
         bg.setBackground(new java.awt.Color(255, 255, 255));
         bg.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        panel1.setBackground(new java.awt.Color(0, 90, 195));
-        panel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        btnCerrar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnCerrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnCerrar.setPreferredSize(new java.awt.Dimension(100, 100));
-        btnCerrar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnCerrarMouseClicked(evt);
-            }
-        });
-        panel1.add(btnCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 0, 30, 30));
-
-        btnMinimizar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnMinimizar.setPreferredSize(new java.awt.Dimension(100, 100));
-        btnMinimizar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnMinimizarMouseClicked(evt);
-            }
-        });
-        panel1.add(btnMinimizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 0, 30, 30));
-
-        bg.add(panel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 690, 30));
-
         getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 0, 690, 500));
 
         pack();
@@ -356,6 +357,10 @@ public class MainUI extends javax.swing.JFrame {
     private void btnCerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCerrarMouseClicked
         System.exit(0);
     }//GEN-LAST:event_btnCerrarMouseClicked
+
+    private void formComponentMoved(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentMoved
+        this.setLocationRelativeTo(null);
+    }//GEN-LAST:event_formComponentMoved
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
