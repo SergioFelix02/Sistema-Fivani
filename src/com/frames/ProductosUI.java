@@ -15,10 +15,10 @@ public class ProductosUI extends javax.swing.JFrame {
 
         lblUsuario = new javax.swing.JLabel();
         btnCancelar = new javax.swing.JButton();
-        txtUsuario1 = new javax.swing.JTextField();
+        txtDescripcion = new javax.swing.JTextField();
         btnEditar = new javax.swing.JButton();
-        txtUsuario2 = new javax.swing.JTextField();
-        txtUsuario = new javax.swing.JTextField();
+        txtPrecio = new javax.swing.JTextField();
+        txtNombre = new javax.swing.JTextField();
         lblUsuario1 = new javax.swing.JLabel();
         lblUsuario2 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
@@ -32,7 +32,7 @@ public class ProductosUI extends javax.swing.JFrame {
         btnEliminar = new javax.swing.JButton();
         btnNuevo = new javax.swing.JButton();
         btnBuscar = new javax.swing.JButton();
-        txtUsuario4 = new javax.swing.JTextField();
+        txtCantidad = new javax.swing.JTextField();
         lblUsuario4 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
 
@@ -66,10 +66,10 @@ public class ProductosUI extends javax.swing.JFrame {
         });
         getContentPane().add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 150, 120, 30));
 
-        txtUsuario1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        txtUsuario1.setBorder(null);
-        txtUsuario1.setEnabled(false);
-        getContentPane().add(txtUsuario1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 50, 127, -1));
+        txtDescripcion.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtDescripcion.setBorder(null);
+        txtDescripcion.setEnabled(false);
+        getContentPane().add(txtDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 50, 127, -1));
 
         btnEditar.setBackground(new java.awt.Color(0, 90, 195));
         btnEditar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -91,20 +91,20 @@ public class ProductosUI extends javax.swing.JFrame {
         });
         getContentPane().add(btnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 110, 120, 30));
 
-        txtUsuario2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        txtUsuario2.setBorder(null);
-        txtUsuario2.setEnabled(false);
-        getContentPane().add(txtUsuario2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 50, 112, -1));
+        txtPrecio.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtPrecio.setBorder(null);
+        txtPrecio.setEnabled(false);
+        getContentPane().add(txtPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 50, 112, -1));
 
-        txtUsuario.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        txtUsuario.setBorder(null);
-        txtUsuario.setEnabled(false);
-        txtUsuario.addActionListener(new java.awt.event.ActionListener() {
+        txtNombre.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtNombre.setBorder(null);
+        txtNombre.setEnabled(false);
+        txtNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtUsuarioActionPerformed(evt);
             }
         });
-        getContentPane().add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 100, -1));
+        getContentPane().add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 100, -1));
 
         lblUsuario1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lblUsuario1.setForeground(new java.awt.Color(153, 153, 153));
@@ -269,15 +269,15 @@ public class ProductosUI extends javax.swing.JFrame {
         });
         getContentPane().add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 130, 100, 30));
 
-        txtUsuario4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        txtUsuario4.setBorder(null);
-        txtUsuario4.setEnabled(false);
-        txtUsuario4.addActionListener(new java.awt.event.ActionListener() {
+        txtCantidad.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtCantidad.setBorder(null);
+        txtCantidad.setEnabled(false);
+        txtCantidad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtUsuario4ActionPerformed(evt);
             }
         });
-        getContentPane().add(txtUsuario4, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 50, 100, -1));
+        getContentPane().add(txtCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 50, 100, -1));
 
         lblUsuario4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lblUsuario4.setForeground(new java.awt.Color(153, 153, 153));
@@ -329,8 +329,19 @@ public class ProductosUI extends javax.swing.JFrame {
             btnEditar.setText("Confirmar");
             btnEliminar.setText("Eliminar");
             btnNuevo.setText("Nuevo");
+            txtNombre.setEnabled(true);
+            txtDescripcion.setEnabled(true);
+            txtPrecio.setEnabled(true);
+            txtCantidad.setEnabled(true);
+            txtID.setEnabled(false);
         } else {
             btnEditar.setText("Editar");
+            txtNombre.setEnabled(false);
+            txtDescripcion.setEnabled(false);
+            txtPrecio.setEnabled(false);
+            txtCantidad.setEnabled(false);
+            txtID.setEnabled(true);
+            vaciarTxt();
         }
     }//GEN-LAST:event_btnEditarActionPerformed
 
@@ -347,8 +358,19 @@ public class ProductosUI extends javax.swing.JFrame {
             btnEliminar.setText("Confirmar");
             btnNuevo.setText("Nuevo");
             btnEditar.setText("Editar");
+            txtNombre.setEnabled(true);
+            txtDescripcion.setEnabled(true);
+            txtPrecio.setEnabled(true);
+            txtCantidad.setEnabled(true);
+            txtID.setEnabled(false);
         } else {
             btnEliminar.setText("Eliminar");
+            txtNombre.setEnabled(false);
+            txtDescripcion.setEnabled(false);
+            txtPrecio.setEnabled(false);
+            txtCantidad.setEnabled(false);
+            txtID.setEnabled(true);
+            vaciarTxt();
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
@@ -377,8 +399,19 @@ public class ProductosUI extends javax.swing.JFrame {
             btnNuevo.setText("Confirmar");
             btnEliminar.setText("Eliminar");
             btnEditar.setText("Editar");
+            txtNombre.setEnabled(true);
+            txtDescripcion.setEnabled(true);
+            txtPrecio.setEnabled(true);
+            txtCantidad.setEnabled(true);
+            txtID.setEnabled(false);
         } else {
             btnNuevo.setText("Nuevo");
+            txtNombre.setEnabled(false);
+            txtDescripcion.setEnabled(false);
+            txtPrecio.setEnabled(false);
+            txtCantidad.setEnabled(false);
+            txtID.setEnabled(true);
+            vaciarTxt();
         }
     }//GEN-LAST:event_btnNuevoActionPerformed
 
@@ -423,6 +456,13 @@ public class ProductosUI extends javax.swing.JFrame {
         });
     }
 
+    public void vaciarTxt() {
+        txtID.setText("");
+        txtNombre.setText("");
+        txtDescripcion.setText("");
+        txtPrecio.setText("");
+        txtCantidad.setText("");
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnCancelar;
@@ -442,9 +482,9 @@ public class ProductosUI extends javax.swing.JFrame {
     private javax.swing.JLabel lblUsuario3;
     private javax.swing.JLabel lblUsuario4;
     private javax.swing.JTextField txtID;
-    private javax.swing.JTextField txtUsuario;
-    private javax.swing.JTextField txtUsuario1;
-    private javax.swing.JTextField txtUsuario2;
-    private javax.swing.JTextField txtUsuario4;
+    private javax.swing.JTextField txtNombre;
+    private javax.swing.JTextField txtDescripcion;
+    private javax.swing.JTextField txtPrecio;
+    private javax.swing.JTextField txtCantidad;
     // End of variables declaration//GEN-END:variables
 }
