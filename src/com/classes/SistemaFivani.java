@@ -7,5 +7,4 @@ public class SistemaFivani {
         LoginUI login = new LoginUI();
         login.setVisible(true);
     }
-
 }

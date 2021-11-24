@@ -1,4 +1,3 @@
-
 package com.frames;
 
 import java.awt.Image;
@@ -10,6 +9,9 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 
 public class LoginUI extends javax.swing.JFrame {
+
+    String User;
+    String Password;
 
     public LoginUI() {
         initComponents();
@@ -97,14 +99,8 @@ public class LoginUI extends javax.swing.JFrame {
             .addGap(0, 2, Short.MAX_VALUE)
         );
 
-        txtUsuario.setBackground(new java.awt.Color(255, 255, 255));
         txtUsuario.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         txtUsuario.setBorder(null);
-        txtUsuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtUsuarioActionPerformed(evt);
-            }
-        });
 
         lblContrasena.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         lblContrasena.setForeground(new java.awt.Color(153, 153, 153));
@@ -124,7 +120,6 @@ public class LoginUI extends javax.swing.JFrame {
             .addGap(0, 2, Short.MAX_VALUE)
         );
 
-        txtContrasena.setBackground(new java.awt.Color(255, 255, 255));
         txtContrasena.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         txtContrasena.setBorder(null);
         txtContrasena.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
@@ -198,12 +193,10 @@ public class LoginUI extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
-        // Aqui todo
-    }//GEN-LAST:event_txtUsuarioActionPerformed
-
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
         MainUI Main = new MainUI();
+        User = txtUsuario.getText().trim();
+        Password = txtContrasena.getText().trim();
         /*
         try {
             FileWriter File = new FileWriter("File.txt",true);
@@ -216,10 +209,18 @@ public class LoginUI extends javax.swing.JFrame {
         } catch (IOException MM) {
             System.out.println("Error: "+MM.getMessage());
         }
-        */
+         */
         Main.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnIngresarActionPerformed
+
+    public String getUser() {
+        return User;
+    }
+
+    public String getPassword() {
+        return Password;
+    }
 
     private void btnIngresarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnIngresarMouseEntered
         btnIngresar.setBackground(new java.awt.Color(0, 90, 150));
@@ -249,7 +250,7 @@ public class LoginUI extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(LoginUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        
+
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

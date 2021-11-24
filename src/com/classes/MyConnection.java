@@ -26,8 +26,8 @@ public class MyConnection {
             User = Buffer.readLine();
             Password = Buffer.readLine();
             File.close();
-        } catch (IOException MM) {
-            //System.out.println("Error: "+MM.getMessage());
+        } catch (IOException e) {
+            System.out.println("Error: " + e.getMessage());
         }
         /*
         //Conexion Remota
@@ -37,7 +37,7 @@ public class MyConnection {
          */
         //Conexion Local
         String connectionUrl = "jdbc:sqlserver://localhost:1433;"
-                + "database=bdSistema;"
+                + "database=bdFivani;"
                 + "user=" + User + ";"
                 + "password=" + Password + ";"
                 + "loginTimeout=30;";
