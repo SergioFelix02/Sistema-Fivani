@@ -196,7 +196,7 @@ public class LoginUI extends javax.swing.JFrame {
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
         MainUI Main = new MainUI();
         User = txtUsuario.getText().trim();
-        Password = txtContrasena.getText().trim();
+        Password = txtContrasena.getPassword().toString();
         /*
         try {
             FileWriter File = new FileWriter("File.txt",true);
