@@ -41,7 +41,6 @@ public class ProductosUI extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         btnEliminar = new javax.swing.JButton();
         btnNuevo = new javax.swing.JButton();
-        btnBuscar = new javax.swing.JButton();
         txtCantidad = new javax.swing.JTextField();
         lblUsuario4 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
@@ -259,26 +258,6 @@ public class ProductosUI extends javax.swing.JFrame {
         });
         getContentPane().add(btnNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 110, 120, 30));
 
-        btnBuscar.setBackground(new java.awt.Color(0, 90, 195));
-        btnBuscar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btnBuscar.setForeground(new java.awt.Color(255, 255, 255));
-        btnBuscar.setText("Buscar");
-        btnBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnBuscarMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnBuscarMouseExited(evt);
-            }
-        });
-        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscarActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 130, 100, 30));
-
         txtCantidad.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txtCantidad.setBorder(null);
         txtCantidad.setEnabled(false);
@@ -371,6 +350,8 @@ public class ProductosUI extends javax.swing.JFrame {
             precio = Integer.parseInt(txtPrecio.getText());
             cantidad = Integer.parseInt(txtCantidad.getText());
             Modificar(id, nombre, descripcion, precio, cantidad);
+            dialog.setAlwaysOnTop(true);
+            dialog.setVisible(true);
             btnEditar.setText("Editar");
             txtNombre.setEnabled(false);
             txtDescripcion.setEnabled(false);
@@ -418,6 +399,8 @@ public class ProductosUI extends javax.swing.JFrame {
             }
         } else {
             Desactivar(id, estatus);
+            dialog.setAlwaysOnTop(true);
+            dialog.setVisible(true);
             dialog.setAlwaysOnTop(true);
             dialog.setVisible(true);
             btnEliminar.setText("Eliminar");
