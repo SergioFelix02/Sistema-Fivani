@@ -1,9 +1,14 @@
 package com.frames;
 
 import java.awt.Color;
+import java.sql.CallableStatement;
+import javax.swing.JOptionPane;
+import com.classes.MyConnection;
+import java.sql.*;
 
 public class ProductosUI extends javax.swing.JFrame {
-
+    ResultSet rs;
+    Connection cn = MyConnection.getConnection();
     public ProductosUI() {
         initComponents();
         this.setBackground(new Color(255,255,255, 100));
@@ -364,6 +369,7 @@ public class ProductosUI extends javax.swing.JFrame {
             txtCantidad.setEnabled(true);
             txtID.setEnabled(false);
         } else {
+            
             btnEliminar.setText("Eliminar");
             txtNombre.setEnabled(false);
             txtDescripcion.setEnabled(false);
@@ -404,7 +410,16 @@ public class ProductosUI extends javax.swing.JFrame {
             txtPrecio.setEnabled(true);
             txtCantidad.setEnabled(true);
             txtID.setEnabled(false);
+            vaciarTxt();
         } else {
+            String nombre, descripcion;
+            int precio, cantidad, estatus;
+            nombre = String.valueOf(txtNombre.getText());
+            descripcion = String.valueOf(txtDescripcion.getText());
+            precio = Integer.parseInt(txtPrecio.getText());
+            cantidad = Integer.parseInt(txtCantidad.getText());
+            estatus = 1;
+            Insertar(nombre, descripcion, precio, cantidad, estatus);
             btnNuevo.setText("Nuevo");
             txtNombre.setEnabled(false);
             txtDescripcion.setEnabled(false);
@@ -462,6 +477,22 @@ public class ProductosUI extends javax.swing.JFrame {
         txtDescripcion.setText("");
         txtPrecio.setText("");
         txtCantidad.setText("");
+    }
+
+    public void Insertar(String nombre, String descripcion, int precio, int cantidad, int estatus) {
+        try {
+            CallableStatement cst = cn.prepareCall("{call agregarProducto(?,?,?,?,?)}");
+            cst.setString(1, nombre);
+            cst.setString(2, descripcion);
+            cst.setInt(3, precio);
+            cst.setInt(4, cantidad);
+            cst.setInt(5, estatus);
+            cst.execute();
+            // rs = cst.executeQuery();
+        } catch (Exception e) {
+            //JOptionPane.showMessageDialog(null, e);
+        }
+        //princ.CrearTabla();
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;

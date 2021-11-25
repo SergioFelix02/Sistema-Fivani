@@ -231,15 +231,25 @@ set @Venta = (
 )
 go
 
+use bdFivani
 exec agregarUsuario 'magdiel', '1234', 1
 exec agregarUsuario 'SA', 'Safp270602', 1
 exec agregarProducto 'Mouse', 'Gamer', 349, 5, 1
 exec agregarProducto 'Teclado', 'Normal', 149, 2, 1
 exec agregarVenta 1, 0
-exec agregarDetalleVenta 1, 1, 2 , 698
-exec agregarDetalleVenta 1, 2, 2 , 155
+exec agregarDetalleVenta 11, 3, 2 , 698
+exec agregarDetalleVenta 11, 4, 2 , 155
 exec calcularTotalVenta 1
 exec getSelectVenta 1
 exec getSelectDetalleVentas 1
 exec getSelectProductos
 exec getSelectUsuarios
+exec calcularTotalVenta 11
+
+select * from Ventas
+
+DBCC CHECKIDENT ('Productos', RESEED, 1)
+
+delete from Productos
+delete from Ventas
+delete from Detalle_Ventas
