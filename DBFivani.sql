@@ -245,6 +245,7 @@ exec getSelectDetalleVentas 1
 exec getSelectProductos
 exec getSelectUsuarios
 exec calcularTotalVenta 11
+exec estatusProducto 3, 1
 
 select * from Ventas
 

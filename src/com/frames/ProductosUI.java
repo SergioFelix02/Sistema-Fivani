@@ -2,12 +2,18 @@ package com.frames;
 
 import java.awt.Color;
 import java.sql.CallableStatement;
+
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
+
 import com.classes.MyConnection;
 import java.sql.*;
 
 public class ProductosUI extends javax.swing.JFrame {
     ResultSet rs;
     Connection cn = MyConnection.getConnection();
+    public JOptionPane msg = new JOptionPane("Operacion realizada");
+    public JDialog dialog = msg.createDialog("Mensaje");
     public ProductosUI() {
         initComponents();
         this.setBackground(new Color(255,255,255, 100));
@@ -358,17 +364,37 @@ public class ProductosUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEliminarMouseExited
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        String nombre = "", descripcion = "";
+        int id = 0, precio = 0, cantidad = 0, estatus = 0;
+        id = Integer.parseInt(txtID.getText());
         if (btnEliminar.getText() == "Eliminar"){
             btnEliminar.setText("Confirmar");
             btnNuevo.setText("Nuevo");
             btnEditar.setText("Editar");
-            txtNombre.setEnabled(true);
-            txtDescripcion.setEnabled(true);
-            txtPrecio.setEnabled(true);
-            txtCantidad.setEnabled(true);
             txtID.setEnabled(false);
+            try {
+                PreparedStatement pst = cn.prepareStatement("select * from Productos where idProducto = ?");
+                pst.setInt(1, id);
+                rs = pst.executeQuery();
+                if (rs.next()) {
+                    id = rs.getInt("idProducto");
+                    nombre = rs.getString("nombreProducto");
+                    descripcion = rs.getString("descripcionProducto");
+                    precio = rs.getInt("precioProducto");
+                    cantidad = rs.getInt("cantidadProducto");
+                    txtNombre.setText(nombre);
+                    txtDescripcion.setText(descripcion);
+                    txtPrecio.setText(String.valueOf(precio));
+                    txtCantidad.setText(String.valueOf(cantidad));
+                }
+            } catch (Exception e) {
+                //JOptionPane.showMessageDialog(null, e);
+            }
         } else {
-            
+            System.out.println("desactivar, id="+id+" estatus="+estatus);
+            Desactivar(id, estatus);
+            dialog.setAlwaysOnTop(true);
+            dialog.setVisible(true);
             btnEliminar.setText("Eliminar");
             txtNombre.setEnabled(false);
             txtDescripcion.setEnabled(false);
@@ -411,14 +437,9 @@ public class ProductosUI extends javax.swing.JFrame {
             txtID.setEnabled(false);
             vaciarTxt();
         } else {
-            String nombre, descripcion;
-            int precio, cantidad, estatus;
-            nombre = String.valueOf(txtNombre.getText());
-            descripcion = String.valueOf(txtDescripcion.getText());
-            precio = Integer.parseInt(txtPrecio.getText());
-            cantidad = Integer.parseInt(txtCantidad.getText());
-            estatus = 1;
-            Insertar(nombre, descripcion, precio, cantidad, estatus);
+            Insertar();
+            dialog.setAlwaysOnTop(true);
+            dialog.setVisible(true);
             btnNuevo.setText("Nuevo");
             txtNombre.setEnabled(false);
             txtDescripcion.setEnabled(false);
@@ -478,7 +499,14 @@ public class ProductosUI extends javax.swing.JFrame {
         txtCantidad.setText("");
     }
 
-    public void Insertar(String nombre, String descripcion, int precio, int cantidad, int estatus) {
+    public void Insertar() {
+        String nombre, descripcion;
+        int precio, cantidad, estatus;
+        nombre = String.valueOf(txtNombre.getText());
+        descripcion = String.valueOf(txtDescripcion.getText());
+        precio = Integer.parseInt(txtPrecio.getText());
+        cantidad = Integer.parseInt(txtCantidad.getText());
+        estatus = 1;
         try {
             CallableStatement cst = cn.prepareCall("{call agregarProducto(?,?,?,?,?)}");
             cst.setString(1, nombre);
@@ -486,6 +514,18 @@ public class ProductosUI extends javax.swing.JFrame {
             cst.setInt(3, precio);
             cst.setInt(4, cantidad);
             cst.setInt(5, estatus);
+            cst.execute();
+            // rs = cst.executeQuery();
+        } catch (Exception e) {
+            //JOptionPane.showMessageDialog(null, e);
+        }
+        //princ.CrearTabla();
+    }
+    public void Desactivar(int id, int estatus) {
+        try {
+            CallableStatement cst = cn.prepareCall("{call estatusProducto(?,?)}");
+            cst.setInt(1, id);
+            cst.setInt(2, estatus);
             cst.execute();
             // rs = cst.executeQuery();
         } catch (Exception e) {
