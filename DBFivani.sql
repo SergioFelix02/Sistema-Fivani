@@ -246,6 +246,7 @@ exec getSelectProductos
 exec getSelectUsuarios
 exec calcularTotalVenta 11
 exec estatusProducto 3, 1
+exec modificarProducto 10, 'Redmi note 5', '1.8ghz', 2499, 2
 
 select * from Ventas
 

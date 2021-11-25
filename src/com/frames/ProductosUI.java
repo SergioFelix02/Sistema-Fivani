@@ -335,6 +335,9 @@ public class ProductosUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEditarMouseExited
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+        String nombre = "", descripcion = "";
+        int id = 0, precio = 0, cantidad = 0;
+        id = Integer.parseInt(txtID.getText());
         if (btnEditar.getText() == "Editar"){
             btnEditar.setText("Confirmar");
             btnEliminar.setText("Eliminar");
@@ -344,7 +347,30 @@ public class ProductosUI extends javax.swing.JFrame {
             txtPrecio.setEnabled(true);
             txtCantidad.setEnabled(true);
             txtID.setEnabled(false);
+            try {
+                PreparedStatement pst = cn.prepareStatement("select * from Productos where idProducto = ?");
+                pst.setInt(1, id);
+                rs = pst.executeQuery();
+                if (rs.next()) {
+                    id = rs.getInt("idProducto");
+                    nombre = rs.getString("nombreProducto");
+                    descripcion = rs.getString("descripcionProducto");
+                    precio = rs.getInt("precioProducto");
+                    cantidad = rs.getInt("cantidadProducto");
+                    txtNombre.setText(nombre);
+                    txtDescripcion.setText(descripcion);
+                    txtPrecio.setText(String.valueOf(precio));
+                    txtCantidad.setText(String.valueOf(cantidad));
+                }
+            } catch (Exception e) {
+                //JOptionPane.showMessageDialog(null, e);
+            }
         } else {
+            nombre = String.valueOf(txtNombre.getText());
+            descripcion = String.valueOf(txtDescripcion.getText());
+            precio = Integer.parseInt(txtPrecio.getText());
+            cantidad = Integer.parseInt(txtCantidad.getText());
+            Modificar(id, nombre, descripcion, precio, cantidad);
             btnEditar.setText("Editar");
             txtNombre.setEnabled(false);
             txtDescripcion.setEnabled(false);
@@ -391,7 +417,6 @@ public class ProductosUI extends javax.swing.JFrame {
                 //JOptionPane.showMessageDialog(null, e);
             }
         } else {
-            System.out.println("desactivar, id="+id+" estatus="+estatus);
             Desactivar(id, estatus);
             dialog.setAlwaysOnTop(true);
             dialog.setVisible(true);
@@ -526,6 +551,21 @@ public class ProductosUI extends javax.swing.JFrame {
             CallableStatement cst = cn.prepareCall("{call estatusProducto(?,?)}");
             cst.setInt(1, id);
             cst.setInt(2, estatus);
+            cst.execute();
+            // rs = cst.executeQuery();
+        } catch (Exception e) {
+            //JOptionPane.showMessageDialog(null, e);
+        }
+        //princ.CrearTabla();
+    }
+    public void Modificar(int id, String nombre, String descripcion, int precio, int cantidad) {
+        try {
+            CallableStatement cst = cn.prepareCall("{call modificarProducto(?,?,?,?,?)}");
+            cst.setInt(1, id);
+            cst.setString(2, nombre);
+            cst.setString(3, descripcion);
+            cst.setInt(4, precio);
+            cst.setInt(5, cantidad);
             cst.execute();
             // rs = cst.executeQuery();
         } catch (Exception e) {
