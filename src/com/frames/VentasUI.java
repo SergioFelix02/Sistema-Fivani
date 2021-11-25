@@ -1,9 +1,17 @@
 package com.frames;
 
-public class VentasUI extends javax.swing.JFrame {
+import com.classes.MyConnection;
+import java.awt.Color;
+import java.sql.*;
+import javax.swing.*;
 
+public class VentasUI extends javax.swing.JFrame {
+    ResultSet rs;
+    Connection cn = MyConnection.getConnection();
     public VentasUI() {
         initComponents();
+        this.setBackground(new Color(255,255,255, 100));
+        //txtID.requestFocus();
     }
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -11,6 +19,7 @@ public class VentasUI extends javax.swing.JFrame {
 
         setTitle("Ventas");
         setAlwaysOnTop(true);
+        setUndecorated(true);
         setPreferredSize(new java.awt.Dimension(515, 423));
         setResizable(false);
 

@@ -1,6 +1,5 @@
 package com.frames;
 
-import java.awt.Frame;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 
@@ -14,18 +13,12 @@ public class MainUI extends javax.swing.JFrame {
         initComponents();
         this.setIconImage(new ImageIcon(getClass().getClassLoader().getResource("com/images/Icono.png")).getImage());
         lbl_icon.setIcon(new ImageIcon(new ImageIcon(getClass().getClassLoader().getResource("com/images/Icono.png")).getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH)));
-        btnCerrar.setIcon(new ImageIcon(new ImageIcon(getClass().getClassLoader().getResource("com/images/Cerrar.png")).getImage().getScaledInstance(25, 25, Image.SCALE_SMOOTH)));
-        btnMinimizar.setIcon(new ImageIcon(new ImageIcon(getClass().getClassLoader().getResource("com/images/Minimizar.png")).getImage().getScaledInstance(25, 25, Image.SCALE_SMOOTH)));
-
         //setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        panel1 = new javax.swing.JPanel();
-        btnCerrar = new javax.swing.JLabel();
-        btnMinimizar = new javax.swing.JLabel();
         panel = new javax.swing.JPanel();
         lbl_icon = new javax.swing.JLabel();
         btnProductos = new javax.swing.JLabel();
@@ -38,29 +31,6 @@ public class MainUI extends javax.swing.JFrame {
         barProductos = new javax.swing.JPanel();
         barUsuarios = new javax.swing.JPanel();
         bg = new javax.swing.JPanel();
-
-        panel1.setBackground(new java.awt.Color(0, 90, 195));
-        panel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        btnCerrar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnCerrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnCerrar.setPreferredSize(new java.awt.Dimension(100, 100));
-        btnCerrar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnCerrarMouseClicked(evt);
-            }
-        });
-        panel1.add(btnCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 0, 30, 30));
-
-        btnMinimizar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnMinimizar.setPreferredSize(new java.awt.Dimension(100, 100));
-        btnMinimizar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnMinimizarMouseClicked(evt);
-            }
-        });
-        panel1.add(btnMinimizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 0, 30, 30));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Refaccionaria Fivani");
@@ -347,17 +317,6 @@ public class MainUI extends javax.swing.JFrame {
         // Codigo
     }//GEN-LAST:event_btnInformacionMouseExited
 
-    private void btnMinimizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMinimizarMouseClicked
-        this.setState(Frame.ICONIFIED);
-        productos.setVisible(false);
-        ventas.setVisible(false);
-        usuarios.setVisible(false);
-    }//GEN-LAST:event_btnMinimizarMouseClicked
-
-    private void btnCerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCerrarMouseClicked
-        System.exit(0);
-    }//GEN-LAST:event_btnCerrarMouseClicked
-
     private void formComponentMoved(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentMoved
         this.setLocationRelativeTo(null);
     }//GEN-LAST:event_formComponentMoved
@@ -396,9 +355,7 @@ public class MainUI extends javax.swing.JFrame {
     private javax.swing.JPanel barSalir;
     private javax.swing.JPanel barUsuarios;
     private javax.swing.JPanel bg;
-    private javax.swing.JLabel btnCerrar;
     private javax.swing.JLabel btnInformacion;
-    private javax.swing.JLabel btnMinimizar;
     private javax.swing.JLabel btnProductos;
     private javax.swing.JLabel btnSalir;
     private javax.swing.JLabel btnUsuarios;
@@ -406,6 +363,5 @@ public class MainUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel lbl_icon;
     private javax.swing.JPanel panel;
-    private javax.swing.JPanel panel1;
     // End of variables declaration//GEN-END:variables
 }
