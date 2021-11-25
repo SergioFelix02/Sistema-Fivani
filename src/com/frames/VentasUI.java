@@ -3,7 +3,6 @@ package com.frames;
 import com.classes.MyConnection;
 import java.awt.Color;
 import java.sql.*;
-import javax.swing.*;
 
 public class VentasUI extends javax.swing.JFrame {
     ResultSet rs;
