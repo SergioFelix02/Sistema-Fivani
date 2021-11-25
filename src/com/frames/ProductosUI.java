@@ -2,7 +2,6 @@ package com.frames;
 
 import java.awt.Color;
 import java.sql.CallableStatement;
-import javax.swing.JOptionPane;
 import com.classes.MyConnection;
 import java.sql.*;
 
