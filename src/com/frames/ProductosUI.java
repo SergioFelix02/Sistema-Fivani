@@ -189,7 +189,7 @@ public class ProductosUI extends javax.swing.JFrame {
         ));
         table.setViewportView(jTable1);
 
-        getContentPane().add(table, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 470, 220));
+        getContentPane().add(table, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 470, 230));
 
         barNombre.setBackground(new java.awt.Color(204, 204, 204));
         barNombre.setPreferredSize(new java.awt.Dimension(2, 29));
