@@ -4,13 +4,20 @@ import com.classes.MyConnection;
 import java.awt.Color;
 import java.sql.*;
 
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
+
 public class VentasUI extends javax.swing.JFrame {
     ResultSet rs;
     Connection cn = MyConnection.getConnection();
+    public JOptionPane msg = new JOptionPane("Operacion realizada");
+    public JDialog dialog = msg.createDialog("Mensaje");
     int Cantidad = 0;
     int Total = 0;
     int ID_Producto = 0;
     int id = 0;
+    int precioProd = 0;
+    String temp = "";
     public VentasUI() {
         initComponents();
         this.setBackground(new Color(255,255,255, 100));
@@ -317,17 +324,24 @@ public class VentasUI extends javax.swing.JFrame {
         
     public void Buscar(int id){
         try {
-            PreparedStatement pst = cn.prepareStatement("select * from Detalle_Ventas where idDetalleVenta = ?");
-            pst.setInt(1, id);
+            PreparedStatement pst = cn.prepareStatement("select top 1 * from Ventas order by idVenta desc");
             rs = pst.executeQuery();
             if (rs.next()) {
-                id = rs.getInt("idDetalleVenta");
-                ID_Producto = rs.getInt("idProducto");
-                Cantidad = rs.getInt("cantidad");
-                Total = rs.getInt("subtotal");
-                txtID_Producto.setText(String.valueOf(ID_Producto));
-                txtCantidad.setText(String.valueOf(Cantidad));
+                id = rs.getInt("idVenta");
+                Total = rs.getInt("total");
+                txtID_Venta.setText(String.valueOf(id));
                 txtTotal.setText(String.valueOf(Total));
+            }
+        } catch (Exception e) {
+            //JOptionPane.showMessageDialog(null, e);
+        }
+        try {
+            ID_Producto = Integer.valueOf(txtID_Producto.getText());
+            PreparedStatement pst = cn.prepareStatement("select * from Productos where idProducto = ?");
+            pst.setInt(1, ID_Producto);
+            rs = pst.executeQuery();
+            if (rs.next()) {
+                precioProd = rs.getInt("precioProducto");
             }
         } catch (Exception e) {
             //JOptionPane.showMessageDialog(null, e);
@@ -335,9 +349,6 @@ public class VentasUI extends javax.swing.JFrame {
     }
     
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
-        String txtcantidad = txtCantidad.getText().trim();
-        String txtotal = txtTotal.getText().trim();
-        String txtidprod = txtID_Producto.getText().trim();
         if (btnNuevo.getText() == "Nueva"){
             btnNuevo.setText("Confirmar");
             btnAgregar.setText("Agregar");
@@ -346,30 +357,32 @@ public class VentasUI extends javax.swing.JFrame {
             txtTotal.setEnabled(false);
             txtID_Producto.setEnabled(true);
             txtCantidad.setEnabled(true);
+            btnAgregar.setEnabled(true);
+            btnCancelar.setEnabled(false);
+            btnEditar.setEnabled(false);
             barID_Producto.setBackground(new java.awt.Color(0, 90, 150));
             barCantidad.setBackground(new java.awt.Color(0, 90, 150));
             barTotal.setBackground(new java.awt.Color(187, 187, 187));
             barID_Venta.setBackground(new java.awt.Color(187, 187, 187));
-            //vaciarTxt();
+            vaciarTxt();
+            InsertarVenta();
+            Buscar(id);
         } else{
-            if (txtcantidad.equals("") || txtotal.equals("") || txtidprod.equals("") ){
-                //dialog.setAlwaysOnTop(true);
-                //dialog.setVisible(true);
-            } else{
-                //Insertar();
-                //dialog.setAlwaysOnTop(true);
-                //dialog.setVisible(true);
-                btnNuevo.setText("Nueva");
-                txtID_Venta.setEnabled(true);
-                txtID_Producto.setEnabled(false);
-                txtCantidad.setEnabled(false);
-                //txtTotal.setEnabled(true);
-                barID_Producto.setBackground(new java.awt.Color(187, 187, 187));
-                barCantidad.setBackground(new java.awt.Color(187, 187, 187));
-                //barTotal.setBackground(new java.awt.Color(187, 187, 187));
-                barID_Venta.setBackground(new java.awt.Color(0, 90, 150));
-                //vaciarTxt();
-            }
+            //Insertar();
+            dialog.setAlwaysOnTop(true);
+            dialog.setVisible(true);
+            btnNuevo.setText("Nueva");
+            txtID_Venta.setEnabled(true);
+            txtID_Producto.setEnabled(false);
+            txtCantidad.setEnabled(false);
+            //txtTotal.setEnabled(true);                btnCancelar.setEnabled(true);
+            btnEditar.setEnabled(true);
+            btnCancelar.setEnabled(true);
+            barID_Producto.setBackground(new java.awt.Color(187, 187, 187));
+            barCantidad.setBackground(new java.awt.Color(187, 187, 187));
+            //barTotal.setBackground(new java.awt.Color(187, 187, 187));
+            barID_Venta.setBackground(new java.awt.Color(0, 90, 150));
+            vaciarTxt();
         }
     }//GEN-LAST:event_btnNuevoActionPerformed
     
@@ -414,44 +427,15 @@ public class VentasUI extends javax.swing.JFrame {
                 barCantidad.setBackground(new java.awt.Color(187, 187, 187));
                 barTotal.setBackground(new java.awt.Color(187, 187, 187));
                 barID_Venta.setBackground(new java.awt.Color(0, 90, 150));
-                //vaciarTxt();
+                vaciarTxt();
             }
         }
     }//GEN-LAST:event_btnEditarActionPerformed
     
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        String txtid = txtID_Venta.getText().trim();
-        if (btnAgregar.getText() == "Agregar"){
-            if (txtid.equals("")){
-                //dialog.setAlwaysOnTop(true);
-                //dialog.setVisible(true);
-            } else{
-                //id = Integer.parseInt(txtid);
-                //Buscar(id);
-                btnAgregar.setText("Confirmar");
-                btnNuevo.setText("Nueva");
-                btnEditar.setText("Editar");
-                txtID_Venta.setEnabled(false);
-                barID_Venta.setBackground(new java.awt.Color(187, 187, 187));
-            }
-        } else {
-            //int estatus = 0;
-            //Desactivar(id, estatus);
-            //dialog.setAlwaysOnTop(true);
-            //dialog.setVisible(true);
-            //dialog.setAlwaysOnTop(true);
-            //dialog.setVisible(true);
-            btnAgregar.setText("Agregar");
-            txtID_Venta.setEnabled(true);
-            txtID_Producto.setEnabled(false);
-            txtCantidad.setEnabled(false);
-            txtTotal.setEnabled(false);
-            barID_Producto.setBackground(new java.awt.Color(187, 187, 187));
-            barCantidad.setBackground(new java.awt.Color(187, 187, 187));
-            barTotal.setBackground(new java.awt.Color(187, 187, 187));
-            barID_Venta.setBackground(new java.awt.Color(0, 90, 150));
-            //vaciarTxt();
-        }
+        InsertarDetalleVenta();
+        txtID_Producto.setText("");
+        txtCantidad.setText("");
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -532,7 +516,50 @@ public class VentasUI extends javax.swing.JFrame {
             }
         });
     }
-
+    public void vaciarTxt() {
+        txtID_Venta.setText("");
+        txtTotal.setText("");
+        txtID_Producto.setText("");
+        txtCantidad.setText("");
+    }
+    public void InsertarVenta() {
+        try {
+            CallableStatement cst = cn.prepareCall("{call agregarVenta(?,?)}");
+            cst.setInt(1, 1);
+            cst.setInt(2, 0);
+            cst.execute();
+        } catch (Exception e) {
+            //JOptionPane.showMessageDialog(null, e);
+        }
+        //princ.CrearTabla();
+    }
+    public void InsertarDetalleVenta() {
+        int idV = Integer.valueOf(txtID_Venta.getText());
+        int idP = Integer.valueOf(txtID_Producto.getText());
+        int cantidad = Integer.valueOf(txtCantidad.getText());
+        Buscar(idV);
+        System.out.println(precioProd);
+        int subtotal = cantidad * precioProd;
+        try {
+            CallableStatement cst = cn.prepareCall("{call agregarDetalleVenta(?,?,?,?)}");
+            cst.setInt(1, idV);
+            cst.setInt(2, idP);
+            cst.setInt(3, cantidad);
+            cst.setInt(4, subtotal);
+            cst.execute();
+        } catch (Exception e) {
+            //JOptionPane.showMessageDialog(null, e);
+        }
+        try {
+            CallableStatement cst = cn.prepareCall("{call calcularTotalVenta(?)}");
+            cst.setInt(1, idV);
+            cst.execute();
+        } catch (Exception e) {
+            //JOptionPane.showMessageDialog(null, e);
+        }
+        Buscar(idV);
+        //princ.CrearTabla();
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel barCantidad;
     private javax.swing.JPanel barID_Producto;
