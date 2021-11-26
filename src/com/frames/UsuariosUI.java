@@ -3,6 +3,7 @@ package com.frames;
 import com.classes.MyConnection;
 import java.awt.Color;
 import java.sql.*;
+
 import javax.swing.*;
 
 public class UsuariosUI extends javax.swing.JFrame {
@@ -270,7 +271,7 @@ public class UsuariosUI extends javax.swing.JFrame {
     
     public void Buscar(int id){
         try {
-            PreparedStatement pst = cn.prepareStatement("select * from Usuarios where idProducto = ?");
+            PreparedStatement pst = cn.prepareStatement("select * from Usuarios where idUsuario = ?");
             pst.setInt(1, id);
             rs = pst.executeQuery();
             if (rs.next()) {
@@ -299,15 +300,15 @@ public class UsuariosUI extends javax.swing.JFrame {
             barUsuario.setBackground(new java.awt.Color(0, 90, 150));
             barPassword.setBackground(new java.awt.Color(0, 90, 150));
             barID.setBackground(new java.awt.Color(187, 187, 187));
-            //vaciarTxt();
+            vaciarTxt();
         } else{
             if (txtnombre.equals("") || txtdescripcion.equals("")){
                 //dialog.setAlwaysOnTop(true);
                 //dialog.setVisible(true);
             } else{
-                //Insertar();
-                //dialog.setAlwaysOnTop(true);
-                //dialog.setVisible(true);
+                Insertar();
+                dialog.setAlwaysOnTop(true);
+                dialog.setVisible(true);
                 btnNuevo.setText("Nuevo");
                 txtUser.setEnabled(false);
                 txtPassword.setEnabled(false);
@@ -315,7 +316,7 @@ public class UsuariosUI extends javax.swing.JFrame {
                 barUsuario.setBackground(new java.awt.Color(187, 187, 187));
                 barPassword.setBackground(new java.awt.Color(187, 187, 187));
                 barID.setBackground(new java.awt.Color(0, 90, 150));
-                //vaciarTxt();
+                vaciarTxt();
             }
         }
     }//GEN-LAST:event_btnNuevoActionPerformed
@@ -327,8 +328,8 @@ public class UsuariosUI extends javax.swing.JFrame {
                 //dialog.setAlwaysOnTop(true);
                 //dialog.setVisible(true);
             } else{
-                //id = Integer.parseInt(txtid);
-                //Buscar(id);
+                id = Integer.parseInt(txtid);
+                Buscar(id);
                 btnEditar.setText("Confirmar");
                 btnEliminar.setText("Eliminar");
                 btnNuevo.setText("Nuevo");
@@ -341,15 +342,15 @@ public class UsuariosUI extends javax.swing.JFrame {
             }
 
         } else{
-            String txtnombre = txtUser.getText();
-            String txtdescripcion = txtPassword.getText();
-            if (txtnombre.equals("") || txtdescripcion.equals("")){
+            String txtUsuario = txtUser.getText();
+            String txtContrasena = txtPassword.getText();
+            if (txtUsuario.equals("") || txtContrasena.equals("")){
                 //dialog.setAlwaysOnTop(true);
                 //dialog.setVisible(true);
             } else{
-                //Modificar(id, nombre, descripcion, precio, cantidad);
-                //dialog.setAlwaysOnTop(true);
-                //dialog.setVisible(true);
+                Modificar(id, txtUsuario, txtContrasena);
+                dialog.setAlwaysOnTop(true);
+                dialog.setVisible(true);
                 btnEditar.setText("Editar");
                 txtUser.setEnabled(false);
                 txtPassword.setEnabled(false);
@@ -357,7 +358,7 @@ public class UsuariosUI extends javax.swing.JFrame {
                 barUsuario.setBackground(new java.awt.Color(187, 187, 187));
                 barPassword.setBackground(new java.awt.Color(187, 187, 187));
                 barID.setBackground(new java.awt.Color(0, 90, 150));
-                //vaciarTxt();
+                vaciarTxt();
             }
         }
     }//GEN-LAST:event_btnEditarActionPerformed
@@ -369,8 +370,8 @@ public class UsuariosUI extends javax.swing.JFrame {
                 //dialog.setAlwaysOnTop(true);
                 //dialog.setVisible(true);
             } else{
-                //id = Integer.parseInt(txtid);
-                //Buscar(id);
+                id = Integer.parseInt(txtid);
+                Buscar(id);
                 btnEliminar.setText("Confirmar");
                 btnNuevo.setText("Nuevo");
                 btnEditar.setText("Editar");
@@ -379,12 +380,10 @@ public class UsuariosUI extends javax.swing.JFrame {
             }
         } else {
             System.out.println("a");
-            //int estatus = 0;
-            //Desactivar(id, estatus);
-            //dialog.setAlwaysOnTop(true);
-            //dialog.setVisible(true);
-            //dialog.setAlwaysOnTop(true);
-            //dialog.setVisible(true);
+            int estatus = 0;
+            Desactivar(id, estatus);
+            dialog.setAlwaysOnTop(true);
+            dialog.setVisible(true);
             btnEliminar.setText("Eliminar");
             txtUser.setEnabled(false);
             txtPassword.setEnabled(false);
@@ -392,7 +391,7 @@ public class UsuariosUI extends javax.swing.JFrame {
             barUsuario.setBackground(new java.awt.Color(187, 187, 187));
             barPassword.setBackground(new java.awt.Color(187, 187, 187));
             barID.setBackground(new java.awt.Color(0, 90, 150));
-            //vaciarTxt();
+            vaciarTxt();
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
@@ -472,6 +471,51 @@ public class UsuariosUI extends javax.swing.JFrame {
         });
     }
 
+    public void vaciarTxt() {
+        txtID.setText("");
+        txtUser.setText("");
+        txtPassword.setText("");
+    }
+
+    public void Insertar() {
+        String usuario, contrasena;
+        int estatus = 1;
+        usuario = String.valueOf(txtUser.getText());
+        contrasena = String.valueOf(txtPassword.getText());
+        try {
+            CallableStatement cst = cn.prepareCall("{call agregarUsuario(?,?,?)}");
+            cst.setString(1, usuario);
+            cst.setString(2, contrasena);
+            cst.setInt(3, estatus);
+            cst.execute();
+        } catch (Exception e) {
+            //JOptionPane.showMessageDialog(null, e);
+        }
+        //princ.CrearTabla();
+    }
+    public void Desactivar(int id, int estatus) {
+        try {
+            CallableStatement cst = cn.prepareCall("{call estatusUsuario(?,?)}");
+            cst.setInt(1, id);
+            cst.setInt(2, estatus);
+            cst.execute();
+        } catch (Exception e) {
+            //JOptionPane.showMessageDialog(null, e);
+        }
+        //princ.CrearTabla();
+    }
+    public void Modificar(int id, String usuario, String contrasena) {
+        try {
+            CallableStatement cst = cn.prepareCall("{call modificarUsuario(?,?,?)}");
+            cst.setInt(1, id);
+            cst.setString(2, usuario);
+            cst.setString(3, contrasena);
+            cst.execute();
+        } catch (Exception e) {
+            //JOptionPane.showMessageDialog(null, e);
+        }
+        //princ.CrearTabla();
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel barID;
     private javax.swing.JPanel barPassword;

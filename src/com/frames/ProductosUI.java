@@ -413,11 +413,8 @@ public class ProductosUI extends javax.swing.JFrame {
                 barID.setBackground(new java.awt.Color(187, 187, 187));
             }
         } else {
-            System.out.println("a");
             int estatus = 0;
             Desactivar(id, estatus);
-            dialog.setAlwaysOnTop(true);
-            dialog.setVisible(true);
             dialog.setAlwaysOnTop(true);
             dialog.setVisible(true);
             btnEliminar.setText("Eliminar");
