@@ -72,7 +72,7 @@ public class ProductosUI extends javax.swing.JFrame {
                 btnCancelarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 70, 120, 30));
+        getContentPane().add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 80, 120, 30));
 
         txtDescripcion.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txtDescripcion.setBorder(null);
@@ -97,7 +97,7 @@ public class ProductosUI extends javax.swing.JFrame {
                 btnEditarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 70, 120, 30));
+        getContentPane().add(btnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 80, 120, 30));
 
         txtPrecio.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txtPrecio.setBorder(null);
@@ -225,7 +225,7 @@ public class ProductosUI extends javax.swing.JFrame {
                 btnEliminarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 20, 120, 30));
+        getContentPane().add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 30, 120, 30));
 
         btnNuevo.setBackground(new java.awt.Color(0, 90, 195));
         btnNuevo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -245,7 +245,7 @@ public class ProductosUI extends javax.swing.JFrame {
                 btnNuevoActionPerformed(evt);
             }
         });
-        getContentPane().add(btnNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 20, 120, 30));
+        getContentPane().add(btnNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 30, 120, 30));
 
         txtCantidad.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txtCantidad.setBorder(null);
