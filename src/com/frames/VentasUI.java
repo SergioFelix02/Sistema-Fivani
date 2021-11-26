@@ -448,7 +448,7 @@ public class VentasUI extends javax.swing.JFrame {
                 btnNuevo.setText("Nuevo");
                 txtID_Usuario.setEnabled(false);
                 txtSubtotal.setEnabled(false);
-                txtID_Venta.setEnabled(true);
+                txtID_Venta.setEnabled(false);
                 barID_Usuario.setBackground(new java.awt.Color(187, 187, 187));
                 barCantidad.setBackground(new java.awt.Color(187, 187, 187));
                 barID_Venta.setBackground(new java.awt.Color(0, 90, 150));
