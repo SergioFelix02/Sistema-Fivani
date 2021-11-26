@@ -343,12 +343,12 @@ public class VentasUI extends javax.swing.JFrame {
             btnAgregar.setText("Agregar");
             btnEditar.setText("Editar");
             txtID_Venta.setEnabled(false);
+            txtTotal.setEnabled(false);
             txtID_Producto.setEnabled(true);
             txtCantidad.setEnabled(true);
-            txtTotal.setEnabled(true);
             barID_Producto.setBackground(new java.awt.Color(0, 90, 150));
             barCantidad.setBackground(new java.awt.Color(0, 90, 150));
-            barTotal.setBackground(new java.awt.Color(0, 90, 150));
+            barTotal.setBackground(new java.awt.Color(187, 187, 187));
             barID_Venta.setBackground(new java.awt.Color(187, 187, 187));
             //vaciarTxt();
         } else{
@@ -363,10 +363,10 @@ public class VentasUI extends javax.swing.JFrame {
                 txtID_Venta.setEnabled(true);
                 txtID_Producto.setEnabled(false);
                 txtCantidad.setEnabled(false);
-                txtTotal.setEnabled(false);
+                //txtTotal.setEnabled(true);
                 barID_Producto.setBackground(new java.awt.Color(187, 187, 187));
                 barCantidad.setBackground(new java.awt.Color(187, 187, 187));
-                barTotal.setBackground(new java.awt.Color(187, 187, 187));
+                //barTotal.setBackground(new java.awt.Color(187, 187, 187));
                 barID_Venta.setBackground(new java.awt.Color(0, 90, 150));
                 //vaciarTxt();
             }
