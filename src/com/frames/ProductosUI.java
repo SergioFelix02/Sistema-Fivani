@@ -381,6 +381,8 @@ public class ProductosUI extends javax.swing.JFrame {
             } else {
                 precio = Integer.parseInt(txtprecio);
                 cantidad = Integer.parseInt(txtcantidad);
+                nombre = txtNombre.getText().trim();
+                descripcion = txtDescripcion.getText().trim();
                 Modificar(id, nombre, descripcion, precio, cantidad);
                 dialog.setAlwaysOnTop(true);
                 dialog.setVisible(true);
