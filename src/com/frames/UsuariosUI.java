@@ -3,20 +3,23 @@ package com.frames;
 import com.classes.MyConnection;
 import java.awt.Color;
 import java.sql.*;
-
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 
 public class UsuariosUI extends javax.swing.JFrame {
+
     ResultSet rs;
     Connection cn = MyConnection.getConnection();
     public JOptionPane msg = new JOptionPane("Operacion realizada");
     public JDialog dialog = msg.createDialog("Mensaje");
     String user = "", password = "";
     int id = 0;
+
     public UsuariosUI() {
         initComponents();
-        this.setBackground(new Color(255,255,255, 100));
+        this.setBackground(new Color(255, 255, 255, 100));
         txtID.requestFocus();
+        CrearTabla();
     }
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -36,7 +39,7 @@ public class UsuariosUI extends javax.swing.JFrame {
         btnNuevo = new javax.swing.JButton();
         barID = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        table = new javax.swing.JTable();
+        Tabla_Usuarios = new javax.swing.JTable();
 
         setTitle("Usuarios");
         setAlwaysOnTop(true);
@@ -184,7 +187,7 @@ public class UsuariosUI extends javax.swing.JFrame {
             .addGap(0, 2, Short.MAX_VALUE)
         );
 
-        table.setModel(new javax.swing.table.DefaultTableModel(
+        Tabla_Usuarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
                 {},
@@ -195,7 +198,7 @@ public class UsuariosUI extends javax.swing.JFrame {
 
             }
         ));
-        jScrollPane1.setViewportView(table);
+        jScrollPane1.setViewportView(Tabla_Usuarios);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -268,8 +271,7 @@ public class UsuariosUI extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    
-    public void Buscar(int id){
+    public void Buscar(int id) {
         try {
             PreparedStatement pst = cn.prepareStatement("select * from Usuarios where idUsuario = ?");
             pst.setInt(1, id);
@@ -283,13 +285,13 @@ public class UsuariosUI extends javax.swing.JFrame {
             }
         } catch (Exception e) {
             //JOptionPane.showMessageDialog(null, e);
-        }  
+        }
     }
-    
+
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
         String txtnombre = txtUser.getText();
         String txtdescripcion = txtPassword.getText();
-        if (btnNuevo.getText() == "Nuevo"){
+        if (btnNuevo.getText() == "Nuevo") {
             btnNuevo.setText("Confirmar");
             btnEliminar.setText("Eliminar");
             btnEditar.setText("Editar");
@@ -301,11 +303,11 @@ public class UsuariosUI extends javax.swing.JFrame {
             barPassword.setBackground(new java.awt.Color(0, 90, 150));
             barID.setBackground(new java.awt.Color(187, 187, 187));
             vaciarTxt();
-        } else{
-            if (txtnombre.equals("") || txtdescripcion.equals("")){
+        } else {
+            if (txtnombre.equals("") || txtdescripcion.equals("")) {
                 //dialog.setAlwaysOnTop(true);
                 //dialog.setVisible(true);
-            } else{
+            } else {
                 Insertar();
                 dialog.setAlwaysOnTop(true);
                 dialog.setVisible(true);
@@ -320,14 +322,14 @@ public class UsuariosUI extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_btnNuevoActionPerformed
-    
+
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         String txtid = txtID.getText().trim();
-        if (btnEditar.getText() == "Editar"){
-            if (txtid.equals("")){
+        if (btnEditar.getText() == "Editar") {
+            if (txtid.equals("")) {
                 //dialog.setAlwaysOnTop(true);
                 //dialog.setVisible(true);
-            } else{
+            } else {
                 id = Integer.parseInt(txtid);
                 Buscar(id);
                 btnEditar.setText("Confirmar");
@@ -341,13 +343,13 @@ public class UsuariosUI extends javax.swing.JFrame {
                 barID.setBackground(new java.awt.Color(187, 187, 187));
             }
 
-        } else{
+        } else {
             String txtUsuario = txtUser.getText();
             String txtContrasena = txtPassword.getText();
-            if (txtUsuario.equals("") || txtContrasena.equals("")){
+            if (txtUsuario.equals("") || txtContrasena.equals("")) {
                 //dialog.setAlwaysOnTop(true);
                 //dialog.setVisible(true);
-            } else{
+            } else {
                 Modificar(id, txtUsuario, txtContrasena);
                 dialog.setAlwaysOnTop(true);
                 dialog.setVisible(true);
@@ -365,11 +367,11 @@ public class UsuariosUI extends javax.swing.JFrame {
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         String txtid = txtID.getText().trim();
-        if (btnEliminar.getText() == "Eliminar"){
-            if (txtid.equals("")){
+        if (btnEliminar.getText() == "Eliminar") {
+            if (txtid.equals("")) {
                 //dialog.setAlwaysOnTop(true);
                 //dialog.setVisible(true);
-            } else{
+            } else {
                 id = Integer.parseInt(txtid);
                 Buscar(id);
                 btnEliminar.setText("Confirmar");
@@ -408,7 +410,7 @@ public class UsuariosUI extends javax.swing.JFrame {
         barUsuario.setBackground(new java.awt.Color(187, 187, 187));
         barPassword.setBackground(new java.awt.Color(187, 187, 187));
         barID.setBackground(new java.awt.Color(0, 90, 150));
-        //vaciarTxt();
+        vaciarTxt();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnEliminarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarMouseEntered
@@ -426,7 +428,7 @@ public class UsuariosUI extends javax.swing.JFrame {
     private void btnNuevoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNuevoMouseExited
         btnNuevo.setBackground(new java.awt.Color(0, 90, 195));
     }//GEN-LAST:event_btnNuevoMouseExited
-    
+
     private void btnEditarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditarMouseEntered
         btnEditar.setBackground(new java.awt.Color(0, 90, 150));
     }//GEN-LAST:event_btnEditarMouseEntered
@@ -434,7 +436,7 @@ public class UsuariosUI extends javax.swing.JFrame {
     private void btnEditarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditarMouseExited
         btnEditar.setBackground(new java.awt.Color(0, 90, 195));
     }//GEN-LAST:event_btnEditarMouseExited
-    
+
     private void btnCancelarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseEntered
         btnCancelar.setBackground(new java.awt.Color(0, 90, 150));
     }//GEN-LAST:event_btnCancelarMouseEntered
@@ -491,8 +493,9 @@ public class UsuariosUI extends javax.swing.JFrame {
         } catch (Exception e) {
             //JOptionPane.showMessageDialog(null, e);
         }
-        //princ.CrearTabla();
+        CrearTabla();
     }
+
     public void Desactivar(int id, int estatus) {
         try {
             CallableStatement cst = cn.prepareCall("{call estatusUsuario(?,?)}");
@@ -502,8 +505,9 @@ public class UsuariosUI extends javax.swing.JFrame {
         } catch (Exception e) {
             //JOptionPane.showMessageDialog(null, e);
         }
-        //princ.CrearTabla();
+        CrearTabla();
     }
+
     public void Modificar(int id, String usuario, String contrasena) {
         try {
             CallableStatement cst = cn.prepareCall("{call modificarUsuario(?,?,?)}");
@@ -514,9 +518,30 @@ public class UsuariosUI extends javax.swing.JFrame {
         } catch (Exception e) {
             //JOptionPane.showMessageDialog(null, e);
         }
-        //princ.CrearTabla();
+        CrearTabla();
+    }
+
+    public void CrearTabla() {
+        try {
+            Connection cn = MyConnection.getConnection();
+            DefaultTableModel dfm = new DefaultTableModel();
+            dfm.addColumn("ID");
+            dfm.addColumn("Usuario");
+            dfm.addColumn("Contraseña");
+            //dfm.addColumn("Estatus");
+            PreparedStatement pst = cn.prepareStatement("select * from Usuarios where estatus = 1");
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                dfm.addRow(new Object[]{rs.getInt("idUsuario"), rs.getString("usuario"), rs.getString("contrasena")});
+                //, rs.getInt("estatus")});
+            }
+            Tabla_Usuarios.setModel(dfm);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable Tabla_Usuarios;
     private javax.swing.JPanel barID;
     private javax.swing.JPanel barPassword;
     private javax.swing.JPanel barUsuario;
@@ -528,7 +553,6 @@ public class UsuariosUI extends javax.swing.JFrame {
     private javax.swing.JLabel lblPassword;
     private javax.swing.JLabel lblUsuario;
     private javax.swing.JLabel lblUsuario3;
-    private javax.swing.JTable table;
     private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtPassword;
     private javax.swing.JTextField txtUser;

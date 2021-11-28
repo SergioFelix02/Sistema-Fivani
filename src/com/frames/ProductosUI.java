@@ -4,19 +4,22 @@ import com.classes.MyConnection;
 import java.awt.Color;
 import java.sql.*;
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 
 public class ProductosUI extends javax.swing.JFrame {
+
     ResultSet rs;
     Connection cn = MyConnection.getConnection();
     public JOptionPane msg = new JOptionPane("Operacion realizada");
     public JDialog dialog = msg.createDialog("Mensaje");
     String nombre = "", descripcion = "";
     int precio = 0, cantidad = 0, id = 0;
-    
+
     public ProductosUI() {
         initComponents();
-        this.setBackground(new Color(255,255,255, 100));
+        this.setBackground(new Color(255, 255, 255, 100));
         txtID.requestFocus();
+        CrearTabla();
     }
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -36,7 +39,7 @@ public class ProductosUI extends javax.swing.JFrame {
         lblID = new javax.swing.JLabel();
         barDescripcion = new javax.swing.JPanel();
         table = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        Tabla_Productos = new javax.swing.JTable();
         barNombre = new javax.swing.JPanel();
         btnEliminar = new javax.swing.JButton();
         btnNuevo = new javax.swing.JButton();
@@ -176,7 +179,7 @@ public class ProductosUI extends javax.swing.JFrame {
 
         getContentPane().add(barDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 190, 127, 2));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        Tabla_Productos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
                 {},
@@ -187,7 +190,7 @@ public class ProductosUI extends javax.swing.JFrame {
 
             }
         ));
-        table.setViewportView(jTable1);
+        table.setViewportView(Tabla_Productos);
 
         getContentPane().add(table, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 470, 230));
 
@@ -277,7 +280,7 @@ public class ProductosUI extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    public void Buscar(int id){
+    public void Buscar(int id) {
         try {
             PreparedStatement pst = cn.prepareStatement("select * from Productos where idProducto = ?");
             pst.setInt(1, id);
@@ -295,15 +298,15 @@ public class ProductosUI extends javax.swing.JFrame {
             }
         } catch (Exception e) {
             //JOptionPane.showMessageDialog(null, e);
-        }  
+        }
     }
-    
+
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
         String txtnombre = txtNombre.getText();
         String txtdescripcion = txtDescripcion.getText();
         String txtprecio = txtPrecio.getText().trim();
-        String txtcantidad = txtCantidad.getText().trim();    
-        if (btnNuevo.getText() == "Nuevo"){
+        String txtcantidad = txtCantidad.getText().trim();
+        if (btnNuevo.getText() == "Nuevo") {
             btnNuevo.setText("Confirmar");
             btnEliminar.setText("Eliminar");
             btnEditar.setText("Editar");
@@ -319,11 +322,11 @@ public class ProductosUI extends javax.swing.JFrame {
             barPrecio.setBackground(new java.awt.Color(0, 90, 150));
             barID.setBackground(new java.awt.Color(187, 187, 187));
             vaciarTxt();
-        } else{
-            if (txtnombre.equals("") || txtdescripcion.equals("") || txtprecio.equals("") || txtcantidad.equals("")){
-            dialog.setAlwaysOnTop(true);
-            //dialog.setVisible(true);
-            } else{
+        } else {
+            if (txtnombre.equals("") || txtdescripcion.equals("") || txtprecio.equals("") || txtcantidad.equals("")) {
+                dialog.setAlwaysOnTop(true);
+                //dialog.setVisible(true);
+            } else {
                 Insertar();
                 dialog.setAlwaysOnTop(true);
                 dialog.setVisible(true);
@@ -345,11 +348,11 @@ public class ProductosUI extends javax.swing.JFrame {
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         String txtid = txtID.getText().trim();
-        if (btnEditar.getText() == "Editar"){
-            if (txtid.equals("")){
+        if (btnEditar.getText() == "Editar") {
+            if (txtid.equals("")) {
                 dialog.setAlwaysOnTop(true);
                 //dialog.setVisible(true);
-            } else{
+            } else {
                 id = Integer.parseInt(txtid);
                 Buscar(id);
                 btnEditar.setText("Confirmar");
@@ -366,16 +369,16 @@ public class ProductosUI extends javax.swing.JFrame {
                 barPrecio.setBackground(new java.awt.Color(0, 90, 150));
                 barID.setBackground(new java.awt.Color(187, 187, 187));
             }
-        
-        } else{
+
+        } else {
             String txtnombre = txtNombre.getText();
             String txtdescripcion = txtDescripcion.getText();
             String txtprecio = txtPrecio.getText().trim();
             String txtcantidad = txtCantidad.getText().trim();
-            if (txtnombre.equals("") || txtdescripcion.equals("") || txtprecio.equals("") || txtcantidad.equals("")){
+            if (txtnombre.equals("") || txtdescripcion.equals("") || txtprecio.equals("") || txtcantidad.equals("")) {
                 dialog.setAlwaysOnTop(true);
                 //dialog.setVisible(true);
-            } else{
+            } else {
                 precio = Integer.parseInt(txtprecio);
                 cantidad = Integer.parseInt(txtcantidad);
                 Modificar(id, nombre, descripcion, precio, cantidad);
@@ -399,11 +402,11 @@ public class ProductosUI extends javax.swing.JFrame {
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         String txtid = txtID.getText().trim();
-        if (btnEliminar.getText() == "Eliminar"){
-            if (txtid.equals("")){
+        if (btnEliminar.getText() == "Eliminar") {
+            if (txtid.equals("")) {
                 dialog.setAlwaysOnTop(true);
                 //dialog.setVisible(true);
-            } else{
+            } else {
                 id = Integer.parseInt(txtid);
                 Buscar(id);
                 btnEliminar.setText("Confirmar");
@@ -467,7 +470,7 @@ public class ProductosUI extends javax.swing.JFrame {
     private void btnNuevoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNuevoMouseExited
         btnNuevo.setBackground(new java.awt.Color(0, 90, 195));
     }//GEN-LAST:event_btnNuevoMouseExited
-    
+
     private void btnEditarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditarMouseEntered
         btnEditar.setBackground(new java.awt.Color(0, 90, 150));
     }//GEN-LAST:event_btnEditarMouseEntered
@@ -475,7 +478,7 @@ public class ProductosUI extends javax.swing.JFrame {
     private void btnEditarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditarMouseExited
         btnEditar.setBackground(new java.awt.Color(0, 90, 195));
     }//GEN-LAST:event_btnEditarMouseExited
-    
+
     private void btnCancelarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseEntered
         btnCancelar.setBackground(new java.awt.Color(0, 90, 150));
     }//GEN-LAST:event_btnCancelarMouseEntered
@@ -540,8 +543,9 @@ public class ProductosUI extends javax.swing.JFrame {
         } catch (Exception e) {
             //JOptionPane.showMessageDialog(null, e);
         }
-        //princ.CrearTabla();
+        CrearTabla();
     }
+
     public void Desactivar(int id, int estatus) {
         try {
             CallableStatement cst = cn.prepareCall("{call estatusProducto(?,?)}");
@@ -551,8 +555,9 @@ public class ProductosUI extends javax.swing.JFrame {
         } catch (Exception e) {
             //JOptionPane.showMessageDialog(null, e);
         }
-        //princ.CrearTabla();
+        CrearTabla();
     }
+
     public void Modificar(int id, String nombre, String descripcion, int precio, int cantidad) {
         try {
             CallableStatement cst = cn.prepareCall("{call modificarProducto(?,?,?,?,?)}");
@@ -565,9 +570,33 @@ public class ProductosUI extends javax.swing.JFrame {
         } catch (Exception e) {
             //JOptionPane.showMessageDialog(null, e);
         }
-        //princ.CrearTabla();
+        CrearTabla();
     }
+
+    public void CrearTabla() {
+        try {
+            Connection cn = MyConnection.getConnection();
+            DefaultTableModel dfm = new DefaultTableModel();
+            dfm.addColumn("ID");
+            dfm.addColumn("Nombre");
+            dfm.addColumn("Descripcion");
+            dfm.addColumn("Precio");
+            dfm.addColumn("Cantidad");
+            //dfm.addColumn("Estatus");
+            PreparedStatement pst = cn.prepareStatement("select * from Productos where estatus = 1");
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                dfm.addRow(new Object[]{rs.getInt("idProducto"), rs.getString("nombreProducto"), rs.getString("descripcionProducto"), (rs.getInt("precioProducto")), (rs.getInt("cantidadProducto"))});
+                //, rs.getInt("estatus")});
+            }
+            Tabla_Productos.setModel(dfm);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable Tabla_Productos;
     private javax.swing.JPanel barCantidad;
     private javax.swing.JPanel barDescripcion;
     private javax.swing.JPanel barID;
@@ -577,7 +606,6 @@ public class ProductosUI extends javax.swing.JFrame {
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnNuevo;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblCantidad;
     private javax.swing.JLabel lblDescripcion;
     private javax.swing.JLabel lblID;

@@ -1,9 +1,6 @@
 package com.classes;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.sql.*;
 
 import javax.swing.JOptionPane;
@@ -16,6 +13,7 @@ public class MyConnection {
     public static Connection getConnection() {
         String User = "";
         String Password = "";
+        String Server = "localhost:1433";
         try {
             File File2 = new File("CredencialesSQL.txt");
             if (!File2.exists()) {
@@ -36,11 +34,12 @@ public class MyConnection {
         Password = "3J6tDwDQ1S";
          */
         //Conexion Local
-        String connectionUrl = "jdbc:sqlserver://localhost:1433;"
+        String connectionUrl = "jdbc:sqlserver://"
+                + Server + ";"
                 + "database=bdFivani;"
                 + "user=" + User + ";"
                 + "password=" + Password + ";"
-                + "loginTimeout=30;";
+                + "loginTimeout=0;";
         try {
             Connection cn = DriverManager.getConnection(connectionUrl);
             return cn;

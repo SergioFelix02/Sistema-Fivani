@@ -3,11 +3,12 @@ package com.frames;
 import com.classes.MyConnection;
 import java.awt.Color;
 import java.sql.*;
-
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 public class VentasUI extends javax.swing.JFrame {
+
     ResultSet rs;
     Connection cn = MyConnection.getConnection();
     public JOptionPane msg = new JOptionPane("Operacion realizada");
@@ -18,10 +19,12 @@ public class VentasUI extends javax.swing.JFrame {
     int id = 0;
     int precioProd = 0;
     String temp = "";
+
     public VentasUI() {
         initComponents();
-        this.setBackground(new Color(255,255,255, 100));
-        //txtID.requestFocus();
+        this.setBackground(new Color(255, 255, 255, 100));
+        txtID_Venta.requestFocus();
+        CrearTabla();
     }
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -31,7 +34,7 @@ public class VentasUI extends javax.swing.JFrame {
         btnNuevo = new javax.swing.JButton();
         barID_Venta = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        table = new javax.swing.JTable();
+        Tabla_Ventas = new javax.swing.JTable();
         btnCancelar = new javax.swing.JButton();
         btnEditar = new javax.swing.JButton();
         lblPassword = new javax.swing.JLabel();
@@ -105,7 +108,7 @@ public class VentasUI extends javax.swing.JFrame {
             .addGap(0, 2, Short.MAX_VALUE)
         );
 
-        table.setModel(new javax.swing.table.DefaultTableModel(
+        Tabla_Ventas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
                 {},
@@ -116,7 +119,7 @@ public class VentasUI extends javax.swing.JFrame {
 
             }
         ));
-        jScrollPane1.setViewportView(table);
+        jScrollPane1.setViewportView(Tabla_Ventas);
 
         btnCancelar.setBackground(new java.awt.Color(0, 90, 195));
         btnCancelar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -234,9 +237,9 @@ public class VentasUI extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 486, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
@@ -275,8 +278,8 @@ public class VentasUI extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(24, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnNuevo)
                             .addComponent(btnEditar))
@@ -285,7 +288,7 @@ public class VentasUI extends javax.swing.JFrame {
                             .addComponent(btnAgregar)
                             .addComponent(btnCancelar))
                         .addGap(32, 32, 32))
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(lblID_Venta)
@@ -321,8 +324,8 @@ public class VentasUI extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-        
-    public void Buscar(int id){
+
+    public void Buscar(int id) {
         try {
             PreparedStatement pst = cn.prepareStatement("select top 1 * from Ventas order by idVenta desc");
             rs = pst.executeQuery();
@@ -345,11 +348,11 @@ public class VentasUI extends javax.swing.JFrame {
             }
         } catch (Exception e) {
             //JOptionPane.showMessageDialog(null, e);
-        }  
+        }
     }
-    
+
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
-        if (btnNuevo.getText() == "Nueva"){
+        if (btnNuevo.getText() == "Nueva") {
             btnNuevo.setText("Confirmar");
             btnAgregar.setText("Agregar");
             btnEditar.setText("Editar");
@@ -366,35 +369,30 @@ public class VentasUI extends javax.swing.JFrame {
             vaciarTxt();
             InsertarVenta();
             Buscar(id);
-        } else{
-            //Insertar();
+        } else {
             dialog.setAlwaysOnTop(true);
             dialog.setVisible(true);
             btnNuevo.setText("Nueva");
             txtID_Venta.setEnabled(true);
             txtID_Producto.setEnabled(false);
             txtCantidad.setEnabled(false);
-            //txtTotal.setEnabled(true);                btnCancelar.setEnabled(true);
             btnEditar.setEnabled(true);
             btnCancelar.setEnabled(true);
             barID_Producto.setBackground(new java.awt.Color(187, 187, 187));
             barCantidad.setBackground(new java.awt.Color(187, 187, 187));
-            //barTotal.setBackground(new java.awt.Color(187, 187, 187));
             barID_Venta.setBackground(new java.awt.Color(0, 90, 150));
             vaciarTxt();
         }
     }//GEN-LAST:event_btnNuevoActionPerformed
-    
+
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         String txtid = txtID_Venta.getText().trim();
         String txtotal = txtTotal.getText().trim();
-        //int total = Integer.valueOf(txtTotal.getText());
-        //int id = Integer.valueOf(txtID_Venta.getText());
-        if (btnEditar.getText() == "Editar"){
-            if (txtid.equals("")){
+        if (btnEditar.getText() == "Editar") {
+            if (txtid.equals("")) {
                 //dialog.setAlwaysOnTop(true);
                 //dialog.setVisible(true);
-            } else{
+            } else {
                 btnEditar.setText("Confirmar");
                 btnAgregar.setText("Agregar");
                 btnNuevo.setText("Nueva");
@@ -406,11 +404,11 @@ public class VentasUI extends javax.swing.JFrame {
                 barTotal.setBackground(new java.awt.Color(0, 90, 150));
                 barID_Venta.setBackground(new java.awt.Color(187, 187, 187));
             }
-        } else{
-            if (txtotal.equals("")){
+        } else {
+            if (txtotal.equals("")) {
                 //dialog.setAlwaysOnTop(true);
                 //dialog.setVisible(true);
-            } else{
+            } else {
                 Total = Integer.valueOf(txtTotal.getText());
                 Modificar(id, Total);
                 dialog.setAlwaysOnTop(true);
@@ -428,7 +426,7 @@ public class VentasUI extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_btnEditarActionPerformed
-    
+
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         InsertarDetalleVenta();
         txtID_Producto.setText("");
@@ -450,9 +448,9 @@ public class VentasUI extends javax.swing.JFrame {
         barCantidad.setBackground(new java.awt.Color(187, 187, 187));
         barTotal.setBackground(new java.awt.Color(187, 187, 187));
         barID_Venta.setBackground(new java.awt.Color(0, 90, 150));
-        //vaciarTxt();
+        vaciarTxt();
     }//GEN-LAST:event_btnCancelarActionPerformed
-    
+
     private void btnNuevoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNuevoMouseEntered
         btnNuevo.setBackground(new java.awt.Color(0, 90, 150));
     }//GEN-LAST:event_btnNuevoMouseEntered
@@ -513,12 +511,14 @@ public class VentasUI extends javax.swing.JFrame {
             }
         });
     }
+
     public void vaciarTxt() {
         txtID_Venta.setText("");
         txtTotal.setText("");
         txtID_Producto.setText("");
         txtCantidad.setText("");
     }
+
     public void InsertarVenta() {
         try {
             CallableStatement cst = cn.prepareCall("{call agregarVenta(?,?)}");
@@ -528,8 +528,9 @@ public class VentasUI extends javax.swing.JFrame {
         } catch (Exception e) {
             //JOptionPane.showMessageDialog(null, e);
         }
-        //princ.CrearTabla();
+        CrearTabla();
     }
+
     public void InsertarDetalleVenta() {
         int idV = Integer.valueOf(txtID_Venta.getText());
         int idP = Integer.valueOf(txtID_Producto.getText());
@@ -555,8 +556,9 @@ public class VentasUI extends javax.swing.JFrame {
             //JOptionPane.showMessageDialog(null, e);
         }
         Buscar(idV);
-        //princ.CrearTabla();
+        CrearTabla();
     }
+
     public void Modificar(int id, int total) {
         try {
             CallableStatement cst = cn.prepareCall("{call modificarVenta(?,?)}");
@@ -566,7 +568,7 @@ public class VentasUI extends javax.swing.JFrame {
         } catch (Exception e) {
             //JOptionPane.showMessageDialog(null, e);
         }
-        //princ.CrearTabla();
+        CrearTabla();
     }
 
     public void BuscarV(int id) {
@@ -584,7 +586,27 @@ public class VentasUI extends javax.swing.JFrame {
             //JOptionPane.showMessageDialog(null, e);
         }
     }
+
+    public void CrearTabla() {
+        try {
+            Connection cn = MyConnection.getConnection();
+            DefaultTableModel dfm = new DefaultTableModel();
+            dfm.addColumn("ID Venta");
+            dfm.addColumn("ID Usuario");
+            dfm.addColumn("Fecha");
+            dfm.addColumn("Total");
+            PreparedStatement pst = cn.prepareStatement("select * from Ventas");
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                dfm.addRow(new Object[]{rs.getInt("idVenta"), rs.getInt("idUsuario"), rs.getDate("fecha"), (rs.getInt("total"))});
+            }
+            Tabla_Ventas.setModel(dfm);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable Tabla_Ventas;
     private javax.swing.JPanel barCantidad;
     private javax.swing.JPanel barID_Producto;
     private javax.swing.JPanel barID_Venta;
@@ -598,7 +620,6 @@ public class VentasUI extends javax.swing.JFrame {
     private javax.swing.JLabel lblID_Venta;
     private javax.swing.JLabel lblPassword;
     private javax.swing.JLabel lblTotal;
-    private javax.swing.JTable table;
     private javax.swing.JTextField txtCantidad;
     private javax.swing.JTextField txtID_Producto;
     private javax.swing.JTextField txtID_Venta;
