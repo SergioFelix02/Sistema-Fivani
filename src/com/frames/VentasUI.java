@@ -358,7 +358,6 @@ public class VentasUI extends javax.swing.JFrame {
             txtID_Producto.setEnabled(true);
             txtCantidad.setEnabled(true);
             btnAgregar.setEnabled(true);
-            btnCancelar.setEnabled(false);
             btnEditar.setEnabled(false);
             barID_Producto.setBackground(new java.awt.Color(0, 90, 150));
             barCantidad.setBackground(new java.awt.Color(0, 90, 150));
@@ -388,36 +387,34 @@ public class VentasUI extends javax.swing.JFrame {
     
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         String txtid = txtID_Venta.getText().trim();
-        String txtcantidad = txtCantidad.getText().trim();
         String txtotal = txtTotal.getText().trim();
-        String txtidprod = txtID_Producto.getText().trim();
+        //int total = Integer.valueOf(txtTotal.getText());
+        //int id = Integer.valueOf(txtID_Venta.getText());
         if (btnEditar.getText() == "Editar"){
             if (txtid.equals("")){
                 //dialog.setAlwaysOnTop(true);
                 //dialog.setVisible(true);
             } else{
-                id = Integer.parseInt(txtid);
-                Buscar(id);
                 btnEditar.setText("Confirmar");
                 btnAgregar.setText("Agregar");
                 btnNuevo.setText("Nueva");
                 txtID_Venta.setEnabled(false);
-                txtID_Producto.setEnabled(true);
-                txtCantidad.setEnabled(true);
                 txtTotal.setEnabled(true);
-                barID_Producto.setBackground(new java.awt.Color(0, 90, 150));
-                barCantidad.setBackground(new java.awt.Color(0, 90, 150));
+                id = Integer.valueOf(txtID_Venta.getText());
+                System.out.println(id);
+                BuscarV(id);
                 barTotal.setBackground(new java.awt.Color(0, 90, 150));
                 barID_Venta.setBackground(new java.awt.Color(187, 187, 187));
             }
         } else{
-            if (txtcantidad.equals("") || txtotal.equals("") || txtidprod.equals("") ){
+            if (txtotal.equals("")){
                 //dialog.setAlwaysOnTop(true);
                 //dialog.setVisible(true);
             } else{
-                //Modificar(id, nombre, descripcion, precio, cantidad);
-                //dialog.setAlwaysOnTop(true);
-                //dialog.setVisible(true);
+                Total = Integer.valueOf(txtTotal.getText());
+                Modificar(id, Total);
+                dialog.setAlwaysOnTop(true);
+                dialog.setVisible(true);
                 btnEditar.setText("Editar");
                 txtID_Venta.setEnabled(true);
                 txtID_Producto.setEnabled(false);
@@ -559,6 +556,33 @@ public class VentasUI extends javax.swing.JFrame {
         }
         Buscar(idV);
         //princ.CrearTabla();
+    }
+    public void Modificar(int id, int total) {
+        try {
+            CallableStatement cst = cn.prepareCall("{call modificarVenta(?,?)}");
+            cst.setInt(1, id);
+            cst.setInt(2, total);
+            cst.execute();
+        } catch (Exception e) {
+            //JOptionPane.showMessageDialog(null, e);
+        }
+        //princ.CrearTabla();
+    }
+
+    public void BuscarV(int id) {
+        try {
+            PreparedStatement pst = cn.prepareStatement("select * from Ventas where idVenta = ?");
+            pst.setInt(1, id);
+            rs = pst.executeQuery();
+            if (rs.next()) {
+                id = rs.getInt("idVenta");
+                Total = rs.getInt("total");
+                txtID_Venta.setText(String.valueOf(id));
+                txtTotal.setText(String.valueOf(Total));
+            }
+        } catch (Exception e) {
+            //JOptionPane.showMessageDialog(null, e);
+        }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel barCantidad;
