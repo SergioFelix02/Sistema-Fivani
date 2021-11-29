@@ -13,7 +13,7 @@ public class MyConnection {
     public static Connection getConnection() {
         String User = "";
         String Password = "";
-        String Server = "localhost:1433";
+        String Port = "";
         try {
             File File2 = new File("CredencialesSQL.txt");
             if (!File2.exists()) {
@@ -23,6 +23,7 @@ public class MyConnection {
             BufferedReader Buffer = new BufferedReader(File);
             User = Buffer.readLine();
             Password = Buffer.readLine();
+            Port = Buffer.readLine();
             File.close();
         } catch (IOException e) {
             System.out.println("Error: " + e.getMessage());
@@ -34,6 +35,7 @@ public class MyConnection {
         Password = "3J6tDwDQ1S";
          */
         //Conexion Local
+        String Server = "localhost:" + Port;
         String connectionUrl = "jdbc:sqlserver://"
                 + Server + ";"
                 + "database=bdFivani;"
