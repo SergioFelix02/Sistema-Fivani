@@ -9,4 +9,3 @@ public class SistemaFivani {
         login.setVisible(true);
     }
 }
-

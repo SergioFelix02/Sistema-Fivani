@@ -14,6 +14,7 @@ public class UsuariosUI extends javax.swing.JFrame {
     public JDialog dialog = msg.createDialog("Mensaje");
     String user = "", password = "";
     int id = 0;
+    MainUI main = new MainUI();
 
     public UsuariosUI() {
         initComponents();
@@ -25,53 +26,36 @@ public class UsuariosUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lblUsuario = new javax.swing.JLabel();
-        btnCancelar = new javax.swing.JButton();
-        txtPassword = new javax.swing.JTextField();
+        bgUsuarios = new javax.swing.JPanel();
+        lblUsuario3 = new javax.swing.JLabel();
         btnEditar = new javax.swing.JButton();
         txtUser = new javax.swing.JTextField();
-        lblPassword = new javax.swing.JLabel();
         txtID = new javax.swing.JTextField();
-        lblUsuario3 = new javax.swing.JLabel();
-        barPassword = new javax.swing.JPanel();
         barUsuario = new javax.swing.JPanel();
         btnEliminar = new javax.swing.JButton();
+        lblUsuario = new javax.swing.JLabel();
+        lblPassword = new javax.swing.JLabel();
+        txtPassword = new javax.swing.JTextField();
+        btnCancelar = new javax.swing.JButton();
+        barPassword = new javax.swing.JPanel();
         btnNuevo = new javax.swing.JButton();
-        barID = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         Tabla_Usuarios = new javax.swing.JTable();
+        barID = new javax.swing.JPanel();
 
         setTitle("Usuarios");
         setAlwaysOnTop(true);
         setUndecorated(true);
         setResizable(false);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblUsuario.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        lblUsuario.setForeground(new java.awt.Color(153, 153, 153));
-        lblUsuario.setText("Usuario");
+        bgUsuarios.setBackground(new java.awt.Color(255, 255, 255));
+        bgUsuarios.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnCancelar.setBackground(new java.awt.Color(0, 90, 195));
-        btnCancelar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btnCancelar.setForeground(new java.awt.Color(255, 255, 255));
-        btnCancelar.setText("Cancelar");
-        btnCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnCancelar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnCancelarMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnCancelarMouseExited(evt);
-            }
-        });
-        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelarActionPerformed(evt);
-            }
-        });
-
-        txtPassword.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        txtPassword.setBorder(null);
-        txtPassword.setEnabled(false);
+        lblUsuario3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblUsuario3.setForeground(new java.awt.Color(153, 153, 153));
+        lblUsuario3.setText("ID");
+        bgUsuarios.add(lblUsuario3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 120, -1));
 
         btnEditar.setBackground(new java.awt.Color(0, 90, 195));
         btnEditar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -91,35 +75,16 @@ public class UsuariosUI extends javax.swing.JFrame {
                 btnEditarActionPerformed(evt);
             }
         });
+        bgUsuarios.add(btnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(146, 100, 120, -1));
 
         txtUser.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txtUser.setBorder(null);
         txtUser.setEnabled(false);
-
-        lblPassword.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        lblPassword.setForeground(new java.awt.Color(153, 153, 153));
-        lblPassword.setText("Contraseña");
+        bgUsuarios.add(txtUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 50, 120, -1));
 
         txtID.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txtID.setBorder(null);
-
-        lblUsuario3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        lblUsuario3.setForeground(new java.awt.Color(153, 153, 153));
-        lblUsuario3.setText("ID");
-
-        barPassword.setBackground(new java.awt.Color(204, 204, 204));
-        barPassword.setPreferredSize(new java.awt.Dimension(2, 29));
-
-        javax.swing.GroupLayout barPasswordLayout = new javax.swing.GroupLayout(barPassword);
-        barPassword.setLayout(barPasswordLayout);
-        barPasswordLayout.setHorizontalGroup(
-            barPasswordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 120, Short.MAX_VALUE)
-        );
-        barPasswordLayout.setVerticalGroup(
-            barPasswordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 2, Short.MAX_VALUE)
-        );
+        bgUsuarios.add(txtID, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 120, -1));
 
         barUsuario.setBackground(new java.awt.Color(204, 204, 204));
         barUsuario.setPreferredSize(new java.awt.Dimension(2, 29));
@@ -134,6 +99,8 @@ public class UsuariosUI extends javax.swing.JFrame {
             barUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 2, Short.MAX_VALUE)
         );
+
+        bgUsuarios.add(barUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 80, 120, 2));
 
         btnEliminar.setBackground(new java.awt.Color(0, 90, 195));
         btnEliminar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -153,6 +120,58 @@ public class UsuariosUI extends javax.swing.JFrame {
                 btnEliminarActionPerformed(evt);
             }
         });
+        bgUsuarios.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(272, 100, 120, -1));
+
+        lblUsuario.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblUsuario.setForeground(new java.awt.Color(153, 153, 153));
+        lblUsuario.setText("Usuario");
+        bgUsuarios.add(lblUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 20, 120, -1));
+
+        lblPassword.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblPassword.setForeground(new java.awt.Color(153, 153, 153));
+        lblPassword.setText("Contraseña");
+        bgUsuarios.add(lblPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 20, 120, -1));
+
+        txtPassword.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtPassword.setBorder(null);
+        txtPassword.setEnabled(false);
+        bgUsuarios.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 50, 120, -1));
+
+        btnCancelar.setBackground(new java.awt.Color(0, 90, 195));
+        btnCancelar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnCancelar.setForeground(new java.awt.Color(255, 255, 255));
+        btnCancelar.setText("Cancelar");
+        btnCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCancelar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnCancelarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnCancelarMouseExited(evt);
+            }
+        });
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
+        bgUsuarios.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(398, 100, 120, -1));
+
+        barPassword.setBackground(new java.awt.Color(204, 204, 204));
+        barPassword.setPreferredSize(new java.awt.Dimension(2, 29));
+
+        javax.swing.GroupLayout barPasswordLayout = new javax.swing.GroupLayout(barPassword);
+        barPassword.setLayout(barPasswordLayout);
+        barPasswordLayout.setHorizontalGroup(
+            barPasswordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 120, Short.MAX_VALUE)
+        );
+        barPasswordLayout.setVerticalGroup(
+            barPasswordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 2, Short.MAX_VALUE)
+        );
+
+        bgUsuarios.add(barPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 80, 120, 2));
 
         btnNuevo.setBackground(new java.awt.Color(0, 90, 195));
         btnNuevo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -172,6 +191,22 @@ public class UsuariosUI extends javax.swing.JFrame {
                 btnNuevoActionPerformed(evt);
             }
         });
+        bgUsuarios.add(btnNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 120, -1));
+
+        Tabla_Usuarios.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane1.setViewportView(Tabla_Usuarios);
+
+        bgUsuarios.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 500, 285));
 
         barID.setBackground(new java.awt.Color(0, 90, 195));
         barID.setPreferredSize(new java.awt.Dimension(2, 29));
@@ -187,85 +222,9 @@ public class UsuariosUI extends javax.swing.JFrame {
             .addGap(0, 2, Short.MAX_VALUE)
         );
 
-        Tabla_Usuarios.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {},
-                {},
-                {},
-                {}
-            },
-            new String [] {
+        bgUsuarios.add(barID, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 120, 2));
 
-            }
-        ));
-        jScrollPane1.setViewportView(Tabla_Usuarios);
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblUsuario3, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(barID, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(30, 30, 30)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(barUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(30, 30, 30)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(barPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1))
-                .addContainerGap(20, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblUsuario3)
-                        .addGap(8, 8, 8)
-                        .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(5, 5, 5)
-                        .addComponent(barID, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblUsuario)
-                            .addComponent(lblPassword, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addGap(8, 8, 8)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(5, 5, 5)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(barUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(barPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnEliminar)
-                    .addComponent(btnCancelar)
-                    .addComponent(btnNuevo)
-                    .addComponent(btnEditar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
+        getContentPane().add(bgUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 540, 440));
 
         pack();
         setLocationRelativeTo(null);
@@ -541,10 +500,12 @@ public class UsuariosUI extends javax.swing.JFrame {
         }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable Tabla_Usuarios;
     private javax.swing.JPanel barID;
     private javax.swing.JPanel barPassword;
     private javax.swing.JPanel barUsuario;
+    private javax.swing.JPanel bgUsuarios;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnEliminar;

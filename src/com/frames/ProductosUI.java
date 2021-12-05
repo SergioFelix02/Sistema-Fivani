@@ -18,7 +18,7 @@ public class ProductosUI extends javax.swing.JFrame {
     public ProductosUI() {
         initComponents();
         this.setBackground(new Color(255, 255, 255, 100));
-        txtID.requestFocus();
+        txtID_Producto.requestFocus();
         CrearTabla();
     }
 
@@ -26,26 +26,26 @@ public class ProductosUI extends javax.swing.JFrame {
     private void initComponents() {
 
         lnlNombre = new javax.swing.JLabel();
-        btnCancelar = new javax.swing.JButton();
+        btnCancelarProducto = new javax.swing.JButton();
         txtDescripcion = new javax.swing.JTextField();
-        btnEditar = new javax.swing.JButton();
+        btnEditarProducto = new javax.swing.JButton();
         txtPrecio = new javax.swing.JTextField();
         txtNombre = new javax.swing.JTextField();
         lblDescripcion = new javax.swing.JLabel();
         lblPrecio = new javax.swing.JLabel();
         barCantidad = new javax.swing.JPanel();
         barPrecio = new javax.swing.JPanel();
-        txtID = new javax.swing.JTextField();
-        lblID = new javax.swing.JLabel();
+        txtID_Producto = new javax.swing.JTextField();
+        lblID_Producto = new javax.swing.JLabel();
         barDescripcion = new javax.swing.JPanel();
         table = new javax.swing.JScrollPane();
         Tabla_Productos = new javax.swing.JTable();
         barNombre = new javax.swing.JPanel();
-        btnEliminar = new javax.swing.JButton();
-        btnNuevo = new javax.swing.JButton();
+        btnEliminarProducto = new javax.swing.JButton();
+        btnNuevoProducto = new javax.swing.JButton();
         txtCantidad = new javax.swing.JTextField();
         lblCantidad = new javax.swing.JLabel();
-        barID = new javax.swing.JPanel();
+        barID_Producto = new javax.swing.JPanel();
 
         setTitle("Productos");
         setAlwaysOnTop(true);
@@ -57,50 +57,50 @@ public class ProductosUI extends javax.swing.JFrame {
         lnlNombre.setText("Nombre");
         getContentPane().add(lnlNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 100, -1));
 
-        btnCancelar.setBackground(new java.awt.Color(0, 90, 195));
-        btnCancelar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btnCancelar.setForeground(new java.awt.Color(255, 255, 255));
-        btnCancelar.setText("Cancelar");
-        btnCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnCancelar.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnCancelarProducto.setBackground(new java.awt.Color(0, 90, 195));
+        btnCancelarProducto.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnCancelarProducto.setForeground(new java.awt.Color(255, 255, 255));
+        btnCancelarProducto.setText("Cancelar");
+        btnCancelarProducto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCancelarProducto.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnCancelarMouseEntered(evt);
+                btnCancelarProductoMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnCancelarMouseExited(evt);
+                btnCancelarProductoMouseExited(evt);
             }
         });
-        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+        btnCancelarProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelarActionPerformed(evt);
+                btnCancelarProductoActionPerformed(evt);
             }
         });
-        getContentPane().add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 80, 120, 30));
+        getContentPane().add(btnCancelarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 80, 120, 30));
 
         txtDescripcion.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txtDescripcion.setBorder(null);
         txtDescripcion.setEnabled(false);
         getContentPane().add(txtDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 160, 127, -1));
 
-        btnEditar.setBackground(new java.awt.Color(0, 90, 195));
-        btnEditar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btnEditar.setForeground(new java.awt.Color(255, 255, 255));
-        btnEditar.setText("Editar");
-        btnEditar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnEditar.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnEditarProducto.setBackground(new java.awt.Color(0, 90, 195));
+        btnEditarProducto.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnEditarProducto.setForeground(new java.awt.Color(255, 255, 255));
+        btnEditarProducto.setText("Editar");
+        btnEditarProducto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnEditarProducto.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnEditarMouseEntered(evt);
+                btnEditarProductoMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnEditarMouseExited(evt);
+                btnEditarProductoMouseExited(evt);
             }
         });
-        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+        btnEditarProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditarActionPerformed(evt);
+                btnEditarProductoActionPerformed(evt);
             }
         });
-        getContentPane().add(btnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 80, 120, 30));
+        getContentPane().add(btnEditarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 80, 120, 30));
 
         txtPrecio.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txtPrecio.setBorder(null);
@@ -154,14 +154,14 @@ public class ProductosUI extends javax.swing.JFrame {
 
         getContentPane().add(barPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 190, 112, 2));
 
-        txtID.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        txtID.setBorder(null);
-        getContentPane().add(txtID, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 100, -1));
+        txtID_Producto.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtID_Producto.setBorder(null);
+        getContentPane().add(txtID_Producto, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 100, -1));
 
-        lblID.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        lblID.setForeground(new java.awt.Color(153, 153, 153));
-        lblID.setText("ID");
-        getContentPane().add(lblID, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 110, -1));
+        lblID_Producto.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblID_Producto.setForeground(new java.awt.Color(153, 153, 153));
+        lblID_Producto.setText("ID");
+        getContentPane().add(lblID_Producto, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 110, -1));
 
         barDescripcion.setBackground(new java.awt.Color(204, 204, 204));
         barDescripcion.setPreferredSize(new java.awt.Dimension(2, 29));
@@ -210,45 +210,45 @@ public class ProductosUI extends javax.swing.JFrame {
 
         getContentPane().add(barNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 100, 2));
 
-        btnEliminar.setBackground(new java.awt.Color(0, 90, 195));
-        btnEliminar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btnEliminar.setForeground(new java.awt.Color(255, 255, 255));
-        btnEliminar.setText("Eliminar");
-        btnEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnEliminarProducto.setBackground(new java.awt.Color(0, 90, 195));
+        btnEliminarProducto.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnEliminarProducto.setForeground(new java.awt.Color(255, 255, 255));
+        btnEliminarProducto.setText("Eliminar");
+        btnEliminarProducto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnEliminarProducto.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnEliminarMouseEntered(evt);
+                btnEliminarProductoMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnEliminarMouseExited(evt);
+                btnEliminarProductoMouseExited(evt);
             }
         });
-        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+        btnEliminarProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminarActionPerformed(evt);
+                btnEliminarProductoActionPerformed(evt);
             }
         });
-        getContentPane().add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 30, 120, 30));
+        getContentPane().add(btnEliminarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 30, 120, 30));
 
-        btnNuevo.setBackground(new java.awt.Color(0, 90, 195));
-        btnNuevo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btnNuevo.setForeground(new java.awt.Color(255, 255, 255));
-        btnNuevo.setText("Nuevo");
-        btnNuevo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnNuevo.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnNuevoProducto.setBackground(new java.awt.Color(0, 90, 195));
+        btnNuevoProducto.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnNuevoProducto.setForeground(new java.awt.Color(255, 255, 255));
+        btnNuevoProducto.setText("Nuevo");
+        btnNuevoProducto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnNuevoProducto.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnNuevoMouseEntered(evt);
+                btnNuevoProductoMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnNuevoMouseExited(evt);
+                btnNuevoProductoMouseExited(evt);
             }
         });
-        btnNuevo.addActionListener(new java.awt.event.ActionListener() {
+        btnNuevoProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNuevoActionPerformed(evt);
+                btnNuevoProductoActionPerformed(evt);
             }
         });
-        getContentPane().add(btnNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 30, 120, 30));
+        getContentPane().add(btnNuevoProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 30, 120, 30));
 
         txtCantidad.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txtCantidad.setBorder(null);
@@ -260,21 +260,21 @@ public class ProductosUI extends javax.swing.JFrame {
         lblCantidad.setText("Cantidad");
         getContentPane().add(lblCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 130, 100, -1));
 
-        barID.setBackground(new java.awt.Color(0, 90, 195));
-        barID.setPreferredSize(new java.awt.Dimension(2, 29));
+        barID_Producto.setBackground(new java.awt.Color(0, 90, 195));
+        barID_Producto.setPreferredSize(new java.awt.Dimension(2, 29));
 
-        javax.swing.GroupLayout barIDLayout = new javax.swing.GroupLayout(barID);
-        barID.setLayout(barIDLayout);
-        barIDLayout.setHorizontalGroup(
-            barIDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout barID_ProductoLayout = new javax.swing.GroupLayout(barID_Producto);
+        barID_Producto.setLayout(barID_ProductoLayout);
+        barID_ProductoLayout.setHorizontalGroup(
+            barID_ProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 100, Short.MAX_VALUE)
         );
-        barIDLayout.setVerticalGroup(
-            barIDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        barID_ProductoLayout.setVerticalGroup(
+            barID_ProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 2, Short.MAX_VALUE)
         );
 
-        getContentPane().add(barID, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 100, 2));
+        getContentPane().add(barID_Producto, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 100, 2));
 
         pack();
         setLocationRelativeTo(null);
@@ -301,26 +301,26 @@ public class ProductosUI extends javax.swing.JFrame {
         }
     }
 
-    private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
+    private void btnNuevoProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoProductoActionPerformed
         String txtnombre = txtNombre.getText();
         String txtdescripcion = txtDescripcion.getText();
         String txtprecio = txtPrecio.getText().trim();
         String txtcantidad = txtCantidad.getText().trim();
-        if (btnNuevo.getText() == "Nuevo") {
-            btnNuevo.setText("Confirmar");
-            btnEliminar.setText("Eliminar");
-            btnEditar.setText("Editar");
+        if (btnNuevoProducto.getText() == "Nuevo") {
+            btnNuevoProducto.setText("Confirmar");
+            btnEliminarProducto.setText("Eliminar");
+            btnEditarProducto.setText("Editar");
             txtNombre.requestFocus();
             txtNombre.setEnabled(true);
             txtDescripcion.setEnabled(true);
             txtPrecio.setEnabled(true);
             txtCantidad.setEnabled(true);
-            txtID.setEnabled(false);
+            txtID_Producto.setEnabled(false);
             barNombre.setBackground(new java.awt.Color(0, 90, 150));
             barDescripcion.setBackground(new java.awt.Color(0, 90, 150));
             barCantidad.setBackground(new java.awt.Color(0, 90, 150));
             barPrecio.setBackground(new java.awt.Color(0, 90, 150));
-            barID.setBackground(new java.awt.Color(187, 187, 187));
+            barID_Producto.setBackground(new java.awt.Color(187, 187, 187));
             vaciarTxt();
         } else {
             if (txtnombre.equals("") || txtdescripcion.equals("") || txtprecio.equals("") || txtcantidad.equals("")) {
@@ -330,44 +330,44 @@ public class ProductosUI extends javax.swing.JFrame {
                 Insertar();
                 dialog.setAlwaysOnTop(true);
                 dialog.setVisible(true);
-                btnNuevo.setText("Nuevo");
+                btnNuevoProducto.setText("Nuevo");
                 txtNombre.setEnabled(false);
                 txtDescripcion.setEnabled(false);
                 txtPrecio.setEnabled(false);
                 txtCantidad.setEnabled(false);
-                txtID.setEnabled(true);
+                txtID_Producto.setEnabled(true);
                 barNombre.setBackground(new java.awt.Color(187, 187, 187));
                 barDescripcion.setBackground(new java.awt.Color(187, 187, 187));
                 barCantidad.setBackground(new java.awt.Color(187, 187, 187));
                 barPrecio.setBackground(new java.awt.Color(187, 187, 187));
-                barID.setBackground(new java.awt.Color(0, 90, 150));
+                barID_Producto.setBackground(new java.awt.Color(0, 90, 150));
                 vaciarTxt();
             }
         }
-    }//GEN-LAST:event_btnNuevoActionPerformed
+    }//GEN-LAST:event_btnNuevoProductoActionPerformed
 
-    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        String txtid = txtID.getText().trim();
-        if (btnEditar.getText() == "Editar") {
+    private void btnEditarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarProductoActionPerformed
+        String txtid = txtID_Producto.getText().trim();
+        if (btnEditarProducto.getText() == "Editar") {
             if (txtid.equals("")) {
                 dialog.setAlwaysOnTop(true);
                 //dialog.setVisible(true);
             } else {
                 id = Integer.parseInt(txtid);
                 Buscar(id);
-                btnEditar.setText("Confirmar");
-                btnEliminar.setText("Eliminar");
-                btnNuevo.setText("Nuevo");
+                btnEditarProducto.setText("Confirmar");
+                btnEliminarProducto.setText("Eliminar");
+                btnNuevoProducto.setText("Nuevo");
                 txtNombre.setEnabled(true);
                 txtDescripcion.setEnabled(true);
                 txtPrecio.setEnabled(true);
                 txtCantidad.setEnabled(true);
-                txtID.setEnabled(false);
+                txtID_Producto.setEnabled(false);
                 barNombre.setBackground(new java.awt.Color(0, 90, 150));
                 barDescripcion.setBackground(new java.awt.Color(0, 90, 150));
                 barCantidad.setBackground(new java.awt.Color(0, 90, 150));
                 barPrecio.setBackground(new java.awt.Color(0, 90, 150));
-                barID.setBackground(new java.awt.Color(187, 187, 187));
+                barID_Producto.setBackground(new java.awt.Color(187, 187, 187));
             }
 
         } else {
@@ -386,108 +386,108 @@ public class ProductosUI extends javax.swing.JFrame {
                 Modificar(id, nombre, descripcion, precio, cantidad);
                 dialog.setAlwaysOnTop(true);
                 dialog.setVisible(true);
-                btnEditar.setText("Editar");
+                btnEditarProducto.setText("Editar");
                 txtNombre.setEnabled(false);
                 txtDescripcion.setEnabled(false);
                 txtPrecio.setEnabled(false);
                 txtCantidad.setEnabled(false);
-                txtID.setEnabled(true);
+                txtID_Producto.setEnabled(true);
                 barNombre.setBackground(new java.awt.Color(187, 187, 187));
                 barDescripcion.setBackground(new java.awt.Color(187, 187, 187));
                 barCantidad.setBackground(new java.awt.Color(187, 187, 187));
                 barPrecio.setBackground(new java.awt.Color(187, 187, 187));
-                barID.setBackground(new java.awt.Color(0, 90, 150));
+                barID_Producto.setBackground(new java.awt.Color(0, 90, 150));
                 vaciarTxt();
             }
         }
-    }//GEN-LAST:event_btnEditarActionPerformed
+    }//GEN-LAST:event_btnEditarProductoActionPerformed
 
-    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        String txtid = txtID.getText().trim();
-        if (btnEliminar.getText() == "Eliminar") {
+    private void btnEliminarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarProductoActionPerformed
+        String txtid = txtID_Producto.getText().trim();
+        if (btnEliminarProducto.getText() == "Eliminar") {
             if (txtid.equals("")) {
                 dialog.setAlwaysOnTop(true);
                 //dialog.setVisible(true);
             } else {
                 id = Integer.parseInt(txtid);
                 Buscar(id);
-                btnEliminar.setText("Confirmar");
-                btnNuevo.setText("Nuevo");
-                btnEditar.setText("Editar");
-                txtID.setEnabled(false);
-                barID.setBackground(new java.awt.Color(187, 187, 187));
+                btnEliminarProducto.setText("Confirmar");
+                btnNuevoProducto.setText("Nuevo");
+                btnEditarProducto.setText("Editar");
+                txtID_Producto.setEnabled(false);
+                barID_Producto.setBackground(new java.awt.Color(187, 187, 187));
             }
         } else {
             int estatus = 0;
             Desactivar(id, estatus);
             dialog.setAlwaysOnTop(true);
             dialog.setVisible(true);
-            btnEliminar.setText("Eliminar");
+            btnEliminarProducto.setText("Eliminar");
             txtNombre.setEnabled(false);
             txtDescripcion.setEnabled(false);
             txtPrecio.setEnabled(false);
             txtCantidad.setEnabled(false);
-            txtID.setEnabled(true);
+            txtID_Producto.setEnabled(true);
             barNombre.setBackground(new java.awt.Color(187, 187, 187));
             barDescripcion.setBackground(new java.awt.Color(187, 187, 187));
             barCantidad.setBackground(new java.awt.Color(187, 187, 187));
             barPrecio.setBackground(new java.awt.Color(187, 187, 187));
-            barID.setBackground(new java.awt.Color(0, 90, 150));
+            barID_Producto.setBackground(new java.awt.Color(0, 90, 150));
             vaciarTxt();
         }
-    }//GEN-LAST:event_btnEliminarActionPerformed
+    }//GEN-LAST:event_btnEliminarProductoActionPerformed
 
-    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+    private void btnCancelarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarProductoActionPerformed
         this.setVisible(false);
         // Reset Form
-        txtID.requestFocus();
-        btnEliminar.setText("Eliminar");
-        btnNuevo.setText("Nuevo");
-        btnEditar.setText("Editar");
+        txtID_Producto.requestFocus();
+        btnEliminarProducto.setText("Eliminar");
+        btnNuevoProducto.setText("Nuevo");
+        btnEditarProducto.setText("Editar");
         txtNombre.setEnabled(false);
         txtDescripcion.setEnabled(false);
         txtPrecio.setEnabled(false);
         txtCantidad.setEnabled(false);
-        txtID.setEnabled(true);
+        txtID_Producto.setEnabled(true);
         barNombre.setBackground(new java.awt.Color(187, 187, 187));
         barDescripcion.setBackground(new java.awt.Color(187, 187, 187));
         barCantidad.setBackground(new java.awt.Color(187, 187, 187));
         barPrecio.setBackground(new java.awt.Color(187, 187, 187));
-        barID.setBackground(new java.awt.Color(0, 90, 150));
+        barID_Producto.setBackground(new java.awt.Color(0, 90, 150));
         vaciarTxt();
-    }//GEN-LAST:event_btnCancelarActionPerformed
+    }//GEN-LAST:event_btnCancelarProductoActionPerformed
 
-    private void btnEliminarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarMouseEntered
-        btnEliminar.setBackground(new java.awt.Color(0, 90, 150));
-    }//GEN-LAST:event_btnEliminarMouseEntered
+    private void btnEliminarProductoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarProductoMouseEntered
+        btnEliminarProducto.setBackground(new java.awt.Color(0, 90, 150));
+    }//GEN-LAST:event_btnEliminarProductoMouseEntered
 
-    private void btnEliminarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarMouseExited
-        btnEliminar.setBackground(new java.awt.Color(0, 90, 195));
-    }//GEN-LAST:event_btnEliminarMouseExited
+    private void btnEliminarProductoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarProductoMouseExited
+        btnEliminarProducto.setBackground(new java.awt.Color(0, 90, 195));
+    }//GEN-LAST:event_btnEliminarProductoMouseExited
 
-    private void btnNuevoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNuevoMouseEntered
-        btnNuevo.setBackground(new java.awt.Color(0, 90, 150));
-    }//GEN-LAST:event_btnNuevoMouseEntered
+    private void btnNuevoProductoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNuevoProductoMouseEntered
+        btnNuevoProducto.setBackground(new java.awt.Color(0, 90, 150));
+    }//GEN-LAST:event_btnNuevoProductoMouseEntered
 
-    private void btnNuevoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNuevoMouseExited
-        btnNuevo.setBackground(new java.awt.Color(0, 90, 195));
-    }//GEN-LAST:event_btnNuevoMouseExited
+    private void btnNuevoProductoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNuevoProductoMouseExited
+        btnNuevoProducto.setBackground(new java.awt.Color(0, 90, 195));
+    }//GEN-LAST:event_btnNuevoProductoMouseExited
 
-    private void btnEditarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditarMouseEntered
-        btnEditar.setBackground(new java.awt.Color(0, 90, 150));
-    }//GEN-LAST:event_btnEditarMouseEntered
+    private void btnEditarProductoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditarProductoMouseEntered
+        btnEditarProducto.setBackground(new java.awt.Color(0, 90, 150));
+    }//GEN-LAST:event_btnEditarProductoMouseEntered
 
-    private void btnEditarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditarMouseExited
-        btnEditar.setBackground(new java.awt.Color(0, 90, 195));
-    }//GEN-LAST:event_btnEditarMouseExited
+    private void btnEditarProductoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditarProductoMouseExited
+        btnEditarProducto.setBackground(new java.awt.Color(0, 90, 195));
+    }//GEN-LAST:event_btnEditarProductoMouseExited
 
-    private void btnCancelarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseEntered
-        btnCancelar.setBackground(new java.awt.Color(0, 90, 150));
-    }//GEN-LAST:event_btnCancelarMouseEntered
+    private void btnCancelarProductoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarProductoMouseEntered
+        btnCancelarProducto.setBackground(new java.awt.Color(0, 90, 150));
+    }//GEN-LAST:event_btnCancelarProductoMouseEntered
 
-    private void btnCancelarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseExited
-        btnCancelar.setBackground(new java.awt.Color(0, 90, 195));
-    }//GEN-LAST:event_btnCancelarMouseExited
+    private void btnCancelarProductoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarProductoMouseExited
+        btnCancelarProducto.setBackground(new java.awt.Color(0, 90, 195));
+    }//GEN-LAST:event_btnCancelarProductoMouseExited
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -519,7 +519,7 @@ public class ProductosUI extends javax.swing.JFrame {
     }
 
     public void vaciarTxt() {
-        txtID.setText("");
+        txtID_Producto.setText("");
         txtNombre.setText("");
         txtDescripcion.setText("");
         txtPrecio.setText("");
@@ -601,22 +601,22 @@ public class ProductosUI extends javax.swing.JFrame {
     private javax.swing.JTable Tabla_Productos;
     private javax.swing.JPanel barCantidad;
     private javax.swing.JPanel barDescripcion;
-    private javax.swing.JPanel barID;
+    private javax.swing.JPanel barID_Producto;
     private javax.swing.JPanel barNombre;
     private javax.swing.JPanel barPrecio;
-    private javax.swing.JButton btnCancelar;
-    private javax.swing.JButton btnEditar;
-    private javax.swing.JButton btnEliminar;
-    private javax.swing.JButton btnNuevo;
+    private javax.swing.JButton btnCancelarProducto;
+    private javax.swing.JButton btnEditarProducto;
+    private javax.swing.JButton btnEliminarProducto;
+    private javax.swing.JButton btnNuevoProducto;
     private javax.swing.JLabel lblCantidad;
     private javax.swing.JLabel lblDescripcion;
-    private javax.swing.JLabel lblID;
+    private javax.swing.JLabel lblID_Producto;
     private javax.swing.JLabel lblPrecio;
     private javax.swing.JLabel lnlNombre;
     private javax.swing.JScrollPane table;
     private javax.swing.JTextField txtCantidad;
     private javax.swing.JTextField txtDescripcion;
-    private javax.swing.JTextField txtID;
+    private javax.swing.JTextField txtID_Producto;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtPrecio;
     // End of variables declaration//GEN-END:variables
