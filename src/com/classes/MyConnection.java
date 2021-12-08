@@ -28,7 +28,7 @@ public class MyConnection {
         
         String connectionUrl = "jdbc:sqlserver://"
                 + Server + ";"
-                + "database=bdFivani;"
+                + "database=bdPuntoVenta;"
                 + "user=" + User + ";"
                 + "password=" + Password + ";"
                 + "loginTimeout=0;";

@@ -4,13 +4,13 @@ import com.classes.MyConnection;
 import java.sql.*;
 import javax.swing.JOptionPane;
 
-public class Usuarios {
+public class Sucursales {
     
     public void Insertar(String usuario, String contrasena) {
         int estatus = 1;
         try {
             Connection cn = MyConnection.getConnection();
-            CallableStatement cst = cn.prepareCall("{call agregarUsuario(?,?,?)}");
+            CallableStatement cst = cn.prepareCall("{call agregarSucursal(?,?,?)}");
             cst.setString(1, usuario);
             cst.setString(2, contrasena);
             cst.setInt(3, estatus);
@@ -23,7 +23,7 @@ public class Usuarios {
     public void Desactivar(int id, int estatus) {
         try {
             Connection cn = MyConnection.getConnection();
-            CallableStatement cst = cn.prepareCall("{call estatusUsuario(?,?)}");
+            CallableStatement cst = cn.prepareCall("{call estatusSucursal(?,?)}");
             cst.setInt(1, id);
             cst.setInt(2, estatus);
             cst.execute();
@@ -35,7 +35,7 @@ public class Usuarios {
     public void Modificar(int id, String usuario, String contrasena) {
         try {
             Connection cn = MyConnection.getConnection();
-            CallableStatement cst = cn.prepareCall("{call modificarUsuario(?,?,?)}");
+            CallableStatement cst = cn.prepareCall("{call modificarSucursal(?,?,?)}");
             cst.setInt(1, id);
             cst.setString(2, usuario);
             cst.setString(3, contrasena);

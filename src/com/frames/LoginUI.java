@@ -5,9 +5,6 @@ import javax.swing.ImageIcon;
 
 public class LoginUI extends javax.swing.JFrame {
 
-    String User;
-    String Password;
-
     public LoginUI() {
         initComponents();
         this.setIconImage(new ImageIcon(getClass().getClassLoader().getResource("com/images/Icono.png")).getImage());
@@ -189,33 +186,10 @@ public class LoginUI extends javax.swing.JFrame {
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
         MainUI main = new MainUI();
-        //User = txtUsuario.getText().trim();
-        //Password = txtContrasena.getText().trim();
-        /*
-        try { 
-            File F = new File("CredencialesSQL.txt");
-            FileWriter File = new FileWriter("CredencialesSQL.txt",true);
-            PrintWriter PW = new PrintWriter(File);
-            PW.println(User);
-            PW.println(Password);
-            File.close();
-            F.delete();
-        } catch (IOException MM) {
-            System.out.println("Error en ingresar: "+MM.getMessage());
-        }
-        */
         main.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnIngresarActionPerformed
 
-    public String getUser() {
-        return User;
-    }
-
-    public String getPassword() {
-        return Password;
-    }
-    
     private void btnIngresarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnIngresarMouseEntered
         btnIngresar.setBackground(new java.awt.Color(0, 90, 150));
     }//GEN-LAST:event_btnIngresarMouseEntered
