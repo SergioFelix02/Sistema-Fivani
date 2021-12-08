@@ -13,12 +13,13 @@ public class MainUI extends javax.swing.JFrame {
     Connection cn = MyConnection.getConnection();
     
     Ventas ventas = new Ventas();
-    Sucursales usuarios = new Sucursales();
+    Sucursales sucursales = new Sucursales();
     Productos productos = new Productos();
     
     String user = "", password = "", nombre = "", descripcion = "", temp = "";
-    int id_Usuario = 0, precio = 0, cantidad = 0, id_Producto = 0;
+    int id_Sucursal = 0, precio = 0, cantidad = 0, id_Producto = 0;
     int Cantidad = 0, Total = 0, ID_Producto = 0, id_Ventas = 0, precioProd = 0;
+    boolean foundV, foundP, foundS;
     
     public MainUI() {
         initComponents();
@@ -67,10 +68,10 @@ public class MainUI extends javax.swing.JFrame {
         lblCantidad = new javax.swing.JLabel();
         barID_Producto = new javax.swing.JPanel();
         bgSucursales = new javax.swing.JPanel();
-        lblID_Usuario = new javax.swing.JLabel();
+        lblID_Sucursal = new javax.swing.JLabel();
         btnEditarS = new javax.swing.JButton();
         txtNombreS = new javax.swing.JTextField();
-        txtIDUsuario = new javax.swing.JTextField();
+        txtIDSucursal = new javax.swing.JTextField();
         barNombreS = new javax.swing.JPanel();
         btnEliminarS = new javax.swing.JButton();
         lblNombreS = new javax.swing.JLabel();
@@ -81,7 +82,7 @@ public class MainUI extends javax.swing.JFrame {
         btnNuevaS = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         Tabla_Sucursales = new javax.swing.JTable();
-        barID_Usuario = new javax.swing.JPanel();
+        barID_Sucursal = new javax.swing.JPanel();
         bgVentas = new javax.swing.JPanel();
         btnAgregarP = new javax.swing.JButton();
         btnNuevaV = new javax.swing.JButton();
@@ -517,10 +518,10 @@ public class MainUI extends javax.swing.JFrame {
         bgSucursales.setBackground(new java.awt.Color(255, 255, 255));
         bgSucursales.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblID_Usuario.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        lblID_Usuario.setForeground(new java.awt.Color(153, 153, 153));
-        lblID_Usuario.setText("ID");
-        bgSucursales.add(lblID_Usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 120, -1));
+        lblID_Sucursal.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblID_Sucursal.setForeground(new java.awt.Color(153, 153, 153));
+        lblID_Sucursal.setText("ID");
+        bgSucursales.add(lblID_Sucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 120, -1));
 
         btnEditarS.setBackground(new java.awt.Color(0, 153, 153));
         btnEditarS.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -539,9 +540,9 @@ public class MainUI extends javax.swing.JFrame {
         txtNombreS.setEnabled(false);
         bgSucursales.add(txtNombreS, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 120, -1));
 
-        txtIDUsuario.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        txtIDUsuario.setBorder(null);
-        bgSucursales.add(txtIDUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 120, -1));
+        txtIDSucursal.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtIDSucursal.setBorder(null);
+        bgSucursales.add(txtIDSucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 120, -1));
 
         barNombreS.setBackground(new java.awt.Color(204, 204, 204));
         barNombreS.setPreferredSize(new java.awt.Dimension(2, 29));
@@ -641,21 +642,21 @@ public class MainUI extends javax.swing.JFrame {
 
         bgSucursales.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 500, 300));
 
-        barID_Usuario.setBackground(new java.awt.Color(0, 90, 195));
-        barID_Usuario.setPreferredSize(new java.awt.Dimension(2, 29));
+        barID_Sucursal.setBackground(new java.awt.Color(0, 90, 195));
+        barID_Sucursal.setPreferredSize(new java.awt.Dimension(2, 29));
 
-        javax.swing.GroupLayout barID_UsuarioLayout = new javax.swing.GroupLayout(barID_Usuario);
-        barID_Usuario.setLayout(barID_UsuarioLayout);
-        barID_UsuarioLayout.setHorizontalGroup(
-            barID_UsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout barID_SucursalLayout = new javax.swing.GroupLayout(barID_Sucursal);
+        barID_Sucursal.setLayout(barID_SucursalLayout);
+        barID_SucursalLayout.setHorizontalGroup(
+            barID_SucursalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 120, Short.MAX_VALUE)
         );
-        barID_UsuarioLayout.setVerticalGroup(
-            barID_UsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        barID_SucursalLayout.setVerticalGroup(
+            barID_SucursalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 2, Short.MAX_VALUE)
         );
 
-        bgSucursales.add(barID_Usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 120, 2));
+        bgSucursales.add(barID_Sucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 120, 2));
 
         getContentPane().add(bgSucursales, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 0, 650, 500));
 
@@ -875,8 +876,8 @@ public class MainUI extends javax.swing.JFrame {
         barVentas.setBackground(new Color(255,255,255));
         barProductos.setBackground(new Color(255,255,255));
         barSucursales.setBackground(new Color(0,255,0));
-        CrearTablaUsuarios();
-        txtIDUsuario.requestFocus();
+        CrearTablaSucursals();
+        txtIDSucursal.requestFocus();
     }//GEN-LAST:event_btnSucursalesMouseClicked
        
     private void btnInformacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInformacionMouseClicked
@@ -923,6 +924,10 @@ public class MainUI extends javax.swing.JFrame {
                 Total = rs.getInt("total");
                 txtID_Venta.setText(String.valueOf(id));
                 txtTotal.setText(String.valueOf(Total));
+                foundV = true;
+            }else{
+                foundV = false;
+                JOptionPane.showMessageDialog(null, "Venta no encontrada");
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Venta no encontrada");
@@ -1012,12 +1017,16 @@ public class MainUI extends javax.swing.JFrame {
             if (txtid.equals("")) {
                 JOptionPane.showMessageDialog(null, "Escribe un ID");
             } else {
-                btnEditarV.setBackground(Color.green);
-                txtID_Venta.setEnabled(false);
-                txtTotal.setEnabled(true);
                 BuscarV(Integer.parseInt(txtid));
-                barTotal.setBackground(new java.awt.Color(0, 90, 150));
-                barID_Venta.setBackground(new java.awt.Color(187, 187, 187));
+                if (foundV != false){
+                    btnEditarV.setBackground(Color.green);
+                    txtID_Venta.setEnabled(false);
+                    txtTotal.setEnabled(true);
+                    barTotal.setBackground(new java.awt.Color(0, 90, 150));
+                    barID_Venta.setBackground(new java.awt.Color(187, 187, 187));   
+                }else{
+                    ResetVentas();
+                }
             }
         } else {
             if (txtotal.equals("")) {
@@ -1117,6 +1126,10 @@ public class MainUI extends javax.swing.JFrame {
                 txtDescripcion.setText(descripcion);
                 txtPrecio.setText(String.valueOf(precio));
                 txtCantidad.setText(String.valueOf(cantidad));
+                foundP = true;
+            }else{
+                JOptionPane.showMessageDialog(null, "Producto no encontrado");
+                foundP = false;
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Producto no encontrado");
@@ -1170,19 +1183,23 @@ public class MainUI extends javax.swing.JFrame {
             } else {
                 id_Producto = Integer.parseInt(txtid);
                 BuscarP(id_Producto);
-                btnEditarP.setBackground(Color.green);
-                txtNombre.setEnabled(true);
-                txtDescripcion.setEnabled(true);
-                txtPrecio.setEnabled(true);
-                txtCantidad.setEnabled(true);
-                txtID_Producto.setEnabled(false);
-                btnEliminarP.setEnabled(false);
-                btnNuevoP.setEnabled(false);
-                barNombre.setBackground(new java.awt.Color(0, 90, 150));
-                barDescripcion.setBackground(new java.awt.Color(0, 90, 150));
-                barCantidad.setBackground(new java.awt.Color(0, 90, 150));
-                barPrecio.setBackground(new java.awt.Color(0, 90, 150));
-                barID_Producto.setBackground(new java.awt.Color(187, 187, 187));
+                if (foundP != false){
+                    btnEditarP.setBackground(Color.green);
+                    txtNombre.setEnabled(true);
+                    txtDescripcion.setEnabled(true);
+                    txtPrecio.setEnabled(true);
+                    txtCantidad.setEnabled(true);
+                    txtID_Producto.setEnabled(false);
+                    btnEliminarP.setEnabled(false);
+                    btnNuevoP.setEnabled(false);
+                    barNombre.setBackground(new java.awt.Color(0, 90, 150));
+                    barDescripcion.setBackground(new java.awt.Color(0, 90, 150));
+                    barCantidad.setBackground(new java.awt.Color(0, 90, 150));
+                    barPrecio.setBackground(new java.awt.Color(0, 90, 150));
+                    barID_Producto.setBackground(new java.awt.Color(187, 187, 187));
+                }else{
+                    ResetProductos();
+                }
             }
         } else {
             String txtnombre = txtNombre.getText();
@@ -1213,11 +1230,15 @@ public class MainUI extends javax.swing.JFrame {
             } else {
                 id_Producto = Integer.parseInt(txtid);
                 BuscarP(id_Producto);
-                btnEliminarP.setBackground(Color.green);
-                txtID_Producto.setEnabled(false);
-                btnNuevoP.setEnabled(false);
-                btnEditarP.setEnabled(false);
-                barID_Producto.setBackground(new java.awt.Color(187, 187, 187));
+                if (foundP != false){
+                    btnEliminarP.setBackground(Color.green);
+                    txtID_Producto.setEnabled(false);
+                    btnNuevoP.setEnabled(false);
+                    btnEditarP.setEnabled(false);
+                    barID_Producto.setBackground(new java.awt.Color(187, 187, 187));       
+                }else{
+                    ResetProductos();
+                }
             }
         } else {
             int estatus = 0;
@@ -1275,6 +1296,10 @@ public class MainUI extends javax.swing.JFrame {
                 password = rs.getString("domicilio");
                 txtNombreS.setText(user);
                 txtDomicilio.setText(password);
+                foundS = true;
+            }else{
+                foundS = false;
+                JOptionPane.showMessageDialog(null, "Sucursal no encontrada");
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Sucursal no encontrada");
@@ -1289,83 +1314,91 @@ public class MainUI extends javax.swing.JFrame {
             txtNombreS.requestFocus();
             txtNombreS.setEnabled(true);
             txtDomicilio.setEnabled(true);
-            txtIDUsuario.setEnabled(false);
+            txtIDSucursal.setEnabled(false);
             btnEliminarS.setEnabled(false);
             btnEditarS.setEnabled(false);
             barNombreS.setBackground(new java.awt.Color(0, 90, 150));
             barDomicilio.setBackground(new java.awt.Color(0, 90, 150));
-            barID_Usuario.setBackground(new java.awt.Color(187, 187, 187));
-            vaciarTxtUsuarios();
+            barID_Sucursal.setBackground(new java.awt.Color(187, 187, 187));
+            vaciarTxtSucursals();
         } else {
             if (txtnombre.equals("") || txtdescripcion.equals("")) {
                 JOptionPane.showMessageDialog(null, "Llena todos los campos");
             } else {
-                String usuario = String.valueOf(txtNombreS.getText());
-                String contrasena = String.valueOf(txtDomicilio.getText());
-                usuarios.Insertar(usuario, contrasena);
+                String sucursal = String.valueOf(txtNombreS.getText());
+                String domicilio = String.valueOf(txtDomicilio.getText());
+                sucursales.Insertar(sucursal, domicilio);
                 JOptionPane.showMessageDialog(null, "Operacion Realizada Correctamente");
                 //Reset Form
                 ResetSucursales();
-                CrearTablaUsuarios();
-                CrearTablaUsuarios();
+                CrearTablaSucursals();
+                CrearTablaSucursals();
             }
         }
     }//GEN-LAST:event_btnNuevaSActionPerformed
 
     private void btnEditarSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarSActionPerformed
-        String txtid = txtIDUsuario.getText().trim();
+        String txtid = txtIDSucursal.getText().trim();
         if (btnEditarS.getBackground().equals(new java.awt.Color(0, 153, 153))) {
             if (txtid.equals("")) {
                 JOptionPane.showMessageDialog(null, "Escribe un ID");
             } else {
-                id_Usuario = Integer.parseInt(txtid);
-                BuscarS(id_Usuario);
-                btnEditarS.setBackground(Color.green);
-                txtNombreS.setEnabled(true);
-                txtDomicilio.setEnabled(true);
-                txtIDUsuario.setEnabled(false);
-                btnNuevaS.setEnabled(false);
-                btnEliminarS.setEnabled(false);
-                barNombreS.setBackground(new java.awt.Color(0, 90, 150));
-                barDomicilio.setBackground(new java.awt.Color(0, 90, 150));
-                barID_Usuario.setBackground(new java.awt.Color(187, 187, 187));
+                id_Sucursal = Integer.parseInt(txtid);
+                BuscarS(id_Sucursal);
+                if (foundS != false){
+                    btnEditarS.setBackground(Color.green);
+                    txtNombreS.setEnabled(true);
+                    txtDomicilio.setEnabled(true);
+                    txtIDSucursal.setEnabled(false);
+                    btnNuevaS.setEnabled(false);
+                    btnEliminarS.setEnabled(false);
+                    barNombreS.setBackground(new java.awt.Color(0, 90, 150));
+                    barDomicilio.setBackground(new java.awt.Color(0, 90, 150));
+                    barID_Sucursal.setBackground(new java.awt.Color(187, 187, 187)); 
+                }else{
+                    ResetSucursales();
+                }
             }
         } else {
-            String txtUsuario = txtNombreS.getText();
+            String txtSucursal = txtNombreS.getText();
             String txtContrasena = txtDomicilio.getText();
-            if (txtUsuario.equals("") || txtContrasena.equals("")) {
+            if (txtSucursal.equals("") || txtContrasena.equals("")) {
                 JOptionPane.showMessageDialog(null, "Llena todos los campos");
             } else {
-                usuarios.Modificar(id_Usuario, txtUsuario, txtContrasena);
+                sucursales.Modificar(id_Sucursal, txtSucursal, txtContrasena);
                 JOptionPane.showMessageDialog(null, "Operacion Realizada Correctamente");
                 //Reset Form
                 ResetSucursales();
-                CrearTablaUsuarios();
+                CrearTablaSucursals();
             }
         }
     }//GEN-LAST:event_btnEditarSActionPerformed
 
     private void btnEliminarSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarSActionPerformed
-        String txtid = txtIDUsuario.getText().trim();
+        String txtid = txtIDSucursal.getText().trim();
         if (btnEliminarS.getBackground().equals(new java.awt.Color(0, 153, 153))) {
             if (txtid.equals("")) {
                 JOptionPane.showMessageDialog(null, "Escribe un ID");
             } else {
-                id_Usuario = Integer.parseInt(txtid);
-                BuscarS(id_Usuario);
-                btnEliminarS.setBackground(Color.green);
-                txtIDUsuario.setEnabled(false);
-                btnNuevaS.setEnabled(false);
-                btnEditarS.setEnabled(false);
-                barID_Usuario.setBackground(new java.awt.Color(187, 187, 187));
+                id_Sucursal = Integer.parseInt(txtid);
+                BuscarS(id_Sucursal);
+                if (foundS != false){
+                    btnEliminarS.setBackground(Color.green);
+                    txtIDSucursal.setEnabled(false);
+                    btnNuevaS.setEnabled(false);
+                    btnEditarS.setEnabled(false);
+                    barID_Sucursal.setBackground(new java.awt.Color(187, 187, 187));      
+                }else{
+                    ResetSucursales();
+                }
             }
         } else {
             int estatus = 0;
-            usuarios.Desactivar(id_Usuario, estatus);
+            sucursales.Desactivar(id_Sucursal, estatus);
             JOptionPane.showMessageDialog(null, "Operacion Realizada Correctamente");
             //Reset Form
             ResetSucursales();
-            CrearTablaUsuarios();
+            CrearTablaSucursals();
         }
     }//GEN-LAST:event_btnEliminarSActionPerformed
 
@@ -1373,7 +1406,7 @@ public class MainUI extends javax.swing.JFrame {
         ResetSucursales();
     }//GEN-LAST:event_btnCancelarSActionPerformed
     
-    public void CrearTablaUsuarios() {
+    public void CrearTablaSucursals() {
         try {
             Connection cn = MyConnection.getConnection();
             DefaultTableModel dfm = new DefaultTableModel();
@@ -1392,8 +1425,8 @@ public class MainUI extends javax.swing.JFrame {
         }
     }
     
-    public void vaciarTxtUsuarios() {
-        txtIDUsuario.setText("");
+    public void vaciarTxtSucursals() {
+        txtIDSucursal.setText("");
         txtNombreS.setText("");
         txtDomicilio.setText("");
     }//Fin Sucursales
@@ -1432,18 +1465,18 @@ public class MainUI extends javax.swing.JFrame {
     public void ResetSucursales(){
         txtNombreS.setEnabled(false);
         txtDomicilio.setEnabled(false);
-        txtIDUsuario.setEnabled(true);
+        txtIDSucursal.setEnabled(true);
         btnNuevaS.setEnabled(true);
         btnEditarS.setEnabled(true);
         btnEliminarS.setEnabled(true);
         barNombreS.setBackground(new java.awt.Color(187, 187, 187));
         barDomicilio.setBackground(new java.awt.Color(187, 187, 187));
-        barID_Usuario.setBackground(new java.awt.Color(0, 90, 150));
+        barID_Sucursal.setBackground(new java.awt.Color(0, 90, 150));
         btnNuevaS.setBackground(new java.awt.Color(0, 153, 153));
         btnEditarS.setBackground(new java.awt.Color(0, 153, 153));
         btnEliminarS.setBackground(new java.awt.Color(0, 153, 153));
         btnEliminarS.setBackground(new java.awt.Color(0, 153, 153));
-        vaciarTxtUsuarios();
+        vaciarTxtSucursals();
     }
     
     //Eventos Mouse Entered / Mouse Exited
@@ -1523,7 +1556,7 @@ public class MainUI extends javax.swing.JFrame {
     private javax.swing.JPanel barDescripcion;
     private javax.swing.JPanel barDomicilio;
     private javax.swing.JPanel barID_Producto;
-    private javax.swing.JPanel barID_Usuario;
+    private javax.swing.JPanel barID_Sucursal;
     private javax.swing.JPanel barID_Venta;
     private javax.swing.JPanel barNombre;
     private javax.swing.JPanel barNombreS;
@@ -1566,7 +1599,7 @@ public class MainUI extends javax.swing.JFrame {
     private javax.swing.JLabel lblDomicilio;
     private javax.swing.JLabel lblID_Producto;
     private javax.swing.JLabel lblID_Producto2;
-    private javax.swing.JLabel lblID_Usuario;
+    private javax.swing.JLabel lblID_Sucursal;
     private javax.swing.JLabel lblID_Venta;
     private javax.swing.JLabel lblNombreS;
     private javax.swing.JLabel lblPrecio;
@@ -1580,7 +1613,7 @@ public class MainUI extends javax.swing.JFrame {
     private javax.swing.JTextField txtCantidad;
     private javax.swing.JTextField txtDescripcion;
     private javax.swing.JTextField txtDomicilio;
-    private javax.swing.JTextField txtIDUsuario;
+    private javax.swing.JTextField txtIDSucursal;
     private javax.swing.JTextField txtID_Producto;
     private javax.swing.JTextField txtID_Venta;
     private javax.swing.JTextField txtNombre;
