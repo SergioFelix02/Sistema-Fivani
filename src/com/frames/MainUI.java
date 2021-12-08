@@ -33,6 +33,7 @@ public class MainUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 32767));
         panel = new javax.swing.JPanel();
         lbl_icon = new javax.swing.JLabel();
         btnProductos = new javax.swing.JLabel();
@@ -307,6 +308,7 @@ public class MainUI extends javax.swing.JFrame {
         bgVentas.setBackground(new java.awt.Color(255, 255, 255));
         bgVentas.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        Tabla_Ventas.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         Tabla_Ventas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
@@ -492,6 +494,7 @@ public class MainUI extends javax.swing.JFrame {
         bgSucursales.setBackground(new java.awt.Color(255, 255, 255));
         bgSucursales.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        Tabla_Sucursales.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         Tabla_Sucursales.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
@@ -1616,6 +1619,7 @@ public class MainUI extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbCantidad;
     private javax.swing.JComboBox<String> cbIVA;
     private javax.swing.JComboBox<String> cbProductos;
+    private javax.swing.Box.Filler filler1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblCantidad;
