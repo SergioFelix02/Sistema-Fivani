@@ -20,9 +20,23 @@ public class Sucursales {
         }
     }
 
-    public void Desactivar(int id, int estatus) {
+    public void Desactivar(int id) {
+        int temp = 0;
+        int estatus = 0;
         try {
+            ResultSet rs;
             Connection cn = MyConnection.getConnection();
+            PreparedStatement pst = cn.prepareStatement("select * from Sucursales where idSucursal = ?");
+            pst.setInt(1, id);
+            rs = pst.executeQuery();
+            if (rs.next()) {
+                temp = rs.getInt("estatus");
+            }
+            if (temp == 1){
+                estatus = 0;
+            }else{
+                estatus = 1;
+            }
             CallableStatement cst = cn.prepareCall("{call estatusSucursal(?,?)}");
             cst.setInt(1, id);
             cst.setInt(2, estatus);

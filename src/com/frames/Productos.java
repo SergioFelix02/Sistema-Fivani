@@ -6,7 +6,7 @@ import java.sql.*;
 import javax.swing.JOptionPane;
 
 public class Productos {   
-     
+    
     public void Insertar(String nombre, String descripcion, int precio, int cantidad) {
         int estatus = 1;
         try {
@@ -23,9 +23,23 @@ public class Productos {
         }
     }
 
-    public void Desactivar(int id, int estatus) {
+    public void Desactivar(int id) {
+        int temp = 0;
+        int estatus = 0;
         try {
+            ResultSet rs;
             Connection cn = MyConnection.getConnection();
+            PreparedStatement pst = cn.prepareStatement("select * from Productos where idProducto = ?");
+            pst.setInt(1, id);
+            rs = pst.executeQuery();
+            if (rs.next()) {
+                temp = rs.getInt("estatus");
+            }
+            if (temp == 1){
+                estatus = 0;
+            }else{
+                estatus = 1;
+            }
             CallableStatement cst = cn.prepareCall("{call estatusProducto(?,?)}");
             cst.setInt(1, id);
             cst.setInt(2, estatus);
