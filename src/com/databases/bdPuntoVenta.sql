@@ -13,7 +13,7 @@ create table Ventas (
     folio int primary key identity (1, 1),
     idSucursal int foreign key references Sucursales (idSucursal),
 	subtotal int,
-	iva int,
+	iva float,
 	total int,
     fecha datetime
 )
