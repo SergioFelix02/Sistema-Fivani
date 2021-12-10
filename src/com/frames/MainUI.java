@@ -18,7 +18,7 @@ public class MainUI extends javax.swing.JFrame {
     
     String nombreS = "", domicilio = "", nombre = "", descripcion = "", temp = "";
     int id_Sucursal = 0, precio = 0, cantidad = 0, id_Producto = 0;
-    int Cantidad = 0, Total = 0, ID_Producto = 0, id_Venta = 0, precioProd = 0;
+    int Cantidad = 0, Total = 0, ID_Producto = 0, id_Venta = 0, precioProd = 0, subtotal = 0, iva = 0;
     boolean foundV, foundP, foundS;
     
     public MainUI() {
@@ -32,8 +32,6 @@ public class MainUI extends javax.swing.JFrame {
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-
-        filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 32767));
         panel = new javax.swing.JPanel();
         lbl_icon = new javax.swing.JLabel();
         btnProductos = new javax.swing.JLabel();
@@ -487,7 +485,8 @@ public class MainUI extends javax.swing.JFrame {
         bgVentas.add(cbCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 130, 110, 30));
 
         cbIVA.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "1%", "2%", "3%", "4%", "5%", "6%", "7%", "8%", "9%", "10%", "11%", "12%", "13%", "14%", "15%", "16%", "17%", "18%", "19%", "20%" }));
-        cbIVA.setEnabled(false);
+        cbIVA.setEnabled(true);
+        cbIVA.setSelectedIndex(16);
         bgVentas.add(cbIVA, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 60, 110, 30));
 
         getContentPane().add(bgVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 0, 560, 500));
@@ -906,9 +905,11 @@ public class MainUI extends javax.swing.JFrame {
             rs = pst.executeQuery();
             if (rs.next()) {
                 id = rs.getInt("folio");
+                subtotal = rs.getInt("subtotal");
                 Total = rs.getInt("total");
                 txtID_Venta.setText(String.valueOf(id));
                 txtTotal.setText(String.valueOf(Total));
+                txtSubtotal.setText(String.valueOf(subtotal));
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
@@ -934,8 +935,10 @@ public class MainUI extends javax.swing.JFrame {
             if (rs.next()) {
                 id = rs.getInt("folio");
                 Total = rs.getInt("total");
+                subtotal = rs.getInt("subtotal");
                 txtID_Venta.setText(String.valueOf(id));
                 txtTotal.setText(String.valueOf(Total));
+                txtSubtotal.setText(String.valueOf(subtotal));
                 foundV = true;
             }else{
                 foundV = false;
@@ -999,6 +1002,15 @@ public class MainUI extends javax.swing.JFrame {
         int cantidad = Integer.parseInt(String.valueOf(cbCantidad.getSelectedItem()));
         return cantidad;
     }
+
+    public int getIva(){
+        String str;
+        str = String.valueOf(cbIVA.getSelectedItem());
+        str = str.substring(0, 2);
+        System.out.println(str);
+        iva = Integer.valueOf(str);
+        return iva;
+    }
     
     private void btnNuevaVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevaVActionPerformed
         setCbProductos();
@@ -1009,14 +1021,14 @@ public class MainUI extends javax.swing.JFrame {
             txtSubtotal.setEnabled(false);
             cbProductos.setEnabled(true);
             cbCantidad.setEnabled(true);
-            cbIVA.setEnabled(true);
+            cbIVA.setEnabled(false);
             btnAgregarP.setEnabled(true);
             btnEditarV.setEnabled(false);
             barSubtotal.setBackground(new java.awt.Color(187, 187, 187));
             barTotal.setBackground(new java.awt.Color(187, 187, 187));
             barID_Venta.setBackground(new java.awt.Color(187, 187, 187));
             vaciarTxtVentas();
-            ventas.Insertar();
+            ventas.Insertar(getIva());
             BuscarVP(getID_Producto());
             System.out.println(id_Producto);
         } else {
@@ -1039,7 +1051,7 @@ public class MainUI extends javax.swing.JFrame {
                     btnEditarV.setBackground(Color.green);
                     txtID_Venta.setEnabled(false);
                     txtTotal.setEnabled(true);
-                    //txtSubtotal.setEnabled(true);
+                    txtSubtotal.setEnabled(true);
                     barTotal.setBackground(new java.awt.Color(0, 153, 153));
                     barSubtotal.setBackground(new java.awt.Color(187, 187, 187));
                     barID_Venta.setBackground(new java.awt.Color(187, 187, 187));   
@@ -1051,8 +1063,10 @@ public class MainUI extends javax.swing.JFrame {
             if (txtotal.equals("")) {
                 JOptionPane.showMessageDialog(null, "Llena todos los campos");
             } else {
+                id_Producto = Integer.valueOf(txtID_Venta.getText());
+                subtotal = Integer.valueOf(txtSubtotal.getText());
                 Total = Integer.valueOf(txtTotal.getText());
-                ventas.Modificar(id_Producto, Total);
+                ventas.Modificar(id_Producto, subtotal, getIva(), Total);
                 JOptionPane.showMessageDialog(null, "Operacion Realizada Correctamente");
                 //Reset Form
                 ResetVentas();
@@ -1069,11 +1083,13 @@ public class MainUI extends javax.swing.JFrame {
         BuscarVP(idV);
         int subtotal = cantidadV * precioProd;
         try {
-            CallableStatement cst = cn.prepareCall("{call agregarDetalleVenta(?,?,?,?)}");
+            CallableStatement cst = cn.prepareCall("{call agregarDetalleVenta(?,?,?,?,?,?)}");
             cst.setInt(1, idV);
             cst.setInt(2, idP);
-            cst.setInt(3, cantidadV);
-            cst.setInt(4, subtotal);
+            cst.setInt(3, precioProd);
+            cst.setInt(4, cantidadV);
+            cst.setInt(5, subtotal);
+            cst.setInt(6, 0);
             cst.execute();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
@@ -1126,6 +1142,7 @@ public class MainUI extends javax.swing.JFrame {
     public void vaciarTxtVentas() {
         txtID_Venta.setText("");
         txtTotal.setText("");
+        txtSubtotal.setText("");
         cbProductos.setSelectedIndex(0);
         cbCantidad.setSelectedIndex(0);
     }//Fin Ventas
@@ -1468,7 +1485,7 @@ public class MainUI extends javax.swing.JFrame {
     public void ResetVentas(){
         //txtID_Venta.setEnabled(true);
         cbCantidad.setEnabled(false);
-        cbIVA.setEnabled(false);
+        cbIVA.setEnabled(true);
         txtTotal.setEnabled(false);
         txtSubtotal.setEnabled(false);
         cbProductos.setEnabled(false);
@@ -1478,7 +1495,7 @@ public class MainUI extends javax.swing.JFrame {
         //barID_Venta.setBackground(new java.awt.Color(0, 153, 153));
         btnNuevaV.setBackground(new java.awt.Color(0, 153, 153));
         btnEditarV.setBackground(new java.awt.Color(0, 153, 153));
-        cbIVA.setSelectedIndex(0);
+        cbIVA.setSelectedIndex(16);
         CrearTablaVentas();
         vaciarTxtVentas(); 
     }
@@ -1631,7 +1648,6 @@ public class MainUI extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbCantidad;
     private javax.swing.JComboBox<String> cbIVA;
     private javax.swing.JComboBox<String> cbProductos;
-    private javax.swing.Box.Filler filler1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblCantidad;

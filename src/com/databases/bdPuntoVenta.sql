@@ -195,8 +195,15 @@ begin
         from Detalle_Ventas
         where folioVenta = @folio
     )
+	declare @total int
+	set @total = @subtotal + (@subtotal * (
+		select iva / 100
+		from Ventas
+		where folio = 3 
+	))
 	update Ventas
-    set subtotal = @subtotal
+    set subtotal = @subtotal,
+		total = @total
 	where folio = @folio
 end
 go
@@ -224,4 +231,21 @@ exec estatusProducto 3, 1
 exec agregarSucursal 'Aguaruto', 'a', 1
 exec modificarSucursal 3, 'Las torres', 'Col. Las torres'
 exec estatusSucursal 3, 1
+
+
+exec calcularTotalVentaD 3
+select * from Ventas
+
+select * from Detalle_Ventas
+
+exec agregarDetalleVenta 
+
+delete from Ventas
+where folio > 3
+
+exec agregarVenta 1, 0, 12, 0
+
+exec calcularTotalVenta 3
+
+exec modificarVenta 
 */
