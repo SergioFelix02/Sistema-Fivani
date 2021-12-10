@@ -199,7 +199,7 @@ begin
 	set @total = @subtotal + (@subtotal * (
 		select iva / 100
 		from Ventas
-		where folio = 3 
+		where folio = @folio
 	))
 	update Ventas
     set subtotal = @subtotal,
@@ -207,6 +207,47 @@ begin
 	where folio = @folio
 end
 go
+
+------------Reportes------------
+create procedure VentasSucursal
+@idSucursal int,
+@fechaInicial datetime,
+@fechaFinal datetime
+as
+begin
+	--consulta
+end
+go
+
+create procedure VentasGeneral
+@fecha datetime
+as
+begin
+	--consulta
+end
+go
+
+create procedure ProductosMasVendidos
+as
+begin
+	
+end
+go
+
+create procedure ProductosVenta
+@folio int
+as
+begin
+	select P.idProducto, P.nombreProducto, V.precio, V.cantidad, V.subtotal
+	from Detalle_Ventas V
+	inner join Productos P
+	on V.idProducto = P.idProducto
+	where folioVenta = @folio
+end
+go
+
+------------Id jumping to 1000 fix------------
+ALTER DATABASE SCOPED CONFIGURATION SET IDENTITY_CACHE = OFF
 
 /*
 use bdPuntoVenta
@@ -248,4 +289,6 @@ exec agregarVenta 1, 0, 12, 0
 exec calcularTotalVenta 3
 
 exec modificarVenta 
+
 */
+
