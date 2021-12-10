@@ -5,13 +5,12 @@ import java.sql.*;
 import javax.swing.JOptionPane;
 
 public class Ventas {
-
-    public void Insertar(int iva) {
-        
+    
+    public void Insertar(int id, int iva) {
         try {
             Connection cn = MyConnection.getConnection();
             CallableStatement cst = cn.prepareCall("{call agregarVenta(?,?,?,?)}");
-            cst.setInt(1, 1);
+            cst.setInt(1, id);
             cst.setInt(2, 0);
             cst.setInt(3, iva);
             cst.setInt(4, 0);
