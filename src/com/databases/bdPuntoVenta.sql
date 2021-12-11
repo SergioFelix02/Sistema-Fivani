@@ -235,7 +235,12 @@ go
 create procedure ProductosMasVendidos
 as
 begin
-	
+    select top 3 P.idProducto, P.nombreProducto, sum(V.cantidad) vendidos
+    from Detalle_Ventas V
+    inner join Productos P
+    on V.idProducto = P.idProducto
+    group by P.idProducto, P.nombreProducto
+    order by sum(V.cantidad) desc
 end
 go
 
@@ -295,5 +300,8 @@ exec calcularTotalVenta 3
 
 exec modificarVenta 
 
+exec VentasSucursal 1, '2021-12-08', '2021-12-10'
+exec VentasGeneral '2021-12-08'
+exec ProductosMasVendidos
+exec ProductosVenta 11
 */
-
