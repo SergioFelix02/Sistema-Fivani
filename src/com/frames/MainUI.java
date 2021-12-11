@@ -1981,7 +1981,15 @@ public class MainUI extends javax.swing.JFrame {
             setCbCantidad(getID_Producto());
         }
     }//GEN-LAST:event_cbProductosItemStateChanged
+    
+    private void btnReportesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReportesMouseEntered
+        btnReportes.setForeground(new Color(0, 220, 0));
+    }//GEN-LAST:event_btnReportesMouseEntered
 
+    private void btnReportesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReportesMouseExited
+        btnReportes.setForeground(new Color(255, 255, 255));
+    }//GEN-LAST:event_btnReportesMouseExited
+    
     //Eventos Mouse Entered / Mouse Exited
     private void btnInformacionMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInformacionMouseEntered
         btnInformacion.setForeground(new Color(0, 220, 0));
@@ -2013,14 +2021,6 @@ public class MainUI extends javax.swing.JFrame {
     private void btnSalirMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalirMouseExited
         btnSalir.setForeground(new Color(255, 255, 255));
     }//GEN-LAST:event_btnSalirMouseExited
-
-    private void btnReportesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReportesMouseEntered
-        btnReportes.setForeground(new Color(0, 220, 0));
-    }//GEN-LAST:event_btnReportesMouseEntered
-
-    private void btnReportesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReportesMouseExited
-        btnReportes.setForeground(new Color(255, 255, 255));
-    }//GEN-LAST:event_btnReportesMouseExited
 
     private void CheckBoxSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckBoxSActionPerformed
         CrearTablaSucursales();
