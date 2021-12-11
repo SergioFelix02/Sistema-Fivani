@@ -4,6 +4,7 @@ import com.classes.MyConnection;
 import java.awt.Color;
 import java.awt.Image;
 import java.sql.*;
+import java.util.Date;
 import javax.swing.*;
 import javax.swing.table.*;
 
@@ -18,7 +19,7 @@ public class MainUI extends javax.swing.JFrame {
     
     String nombreS = "", domicilio = "", nombre = "", descripcion = "", temp = "";
     int id_Sucursal = 0, precio = 0, cantidad = 0, id_Producto = 0, ID_Sucursal = 0;
-    int Cantidad = 0, Total = 0, ID_Producto = 0, id_Venta = 0, precioProd = 0, subtotal = 0, iva = 0;
+    int Cantidad = 0, Total = 0, ID_Producto = 0, id_Venta = 0, precioProd = 0, subtotal = 0, iva = 0, folioV = 0;
     boolean foundV, foundP, foundS;
     
     public MainUI() {
@@ -32,7 +33,7 @@ public class MainUI extends javax.swing.JFrame {
         this.setIconImage(new ImageIcon(getClass().getClassLoader().getResource("com/images/Icono.png")).getImage());
         lbl_icon.setIcon(new ImageIcon(new ImageIcon(getClass().getClassLoader().getResource("com/images/Icono.png")).getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH)));
     }
-
+    //Inicio InitComponents
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -50,59 +51,6 @@ public class MainUI extends javax.swing.JFrame {
         barReportes = new javax.swing.JPanel();
         barSalir = new javax.swing.JPanel();
         cbSucursales = new javax.swing.JComboBox<>();
-        bgReportes = new javax.swing.JPanel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        Tabla_Reportes = new javax.swing.JTable();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
-        lblID_Venta1 = new javax.swing.JLabel();
-        jDateChooser2 = new com.toedter.calendar.JDateChooser();
-        lblID_Venta2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        lblID_Venta3 = new javax.swing.JLabel();
-        lblID_Venta4 = new javax.swing.JLabel();
-        cbSucursal = new javax.swing.JComboBox<>();
-        cbFolio = new javax.swing.JComboBox<>();
-        bgSucursales = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        Tabla_Sucursales = new javax.swing.JTable();
-        btnNuevaS = new javax.swing.JButton();
-        btnEditarS = new javax.swing.JButton();
-        btnEliminarS = new javax.swing.JButton();
-        btnCancelarS = new javax.swing.JButton();
-        barID_Sucursal = new javax.swing.JPanel();
-        barNombreS = new javax.swing.JPanel();
-        barDomicilio = new javax.swing.JPanel();
-        txtNombreS = new javax.swing.JTextField();
-        txtIDSucursal = new javax.swing.JTextField();
-        txtDomicilio = new javax.swing.JTextField();
-        lblID_Sucursal = new javax.swing.JLabel();
-        lblNombreS = new javax.swing.JLabel();
-        lblDomicilio = new javax.swing.JLabel();
-        bgVentas = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        Tabla_Ventas = new javax.swing.JTable();
-        btnAgregarP = new javax.swing.JButton();
-        btnNuevaV = new javax.swing.JButton();
-        btnCancelarV = new javax.swing.JButton();
-        btnEditarV = new javax.swing.JButton();
-        barID_Venta = new javax.swing.JPanel();
-        barTotal = new javax.swing.JPanel();
-        barSubtotal = new javax.swing.JPanel();
-        txtID_Venta = new javax.swing.JTextField();
-        txtTotal = new javax.swing.JTextField();
-        txtSubtotal = new javax.swing.JTextField();
-        lblCantidadVenta = new javax.swing.JLabel();
-        lblID_Venta = new javax.swing.JLabel();
-        lblID_Producto2 = new javax.swing.JLabel();
-        lblTotal = new javax.swing.JLabel();
-        lblTotal1 = new javax.swing.JLabel();
-        lblTotal2 = new javax.swing.JLabel();
-        cbProductos = new javax.swing.JComboBox<>();
-        cbCantidad = new javax.swing.JComboBox<>();
-        cbIVA = new javax.swing.JComboBox<>();
         bgProductos = new javax.swing.JPanel();
         table = new javax.swing.JScrollPane();
         Tabla_Productos = new javax.swing.JTable();
@@ -125,6 +73,64 @@ public class MainUI extends javax.swing.JFrame {
         lblPrecio = new javax.swing.JLabel();
         lblID_Producto = new javax.swing.JLabel();
         lblCantidad = new javax.swing.JLabel();
+        CheckBoxP = new javax.swing.JCheckBox();
+        bgSucursales = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        Tabla_Sucursales = new javax.swing.JTable();
+        btnNuevaS = new javax.swing.JButton();
+        btnEditarS = new javax.swing.JButton();
+        btnEliminarS = new javax.swing.JButton();
+        btnCancelarS = new javax.swing.JButton();
+        barID_Sucursal = new javax.swing.JPanel();
+        barNombreS = new javax.swing.JPanel();
+        barDomicilio = new javax.swing.JPanel();
+        txtNombreS = new javax.swing.JTextField();
+        txtIDSucursal = new javax.swing.JTextField();
+        txtDomicilio = new javax.swing.JTextField();
+        lblID_Sucursal = new javax.swing.JLabel();
+        lblNombreS = new javax.swing.JLabel();
+        lblDomicilio = new javax.swing.JLabel();
+        CheckBoxS = new javax.swing.JCheckBox();
+        bgReportes = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        Tabla_Reportes = new javax.swing.JTable();
+        txtFecha_Inicio = new com.toedter.calendar.JDateChooser();
+        txtFecha_Fin = new com.toedter.calendar.JDateChooser();
+        lblFecha_Inicio = new javax.swing.JLabel();
+        lblFecha_Fin = new javax.swing.JLabel();
+        lblFolio = new javax.swing.JLabel();
+        lblSucursal = new javax.swing.JLabel();
+        cbSucursal = new javax.swing.JComboBox<>();
+        cbFolio = new javax.swing.JComboBox<>();
+        btnReporte1 = new javax.swing.JButton();
+        btnReporte2 = new javax.swing.JButton();
+        btnReporte3 = new javax.swing.JButton();
+        btnReporte4 = new javax.swing.JButton();
+        btnCheck2 = new javax.swing.JButton();
+        btnCheck3 = new javax.swing.JButton();
+        btnCheck4 = new javax.swing.JButton();
+        bgVentas = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        Tabla_Ventas = new javax.swing.JTable();
+        btnAgregarP = new javax.swing.JButton();
+        btnNuevaV = new javax.swing.JButton();
+        btnCancelarV = new javax.swing.JButton();
+        btnEditarV = new javax.swing.JButton();
+        barID_Venta = new javax.swing.JPanel();
+        barTotal = new javax.swing.JPanel();
+        barSubtotal = new javax.swing.JPanel();
+        txtID_Venta = new javax.swing.JTextField();
+        txtTotal = new javax.swing.JTextField();
+        txtSubtotal = new javax.swing.JTextField();
+        lblCantidadVenta = new javax.swing.JLabel();
+        lblID_Venta = new javax.swing.JLabel();
+        lblID_Producto2 = new javax.swing.JLabel();
+        lblTotal = new javax.swing.JLabel();
+        lblTotal1 = new javax.swing.JLabel();
+        lblTotal2 = new javax.swing.JLabel();
+        cbProductos = new javax.swing.JComboBox<>();
+        cbCantidad = new javax.swing.JComboBox<>();
+        cbIVA = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle(" Punto de Venta");
@@ -367,11 +373,12 @@ public class MainUI extends javax.swing.JFrame {
 
         getContentPane().add(sidePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 150, 500));
 
-        bgReportes.setBackground(new java.awt.Color(255, 255, 255));
-        bgReportes.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        bgProductos.setBackground(new java.awt.Color(255, 255, 255));
+        bgProductos.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        Tabla_Reportes.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        Tabla_Reportes.setModel(new javax.swing.table.DefaultTableModel(
+        Tabla_Productos.setBackground(new java.awt.Color(255, 255, 255));
+        Tabla_Productos.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        Tabla_Productos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
                 {},
@@ -382,69 +389,207 @@ public class MainUI extends javax.swing.JFrame {
 
             }
         ));
-        Tabla_Reportes.setSelectionBackground(new java.awt.Color(0, 153, 153));
-        Tabla_Reportes.setSelectionForeground(new java.awt.Color(255, 255, 255));
-        Tabla_Reportes.setShowHorizontalLines(false);
-        Tabla_Reportes.setShowVerticalLines(false);
-        Tabla_Reportes.getTableHeader().setResizingAllowed(false);
-        Tabla_Reportes.getTableHeader().setReorderingAllowed(false);
-        jScrollPane3.setViewportView(Tabla_Reportes);
+        Tabla_Productos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        Tabla_Productos.setSelectionBackground(new java.awt.Color(0, 153, 153));
+        Tabla_Productos.setSelectionForeground(new java.awt.Color(255, 255, 255));
+        Tabla_Productos.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        Tabla_Productos.setShowGrid(false);
+        Tabla_Productos.getTableHeader().setResizingAllowed(false);
+        Tabla_Productos.getTableHeader().setReorderingAllowed(false);
+        table.setViewportView(Tabla_Productos);
 
-        bgReportes.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 500, 300));
-        bgReportes.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 120, -1));
+        bgProductos.add(table, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 210, 500, 280));
 
-        lblID_Venta1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        lblID_Venta1.setForeground(new java.awt.Color(153, 153, 153));
-        lblID_Venta1.setText("Fecha Inicio");
-        bgReportes.add(lblID_Venta1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 120, -1));
-        bgReportes.add(jDateChooser2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 70, 120, -1));
+        btnCancelarP.setBackground(new java.awt.Color(0, 153, 153));
+        btnCancelarP.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnCancelarP.setForeground(new java.awt.Color(255, 255, 255));
+        btnCancelarP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/cancel_2_32px.png"))); // NOI18N
+        btnCancelarP.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCancelarP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarPActionPerformed(evt);
+            }
+        });
+        bgProductos.add(btnCancelarP, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 50, 40, 40));
 
-        lblID_Venta2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        lblID_Venta2.setForeground(new java.awt.Color(153, 153, 153));
-        lblID_Venta2.setText("Fecha Fin");
-        bgReportes.add(lblID_Venta2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 30, 110, -1));
+        btnEditarP.setBackground(new java.awt.Color(0, 153, 153));
+        btnEditarP.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnEditarP.setForeground(new java.awt.Color(255, 255, 255));
+        btnEditarP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/edit_property_32px.png"))); // NOI18N
+        btnEditarP.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnEditarP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarPActionPerformed(evt);
+            }
+        });
+        bgProductos.add(btnEditarP, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 50, 40, 40));
 
-        jButton1.setBackground(new java.awt.Color(0, 153, 153));
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Reporte de Venta por Folio");
-        bgReportes.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 140, 220, 30));
+        btnEliminarP.setBackground(new java.awt.Color(0, 153, 153));
+        btnEliminarP.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnEliminarP.setForeground(new java.awt.Color(255, 255, 255));
+        btnEliminarP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/delete_32px.png"))); // NOI18N
+        btnEliminarP.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnEliminarP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarPActionPerformed(evt);
+            }
+        });
+        bgProductos.add(btnEliminarP, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 50, 40, 40));
 
-        jButton2.setBackground(new java.awt.Color(0, 153, 153));
-        jButton2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Total de Ventas por Sucursal");
-        bgReportes.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 60, 220, 30));
+        btnNuevoP.setBackground(new java.awt.Color(0, 153, 153));
+        btnNuevoP.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnNuevoP.setForeground(new java.awt.Color(255, 255, 255));
+        btnNuevoP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/product_32px.png"))); // NOI18N
+        btnNuevoP.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnNuevoP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNuevoPActionPerformed(evt);
+            }
+        });
+        bgProductos.add(btnNuevoP, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 50, 40, 40));
 
-        jButton3.setBackground(new java.awt.Color(0, 153, 153));
-        jButton3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("Total de Ventas por Dia");
-        bgReportes.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 20, 220, 30));
+        barID_Producto.setBackground(new java.awt.Color(204, 204, 204));
+        barID_Producto.setPreferredSize(new java.awt.Dimension(2, 29));
 
-        jButton4.setBackground(new java.awt.Color(0, 153, 153));
-        jButton4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setText("Productos Mas Vendidos");
-        bgReportes.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 100, 220, 30));
+        javax.swing.GroupLayout barID_ProductoLayout = new javax.swing.GroupLayout(barID_Producto);
+        barID_Producto.setLayout(barID_ProductoLayout);
+        barID_ProductoLayout.setHorizontalGroup(
+            barID_ProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        barID_ProductoLayout.setVerticalGroup(
+            barID_ProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 2, Short.MAX_VALUE)
+        );
 
-        lblID_Venta3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        lblID_Venta3.setForeground(new java.awt.Color(153, 153, 153));
-        lblID_Venta3.setText("Folio");
-        bgReportes.add(lblID_Venta3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 120, -1));
+        bgProductos.add(barID_Producto, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 90, 100, 2));
 
-        lblID_Venta4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        lblID_Venta4.setForeground(new java.awt.Color(153, 153, 153));
-        lblID_Venta4.setText("Sucursal");
-        bgReportes.add(lblID_Venta4, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 110, 120, -1));
+        barCantidad.setBackground(new java.awt.Color(204, 204, 204));
+        barCantidad.setPreferredSize(new java.awt.Dimension(2, 29));
 
-        cbSucursal.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar" }));
-        bgReportes.add(cbSucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 140, 120, 30));
+        javax.swing.GroupLayout barCantidadLayout = new javax.swing.GroupLayout(barCantidad);
+        barCantidad.setLayout(barCantidadLayout);
+        barCantidadLayout.setHorizontalGroup(
+            barCantidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        barCantidadLayout.setVerticalGroup(
+            barCantidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 2, Short.MAX_VALUE)
+        );
 
-        cbFolio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar" }));
-        bgReportes.add(cbFolio, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 120, 30));
+        bgProductos.add(barCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 170, 100, 2));
 
-        getContentPane().add(bgReportes, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 0, 560, 500));
+        barPrecio.setBackground(new java.awt.Color(204, 204, 204));
+        barPrecio.setPreferredSize(new java.awt.Dimension(2, 29));
+
+        javax.swing.GroupLayout barPrecioLayout = new javax.swing.GroupLayout(barPrecio);
+        barPrecio.setLayout(barPrecioLayout);
+        barPrecioLayout.setHorizontalGroup(
+            barPrecioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 112, Short.MAX_VALUE)
+        );
+        barPrecioLayout.setVerticalGroup(
+            barPrecioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 2, Short.MAX_VALUE)
+        );
+
+        bgProductos.add(barPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 170, 112, 2));
+
+        barDescripcion.setBackground(new java.awt.Color(204, 204, 204));
+        barDescripcion.setPreferredSize(new java.awt.Dimension(2, 29));
+
+        javax.swing.GroupLayout barDescripcionLayout = new javax.swing.GroupLayout(barDescripcion);
+        barDescripcion.setLayout(barDescripcionLayout);
+        barDescripcionLayout.setHorizontalGroup(
+            barDescripcionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 127, Short.MAX_VALUE)
+        );
+        barDescripcionLayout.setVerticalGroup(
+            barDescripcionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 2, Short.MAX_VALUE)
+        );
+
+        bgProductos.add(barDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 170, 127, 2));
+
+        barNombre.setBackground(new java.awt.Color(204, 204, 204));
+        barNombre.setPreferredSize(new java.awt.Dimension(2, 29));
+
+        javax.swing.GroupLayout barNombreLayout = new javax.swing.GroupLayout(barNombre);
+        barNombre.setLayout(barNombreLayout);
+        barNombreLayout.setHorizontalGroup(
+            barNombreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        barNombreLayout.setVerticalGroup(
+            barNombreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 2, Short.MAX_VALUE)
+        );
+
+        bgProductos.add(barNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 170, 100, 2));
+
+        txtDescripcion.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtDescripcion.setBorder(null);
+        txtDescripcion.setEnabled(false);
+        bgProductos.add(txtDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 140, 127, -1));
+
+        txtPrecio.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtPrecio.setBorder(null);
+        txtPrecio.setEnabled(false);
+        bgProductos.add(txtPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 140, 112, -1));
+
+        txtNombre.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtNombre.setBorder(null);
+        txtNombre.setEnabled(false);
+        bgProductos.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 140, 100, -1));
+
+        txtID_Producto.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtID_Producto.setBorder(null);
+        txtID_Producto.setEnabled(false);
+        bgProductos.add(txtID_Producto, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 60, 100, -1));
+
+        txtCantidad.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtCantidad.setBorder(null);
+        txtCantidad.setEnabled(false);
+        bgProductos.add(txtCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 140, 100, -1));
+
+        lnlNombre.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lnlNombre.setForeground(new java.awt.Color(153, 153, 153));
+        lnlNombre.setText("Nombre");
+        bgProductos.add(lnlNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 110, 100, -1));
+
+        lblDescripcion.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblDescripcion.setForeground(new java.awt.Color(153, 153, 153));
+        lblDescripcion.setText("Descripcion");
+        bgProductos.add(lblDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 110, 115, -1));
+
+        lblPrecio.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblPrecio.setForeground(new java.awt.Color(153, 153, 153));
+        lblPrecio.setText("Precio");
+        bgProductos.add(lblPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 110, 112, -1));
+
+        lblID_Producto.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblID_Producto.setForeground(new java.awt.Color(153, 153, 153));
+        lblID_Producto.setText("ID");
+        bgProductos.add(lblID_Producto, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 30, 110, -1));
+
+        lblCantidad.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblCantidad.setForeground(new java.awt.Color(153, 153, 153));
+        lblCantidad.setText("Cantidad");
+        bgProductos.add(lblCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 110, 100, -1));
+
+        CheckBoxP.setBackground(new java.awt.Color(255, 255, 255));
+        CheckBoxP.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        CheckBoxP.setForeground(new java.awt.Color(102, 102, 102));
+        CheckBoxP.setText("Mostrar Todo");
+        CheckBoxP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CheckBoxPActionPerformed(evt);
+            }
+        });
+        bgProductos.add(CheckBoxP, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 180, -1, -1));
+
+        getContentPane().add(bgProductos, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 710, 500));
 
         bgSucursales.setBackground(new java.awt.Color(255, 255, 255));
         bgSucursales.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -468,7 +613,7 @@ public class MainUI extends javax.swing.JFrame {
         Tabla_Sucursales.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(Tabla_Sucursales);
 
-        bgSucursales.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 500, 300));
+        bgSucursales.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 500, 280));
 
         btnNuevaS.setBackground(new java.awt.Color(0, 153, 153));
         btnNuevaS.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -596,7 +741,150 @@ public class MainUI extends javax.swing.JFrame {
         lblDomicilio.setText("Domicilio");
         bgSucursales.add(lblDomicilio, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 270, -1));
 
+        CheckBoxS.setBackground(new java.awt.Color(255, 255, 255));
+        CheckBoxS.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        CheckBoxS.setForeground(new java.awt.Color(102, 102, 102));
+        CheckBoxS.setText("Mostrar Todo");
+        CheckBoxS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CheckBoxSActionPerformed(evt);
+            }
+        });
+        bgSucursales.add(CheckBoxS, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, -1, -1));
+
         getContentPane().add(bgSucursales, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 0, 560, 500));
+
+        bgReportes.setBackground(new java.awt.Color(255, 255, 255));
+        bgReportes.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        Tabla_Reportes.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        Tabla_Reportes.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        Tabla_Reportes.setSelectionBackground(new java.awt.Color(0, 153, 153));
+        Tabla_Reportes.setSelectionForeground(new java.awt.Color(255, 255, 255));
+        Tabla_Reportes.setShowHorizontalLines(false);
+        Tabla_Reportes.setShowVerticalLines(false);
+        Tabla_Reportes.getTableHeader().setResizingAllowed(false);
+        Tabla_Reportes.getTableHeader().setReorderingAllowed(false);
+        jScrollPane3.setViewportView(Tabla_Reportes);
+
+        bgReportes.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 500, 300));
+
+        txtFecha_Inicio.setEnabled(false);
+        bgReportes.add(txtFecha_Inicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 120, -1));
+
+        txtFecha_Fin.setEnabled(false);
+        bgReportes.add(txtFecha_Fin, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 70, 120, -1));
+
+        lblFecha_Inicio.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblFecha_Inicio.setForeground(new java.awt.Color(153, 153, 153));
+        lblFecha_Inicio.setText("Fecha Inicio");
+        bgReportes.add(lblFecha_Inicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 120, -1));
+
+        lblFecha_Fin.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblFecha_Fin.setForeground(new java.awt.Color(153, 153, 153));
+        lblFecha_Fin.setText("Fecha Fin");
+        bgReportes.add(lblFecha_Fin, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 30, 110, -1));
+
+        lblFolio.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblFolio.setForeground(new java.awt.Color(153, 153, 153));
+        lblFolio.setText("Folio");
+        bgReportes.add(lblFolio, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 120, -1));
+
+        lblSucursal.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblSucursal.setForeground(new java.awt.Color(153, 153, 153));
+        lblSucursal.setText("Sucursal");
+        bgReportes.add(lblSucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 110, 120, -1));
+
+        cbSucursal.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar" }));
+        cbSucursal.setEnabled(false);
+        bgReportes.add(cbSucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 140, 120, 30));
+
+        cbFolio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar" }));
+        cbFolio.setEnabled(false);
+        bgReportes.add(cbFolio, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 120, 30));
+
+        btnReporte1.setBackground(new java.awt.Color(0, 153, 153));
+        btnReporte1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnReporte1.setForeground(new java.awt.Color(255, 255, 255));
+        btnReporte1.setText("Productos Mas Vendidos");
+        btnReporte1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReporte1ActionPerformed(evt);
+            }
+        });
+        bgReportes.add(btnReporte1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 20, 210, 30));
+
+        btnReporte2.setBackground(new java.awt.Color(0, 153, 153));
+        btnReporte2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnReporte2.setForeground(new java.awt.Color(255, 255, 255));
+        btnReporte2.setText("Reporte de Venta (Folio)");
+        btnReporte2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReporte2ActionPerformed(evt);
+            }
+        });
+        bgReportes.add(btnReporte2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 60, 210, 30));
+
+        btnReporte3.setBackground(new java.awt.Color(0, 153, 153));
+        btnReporte3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnReporte3.setForeground(new java.awt.Color(255, 255, 255));
+        btnReporte3.setText("Total de Ventas (Sucursal)");
+        btnReporte3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReporte3ActionPerformed(evt);
+            }
+        });
+        bgReportes.add(btnReporte3, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 100, 210, 30));
+
+        btnReporte4.setBackground(new java.awt.Color(0, 153, 153));
+        btnReporte4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnReporte4.setForeground(new java.awt.Color(255, 255, 255));
+        btnReporte4.setText("Total de Ventas (Generales)");
+        btnReporte4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReporte4ActionPerformed(evt);
+            }
+        });
+        bgReportes.add(btnReporte4, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 140, 210, 30));
+
+        btnCheck2.setBackground(new java.awt.Color(0, 153, 153));
+        btnCheck2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/checked_checkbox_32px.png"))); // NOI18N
+        btnCheck2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCheck2ActionPerformed(evt);
+            }
+        });
+        bgReportes.add(btnCheck2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 60, 30, 30));
+
+        btnCheck3.setBackground(new java.awt.Color(0, 153, 153));
+        btnCheck3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/checked_checkbox_32px.png"))); // NOI18N
+        btnCheck3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCheck3ActionPerformed(evt);
+            }
+        });
+        bgReportes.add(btnCheck3, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 100, 30, 30));
+
+        btnCheck4.setBackground(new java.awt.Color(0, 153, 153));
+        btnCheck4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/checked_checkbox_32px.png"))); // NOI18N
+        btnCheck4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCheck4ActionPerformed(evt);
+            }
+        });
+        bgReportes.add(btnCheck4, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 140, 30, 30));
+
+        getContentPane().add(bgReportes, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 0, 560, 500));
 
         bgVentas.setBackground(new java.awt.Color(255, 255, 255));
         bgVentas.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -785,217 +1073,11 @@ public class MainUI extends javax.swing.JFrame {
 
         getContentPane().add(bgVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 0, 560, 500));
 
-        bgProductos.setBackground(new java.awt.Color(255, 255, 255));
-        bgProductos.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        Tabla_Productos.setBackground(new java.awt.Color(255, 255, 255));
-        Tabla_Productos.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        Tabla_Productos.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {},
-                {},
-                {},
-                {}
-            },
-            new String [] {
-
-            }
-        ));
-        Tabla_Productos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        Tabla_Productos.setSelectionBackground(new java.awt.Color(0, 153, 153));
-        Tabla_Productos.setSelectionForeground(new java.awt.Color(255, 255, 255));
-        Tabla_Productos.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        Tabla_Productos.setShowGrid(false);
-        Tabla_Productos.getTableHeader().setResizingAllowed(false);
-        Tabla_Productos.getTableHeader().setReorderingAllowed(false);
-        table.setViewportView(Tabla_Productos);
-
-        bgProductos.add(table, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 190, 500, 300));
-
-        btnCancelarP.setBackground(new java.awt.Color(0, 153, 153));
-        btnCancelarP.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btnCancelarP.setForeground(new java.awt.Color(255, 255, 255));
-        btnCancelarP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/cancel_2_32px.png"))); // NOI18N
-        btnCancelarP.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnCancelarP.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelarPActionPerformed(evt);
-            }
-        });
-        bgProductos.add(btnCancelarP, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 50, 40, 40));
-
-        btnEditarP.setBackground(new java.awt.Color(0, 153, 153));
-        btnEditarP.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btnEditarP.setForeground(new java.awt.Color(255, 255, 255));
-        btnEditarP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/edit_property_32px.png"))); // NOI18N
-        btnEditarP.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnEditarP.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditarPActionPerformed(evt);
-            }
-        });
-        bgProductos.add(btnEditarP, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 50, 40, 40));
-
-        btnEliminarP.setBackground(new java.awt.Color(0, 153, 153));
-        btnEliminarP.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btnEliminarP.setForeground(new java.awt.Color(255, 255, 255));
-        btnEliminarP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/delete_32px.png"))); // NOI18N
-        btnEliminarP.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnEliminarP.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminarPActionPerformed(evt);
-            }
-        });
-        bgProductos.add(btnEliminarP, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 50, 40, 40));
-
-        btnNuevoP.setBackground(new java.awt.Color(0, 153, 153));
-        btnNuevoP.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btnNuevoP.setForeground(new java.awt.Color(255, 255, 255));
-        btnNuevoP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/product_32px.png"))); // NOI18N
-        btnNuevoP.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnNuevoP.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNuevoPActionPerformed(evt);
-            }
-        });
-        bgProductos.add(btnNuevoP, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 50, 40, 40));
-
-        barID_Producto.setBackground(new java.awt.Color(204, 204, 204));
-        barID_Producto.setPreferredSize(new java.awt.Dimension(2, 29));
-
-        javax.swing.GroupLayout barID_ProductoLayout = new javax.swing.GroupLayout(barID_Producto);
-        barID_Producto.setLayout(barID_ProductoLayout);
-        barID_ProductoLayout.setHorizontalGroup(
-            barID_ProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        barID_ProductoLayout.setVerticalGroup(
-            barID_ProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 2, Short.MAX_VALUE)
-        );
-
-        bgProductos.add(barID_Producto, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 90, 100, 2));
-
-        barCantidad.setBackground(new java.awt.Color(204, 204, 204));
-        barCantidad.setPreferredSize(new java.awt.Dimension(2, 29));
-
-        javax.swing.GroupLayout barCantidadLayout = new javax.swing.GroupLayout(barCantidad);
-        barCantidad.setLayout(barCantidadLayout);
-        barCantidadLayout.setHorizontalGroup(
-            barCantidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        barCantidadLayout.setVerticalGroup(
-            barCantidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 2, Short.MAX_VALUE)
-        );
-
-        bgProductos.add(barCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 170, 100, 2));
-
-        barPrecio.setBackground(new java.awt.Color(204, 204, 204));
-        barPrecio.setPreferredSize(new java.awt.Dimension(2, 29));
-
-        javax.swing.GroupLayout barPrecioLayout = new javax.swing.GroupLayout(barPrecio);
-        barPrecio.setLayout(barPrecioLayout);
-        barPrecioLayout.setHorizontalGroup(
-            barPrecioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 112, Short.MAX_VALUE)
-        );
-        barPrecioLayout.setVerticalGroup(
-            barPrecioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 2, Short.MAX_VALUE)
-        );
-
-        bgProductos.add(barPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 170, 112, 2));
-
-        barDescripcion.setBackground(new java.awt.Color(204, 204, 204));
-        barDescripcion.setPreferredSize(new java.awt.Dimension(2, 29));
-
-        javax.swing.GroupLayout barDescripcionLayout = new javax.swing.GroupLayout(barDescripcion);
-        barDescripcion.setLayout(barDescripcionLayout);
-        barDescripcionLayout.setHorizontalGroup(
-            barDescripcionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 127, Short.MAX_VALUE)
-        );
-        barDescripcionLayout.setVerticalGroup(
-            barDescripcionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 2, Short.MAX_VALUE)
-        );
-
-        bgProductos.add(barDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 170, 127, 2));
-
-        barNombre.setBackground(new java.awt.Color(204, 204, 204));
-        barNombre.setPreferredSize(new java.awt.Dimension(2, 29));
-
-        javax.swing.GroupLayout barNombreLayout = new javax.swing.GroupLayout(barNombre);
-        barNombre.setLayout(barNombreLayout);
-        barNombreLayout.setHorizontalGroup(
-            barNombreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        barNombreLayout.setVerticalGroup(
-            barNombreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 2, Short.MAX_VALUE)
-        );
-
-        bgProductos.add(barNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 170, 100, 2));
-
-        txtDescripcion.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        txtDescripcion.setBorder(null);
-        txtDescripcion.setEnabled(false);
-        bgProductos.add(txtDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 140, 127, -1));
-
-        txtPrecio.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        txtPrecio.setBorder(null);
-        txtPrecio.setEnabled(false);
-        bgProductos.add(txtPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 140, 112, -1));
-
-        txtNombre.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        txtNombre.setBorder(null);
-        txtNombre.setEnabled(false);
-        bgProductos.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 140, 100, -1));
-
-        txtID_Producto.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        txtID_Producto.setBorder(null);
-        txtID_Producto.setEnabled(false);
-        bgProductos.add(txtID_Producto, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 60, 100, -1));
-
-        txtCantidad.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        txtCantidad.setBorder(null);
-        txtCantidad.setEnabled(false);
-        bgProductos.add(txtCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 140, 100, -1));
-
-        lnlNombre.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        lnlNombre.setForeground(new java.awt.Color(153, 153, 153));
-        lnlNombre.setText("Nombre");
-        bgProductos.add(lnlNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 110, 100, -1));
-
-        lblDescripcion.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        lblDescripcion.setForeground(new java.awt.Color(153, 153, 153));
-        lblDescripcion.setText("Descripcion");
-        bgProductos.add(lblDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 110, 115, -1));
-
-        lblPrecio.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        lblPrecio.setForeground(new java.awt.Color(153, 153, 153));
-        lblPrecio.setText("Precio");
-        bgProductos.add(lblPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 110, 112, -1));
-
-        lblID_Producto.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        lblID_Producto.setForeground(new java.awt.Color(153, 153, 153));
-        lblID_Producto.setText("ID");
-        bgProductos.add(lblID_Producto, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 30, 110, -1));
-
-        lblCantidad.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        lblCantidad.setForeground(new java.awt.Color(153, 153, 153));
-        lblCantidad.setText("Cantidad");
-        bgProductos.add(lblCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 110, 100, -1));
-
-        getContentPane().add(bgProductos, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 710, 500));
-
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
+    //Fin InitComponents
+    
     private void btnSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalirMouseClicked
         System.exit(0);
     }//GEN-LAST:event_btnSalirMouseClicked
@@ -1111,13 +1193,12 @@ public class MainUI extends javax.swing.JFrame {
         }
     }
 
-    
     public void setCbProductos(){
         cbProductos.removeAllItems();
         cbProductos.addItem("Seleccionar");
         try{
             Connection cn = MyConnection.getConnection();
-            PreparedStatement pst = cn.prepareStatement("select nombreProducto from Productos");
+            PreparedStatement pst = cn.prepareStatement("select nombreProducto from Productos where estatus = 1");
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
                 cbProductos.addItem(rs.getString("nombreProducto"));
@@ -1188,11 +1269,11 @@ public class MainUI extends javax.swing.JFrame {
             barTotal.setBackground(new Color(187, 187, 187));
             barID_Venta.setBackground(new Color(187, 187, 187));
             vaciarTxtVentas();
-            if (getID_Sucursal() == 0){
+            if (getID_Sucursal(cbSucursales) == 0){
                 ResetVentas();
                 JOptionPane.showMessageDialog(null, "Selecciona una sucursal");
             }else{
-                ventas.Insertar(getID_Sucursal(), getIva());
+                ventas.Insertar(getID_Sucursal(cbSucursales), getIva());
                 BuscarVP(getID_Producto());  
             }
         } else {
@@ -1463,19 +1544,35 @@ public class MainUI extends javax.swing.JFrame {
         try {
             Connection cn = MyConnection.getConnection();
             DefaultTableModel dfm = new DefaultTableModel();
-            dfm.addColumn("ID");
-            dfm.addColumn("Nombre");
-            dfm.addColumn("Descripcion");
-            dfm.addColumn("Precio");
-            dfm.addColumn("Cantidad");
-            dfm.addColumn("Estatus");
-            PreparedStatement pst = cn.prepareStatement("select * from Productos");
-            ResultSet rs = pst.executeQuery();
-            while (rs.next()) {
-                dfm.addRow(new Object[]{rs.getInt("idProducto"), rs.getString("nombreProducto"), rs.getString("descripcionProducto"), (rs.getInt("precioProducto")), (rs.getInt("cantidadProducto")), rs.getInt("estatus")});
+            if (CheckBoxP.isSelected() == true){
+                dfm.addColumn("ID");
+                dfm.addColumn("Nombre");
+                dfm.addColumn("Descripcion");
+                dfm.addColumn("Precio");
+                dfm.addColumn("Cantidad");
+                dfm.addColumn("Estatus");
+                PreparedStatement pst = cn.prepareStatement("select * from Productos");
+                ResultSet rs = pst.executeQuery();
+                while (rs.next()) {
+                    dfm.addRow(new Object[]{rs.getInt("idProducto"), rs.getString("nombreProducto"), rs.getString("descripcionProducto"), (rs.getInt("precioProducto")), (rs.getInt("cantidadProducto")), rs.getInt("estatus")});
+                }
+                Tabla_Productos.setModel(dfm);
+                DisenarTabla(Tabla_Productos, 6);
+            } else{
+                dfm.addColumn("ID");
+                dfm.addColumn("Nombre");
+                dfm.addColumn("Descripcion");
+                dfm.addColumn("Precio");
+                dfm.addColumn("Cantidad");
+                PreparedStatement pst = cn.prepareStatement("select * from Productos where estatus = 1");
+                ResultSet rs = pst.executeQuery();
+                while (rs.next()) {
+                    dfm.addRow(new Object[]{rs.getInt("idProducto"), rs.getString("nombreProducto"), rs.getString("descripcionProducto"), (rs.getInt("precioProducto")), (rs.getInt("cantidadProducto"))});
+                }
+                Tabla_Productos.setModel(dfm);
+                DisenarTabla(Tabla_Productos, 5);
             }
-            Tabla_Productos.setModel(dfm);
-            DisenarTabla(Tabla_Productos, 6);
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
@@ -1511,8 +1608,8 @@ public class MainUI extends javax.swing.JFrame {
         } 
     }   
     
-    public int getID_Sucursal(){
-        String Sucursal = String.valueOf(cbSucursales.getSelectedItem());
+    public int getID_Sucursal(JComboBox cb){
+        String Sucursal = String.valueOf(cb.getSelectedItem());
         try{
             PreparedStatement pst = cn.prepareStatement("select idSucursal from Sucursales where nombre = ?");
             pst.setString(1, Sucursal);
@@ -1651,17 +1748,30 @@ public class MainUI extends javax.swing.JFrame {
         try {
             Connection cn = MyConnection.getConnection();
             DefaultTableModel dfm = new DefaultTableModel();
-            dfm.addColumn("ID");
-            dfm.addColumn("Nombre");
-            dfm.addColumn("Domicilio");
-            dfm.addColumn("Estatus");
-            PreparedStatement pst = cn.prepareStatement("select * from Sucursales");
-            ResultSet rs = pst.executeQuery();
-            while (rs.next()) {
-                dfm.addRow(new Object[]{rs.getInt("idSucursal"), rs.getString("nombre"), rs.getString("domicilio"), rs.getInt("estatus")});
+            if (CheckBoxS.isSelected() == true){
+                dfm.addColumn("ID");
+                dfm.addColumn("Nombre");
+                dfm.addColumn("Domicilio");
+                dfm.addColumn("Estatus");
+                PreparedStatement pst = cn.prepareStatement("select * from Sucursales");
+                ResultSet rs = pst.executeQuery();
+                while (rs.next()) {
+                    dfm.addRow(new Object[]{rs.getInt("idSucursal"), rs.getString("nombre"), rs.getString("domicilio"), rs.getInt("estatus")});
+                }
+                Tabla_Sucursales.setModel(dfm);
+                DisenarTabla(Tabla_Sucursales, 4);
+            } else{
+                dfm.addColumn("ID");
+                dfm.addColumn("Nombre");
+                dfm.addColumn("Domicilio");
+                PreparedStatement pst = cn.prepareStatement("select * from Sucursales where estatus = 1");
+                ResultSet rs = pst.executeQuery();
+                while (rs.next()) {
+                    dfm.addRow(new Object[]{rs.getInt("idSucursal"), rs.getString("nombre"), rs.getString("domicilio")});
+                }
+                Tabla_Sucursales.setModel(dfm);
+                DisenarTabla(Tabla_Sucursales, 3);
             }
-            Tabla_Sucursales.setModel(dfm);
-            DisenarTabla(Tabla_Sucursales, 4);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
@@ -1689,6 +1799,116 @@ public class MainUI extends javax.swing.JFrame {
         } 
     }
     
+    public int getFolio(){
+        String folio = String.valueOf(cbFolio.getSelectedItem());
+        try{
+            PreparedStatement pst = cn.prepareStatement("select folio from ventas where folio = ?");
+            pst.setString(1, folio);
+            rs = pst.executeQuery();
+            if (rs.next()) {
+                folioV = rs.getInt("folio");
+            }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+        return folioV;
+    }
+    
+    private void btnReporte1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporte1ActionPerformed
+        //
+    }//GEN-LAST:event_btnReporte1ActionPerformed
+
+    private void btnReporte2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporte2ActionPerformed
+        btnReporte3.setEnabled(false);
+        btnReporte4.setEnabled(false);
+        btnReporte1.setEnabled(false);
+        btnReporte2.setVisible(false);
+        btnCheck2.setVisible(true);
+        cbFolio.setEnabled(true);
+    }//GEN-LAST:event_btnReporte2ActionPerformed
+ 
+    private void btnReporte3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporte3ActionPerformed
+        btnReporte3.setVisible(false);
+        btnReporte4.setEnabled(false);
+        btnReporte1.setEnabled(false);
+        btnReporte2.setEnabled(false);
+        btnCheck3.setVisible(true);
+        cbSucursal.setEnabled(true);
+        txtFecha_Inicio.setEnabled(true);
+        txtFecha_Fin.setEnabled(true);
+    }//GEN-LAST:event_btnReporte3ActionPerformed
+
+    private void btnReporte4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporte4ActionPerformed
+        btnReporte3.setEnabled(false);
+        btnReporte4.setVisible(false);
+        btnReporte1.setEnabled(false);
+        btnReporte2.setEnabled(false);
+        btnCheck4.setVisible(true);
+        txtFecha_Inicio.setEnabled(true);
+    }//GEN-LAST:event_btnReporte4ActionPerformed
+
+    private void btnCheck2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheck2ActionPerformed
+        if (cbFolio.getSelectedIndex() == 0 ){
+            JOptionPane.showMessageDialog(null, "Selecciona un folio");
+        } else{
+            System.out.println(getFolio());
+            btnReporte2.setVisible(true);
+            btnCheck2.setVisible(false);
+            btnReporte3.setEnabled(true);
+            btnReporte4.setEnabled(true);
+            btnReporte1.setEnabled(true);
+            btnReporte2.setEnabled(true);
+            cbFolio.setEnabled(false);
+            cbFolio.setSelectedIndex(0);
+        }
+    }//GEN-LAST:event_btnCheck2ActionPerformed
+
+    private void btnCheck3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheck3ActionPerformed
+        if (cbSucursal.getSelectedIndex() == 0 || txtFecha_Inicio.getDate() == null || txtFecha_Fin.getDate() == null){
+            JOptionPane.showMessageDialog(null, "Selecciona una sucursal y las fechas");
+        } else{
+            System.out.println(getID_Sucursal(cbSucursal));
+            Date date1 = txtFecha_Inicio.getDate();
+            java.sql.Date fecha_inicio = new java.sql.Date(date1.getTime());
+            Date date2 = txtFecha_Fin.getDate();
+            java.sql.Date fecha_fin = new java.sql.Date(date2.getTime());
+            System.out.println(fecha_inicio);
+            System.out.println(fecha_fin);
+            btnReporte3.setVisible(true);
+            btnCheck3.setVisible(false);
+            btnReporte3.setEnabled(true);
+            btnReporte4.setEnabled(true);
+            btnReporte1.setEnabled(true);
+            btnReporte2.setEnabled(true);
+            cbSucursal.setEnabled(false);
+            cbSucursal.setSelectedIndex(0);
+            txtFecha_Inicio.setEnabled(false);
+            txtFecha_Fin.setEnabled(false);
+            txtFecha_Inicio.setDate(null);
+            txtFecha_Fin.setDate(null);
+        } 
+    }//GEN-LAST:event_btnCheck3ActionPerformed
+
+    private void btnCheck4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheck4ActionPerformed
+        if (txtFecha_Inicio.getDate() == null){
+            JOptionPane.showMessageDialog(null, "Selecciona una fecha");
+        } else{
+            Date date1 = txtFecha_Inicio.getDate();
+            java.sql.Date fecha = new java.sql.Date(date1.getTime());
+            System.out.println(fecha);
+            btnReporte4.setVisible(true);
+            btnCheck4.setVisible(false);
+            btnReporte3.setEnabled(true);
+            btnReporte4.setEnabled(true);
+            btnReporte1.setEnabled(true);
+            btnReporte2.setEnabled(true);
+            txtFecha_Inicio.setEnabled(false);
+            txtFecha_Inicio.setDate(null);
+        }
+    }//GEN-LAST:event_btnCheck4ActionPerformed
+    //Fin Reportes
+
+    //Extras
     public void DisenarTabla(JTable table, int x){
         table.getTableHeader().setFont(new java.awt.Font("Tahoma", java.awt.Font.BOLD, 12));
         table.getTableHeader().setOpaque(false);
@@ -1801,7 +2021,15 @@ public class MainUI extends javax.swing.JFrame {
     private void btnReportesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReportesMouseExited
         btnReportes.setForeground(new Color(255, 255, 255));
     }//GEN-LAST:event_btnReportesMouseExited
- 
+
+    private void CheckBoxSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckBoxSActionPerformed
+        CrearTablaSucursales();
+    }//GEN-LAST:event_CheckBoxSActionPerformed
+
+    private void CheckBoxPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckBoxPActionPerformed
+        CrearTablaProductos();
+    }//GEN-LAST:event_CheckBoxPActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -1832,6 +2060,8 @@ public class MainUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JCheckBox CheckBoxP;
+    private javax.swing.JCheckBox CheckBoxS;
     private javax.swing.JTable Tabla_Productos;
     private javax.swing.JTable Tabla_Reportes;
     private javax.swing.JTable Tabla_Sucursales;
@@ -1860,6 +2090,9 @@ public class MainUI extends javax.swing.JFrame {
     private javax.swing.JButton btnCancelarP;
     private javax.swing.JButton btnCancelarS;
     private javax.swing.JButton btnCancelarV;
+    private javax.swing.JButton btnCheck2;
+    private javax.swing.JButton btnCheck3;
+    private javax.swing.JButton btnCheck4;
     private javax.swing.JButton btnEditarP;
     private javax.swing.JButton btnEditarS;
     private javax.swing.JButton btnEditarV;
@@ -1870,6 +2103,10 @@ public class MainUI extends javax.swing.JFrame {
     private javax.swing.JButton btnNuevaV;
     private javax.swing.JButton btnNuevoP;
     private javax.swing.JLabel btnProductos;
+    private javax.swing.JButton btnReporte1;
+    private javax.swing.JButton btnReporte2;
+    private javax.swing.JButton btnReporte3;
+    private javax.swing.JButton btnReporte4;
     private javax.swing.JLabel btnReportes;
     private javax.swing.JLabel btnSalir;
     private javax.swing.JLabel btnSucursales;
@@ -1880,12 +2117,6 @@ public class MainUI extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbProductos;
     private javax.swing.JComboBox<String> cbSucursal;
     private javax.swing.JComboBox<String> cbSucursales;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
-    private com.toedter.calendar.JDateChooser jDateChooser2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -1893,16 +2124,16 @@ public class MainUI extends javax.swing.JFrame {
     private javax.swing.JLabel lblCantidadVenta;
     private javax.swing.JLabel lblDescripcion;
     private javax.swing.JLabel lblDomicilio;
+    private javax.swing.JLabel lblFecha_Fin;
+    private javax.swing.JLabel lblFecha_Inicio;
+    private javax.swing.JLabel lblFolio;
     private javax.swing.JLabel lblID_Producto;
     private javax.swing.JLabel lblID_Producto2;
     private javax.swing.JLabel lblID_Sucursal;
     private javax.swing.JLabel lblID_Venta;
-    private javax.swing.JLabel lblID_Venta1;
-    private javax.swing.JLabel lblID_Venta2;
-    private javax.swing.JLabel lblID_Venta3;
-    private javax.swing.JLabel lblID_Venta4;
     private javax.swing.JLabel lblNombreS;
     private javax.swing.JLabel lblPrecio;
+    private javax.swing.JLabel lblSucursal;
     private javax.swing.JLabel lblTotal;
     private javax.swing.JLabel lblTotal1;
     private javax.swing.JLabel lblTotal2;
@@ -1913,6 +2144,8 @@ public class MainUI extends javax.swing.JFrame {
     private javax.swing.JTextField txtCantidad;
     private javax.swing.JTextField txtDescripcion;
     private javax.swing.JTextField txtDomicilio;
+    private com.toedter.calendar.JDateChooser txtFecha_Fin;
+    private com.toedter.calendar.JDateChooser txtFecha_Inicio;
     private javax.swing.JTextField txtIDSucursal;
     private javax.swing.JTextField txtID_Producto;
     private javax.swing.JTextField txtID_Venta;
