@@ -1,7 +1,5 @@
 <div id="top"></div>
-<center>
-  <img src="src/com/images/readmeBlueLine.png" alt="Logo" width="400" height="25">
-</center>
+<img src="src/com/images/readmeBlueLine.png" alt="Logo" width="400" height="25" align="center">
 <h3 align="center">Proyecto Final: Punto de venta</h3>
   <p align="center">
     Integrantes:<br>
