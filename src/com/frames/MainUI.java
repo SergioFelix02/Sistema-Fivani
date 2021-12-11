@@ -7,7 +7,6 @@ import java.awt.Image;
 import java.sql.*;
 import javax.swing.*;
 import javax.swing.table.*;
-import javax.swing.text.TableView.TableRow;
 
 public class MainUI extends javax.swing.JFrame {
     
