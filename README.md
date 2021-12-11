@@ -13,7 +13,7 @@ Java <br>
 SQL Server <br>
 <h3>Ejecucion</h3>
 El archivo a ejecutar para la base de datos para el sistema se encuentra en la ruta: src/com/databases/bdPuntoVenta.sql <br><br>
-El Jar necesario para ejecutar el sistema se llama: Punto-De-Venta.jar <br><br>
+El Jar necesario para ejecutar el sistema se llama: Punto-de-Venta.jar <br><br>
 Ademas este Jar requiere un archivo de texto llamado: CredencialesSQL.txt <br><br>
 En este archivo de texto se deben escribir las credenciales de inicio de sesion para SQL Server, de la siguiente manera: <br><br>
 1 - Direccion ip : puerto <br>
