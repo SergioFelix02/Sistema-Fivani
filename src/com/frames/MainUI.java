@@ -4,7 +4,6 @@ import com.classes.MyConnection;
 import java.awt.Color;
 import java.awt.Image;
 import java.sql.*;
-import java.util.Date;
 import javax.swing.*;
 import javax.swing.table.*;
 
@@ -1588,7 +1587,7 @@ public class MainUI extends javax.swing.JFrame {
 
     //Botones Sucursales
     
-    public void setCbSucursales(JComboBox cb){
+    public void setCbSucursales(JComboBox<String> cb){
         if (cb.getSelectedItem() == "Seleccionar"){
             cb.removeAllItems();
             cb.addItem("Seleccionar");
@@ -1608,7 +1607,7 @@ public class MainUI extends javax.swing.JFrame {
         } 
     }   
     
-    public int getID_Sucursal(JComboBox cb){
+    public int getID_Sucursal(JComboBox<String> cb){
         String Sucursal = String.valueOf(cb.getSelectedItem());
         try{
             PreparedStatement pst = cn.prepareStatement("select idSucursal from Sucursales where nombre = ?");
@@ -1868,9 +1867,9 @@ public class MainUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Selecciona una sucursal y las fechas");
         } else{
             System.out.println(getID_Sucursal(cbSucursal));
-            Date date1 = txtFecha_Inicio.getDate();
+            java.util.Date date1 = txtFecha_Inicio.getDate();
             java.sql.Date fecha_inicio = new java.sql.Date(date1.getTime());
-            Date date2 = txtFecha_Fin.getDate();
+            java.util.Date date2 = txtFecha_Fin.getDate();
             java.sql.Date fecha_fin = new java.sql.Date(date2.getTime());
             System.out.println(fecha_inicio);
             System.out.println(fecha_fin);
@@ -1893,7 +1892,7 @@ public class MainUI extends javax.swing.JFrame {
         if (txtFecha_Inicio.getDate() == null){
             JOptionPane.showMessageDialog(null, "Selecciona una fecha");
         } else{
-            Date date1 = txtFecha_Inicio.getDate();
+            java.util.Date date1 = txtFecha_Inicio.getDate();
             java.sql.Date fecha = new java.sql.Date(date1.getTime());
             System.out.println(fecha);
             btnReporte4.setVisible(true);
@@ -1907,7 +1906,7 @@ public class MainUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnCheck4ActionPerformed
     //Fin Reportes
-
+    
     //Extras
     public void DisenarTabla(JTable table, int x){
         table.getTableHeader().setFont(new java.awt.Font("Tahoma", java.awt.Font.BOLD, 12));
@@ -1982,6 +1981,7 @@ public class MainUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_cbProductosItemStateChanged
     
+    //Eventos Mouse Entered / Mouse Exited
     private void btnReportesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReportesMouseEntered
         btnReportes.setForeground(new Color(0, 220, 0));
     }//GEN-LAST:event_btnReportesMouseEntered
@@ -1990,7 +1990,6 @@ public class MainUI extends javax.swing.JFrame {
         btnReportes.setForeground(new Color(255, 255, 255));
     }//GEN-LAST:event_btnReportesMouseExited
     
-    //Eventos Mouse Entered / Mouse Exited
     private void btnInformacionMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInformacionMouseEntered
         btnInformacion.setForeground(new Color(0, 220, 0));
     }//GEN-LAST:event_btnInformacionMouseEntered
