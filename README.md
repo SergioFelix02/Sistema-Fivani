@@ -1,5 +1,7 @@
 <div id="top"></div>
-<br />
+<center>
+  <img src="src/com/images/readmeBlueLine.png" alt="Logo" width="400" height="25">
+</center>
 <h3 align="center">Proyecto Final: Punto de venta</h3>
   <p align="center">
     Integrantes:<br>
