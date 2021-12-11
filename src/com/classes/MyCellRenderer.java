@@ -22,7 +22,8 @@ public class MyCellRenderer extends DefaultTableCellRenderer {
         else
             setBackground(null);
         super.getTableCellRendererComponent(table, value, selected, focused, row, column);
-
+        
+        setHorizontalAlignment(SwingConstants.CENTER);
         return this;
     }
 }
