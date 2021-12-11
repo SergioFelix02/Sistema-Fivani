@@ -33,4 +33,6 @@ public class Ventas {
             JOptionPane.showMessageDialog(null, e);
         }
     }
+    
+    
 }
