@@ -1814,7 +1814,22 @@ public class MainUI extends javax.swing.JFrame {
     }
     
     private void btnReporte1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporte1ActionPerformed
-        //
+        try {
+            Connection cn = MyConnection.getConnection();
+            DefaultTableModel dfm = new DefaultTableModel();
+            dfm.addColumn("ID Producto");
+            dfm.addColumn("Nombre");
+            dfm.addColumn("Vendidos");
+            CallableStatement cst = cn.prepareCall("{call ProductosMasVendidos}");
+            ResultSet rs = cst.executeQuery();
+            while (rs.next()) {
+                dfm.addRow(new Object[]{rs.getInt("idProducto"), rs.getString("nombreProducto"), rs.getInt("vendidos")});
+            }
+            Tabla_Reportes.setModel(dfm);
+            DisenarTabla(Tabla_Reportes, 3);  
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
     }//GEN-LAST:event_btnReporte1ActionPerformed
 
     private void btnReporte2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporte2ActionPerformed
@@ -1850,7 +1865,25 @@ public class MainUI extends javax.swing.JFrame {
         if (cbFolio.getSelectedIndex() == 0 ){
             JOptionPane.showMessageDialog(null, "Selecciona un folio");
         } else{
-            System.out.println(getFolio());
+            try {
+                Connection cn = MyConnection.getConnection();
+                DefaultTableModel dfm = new DefaultTableModel();
+                dfm.addColumn("ID Producto");
+                dfm.addColumn("Nombre");
+                dfm.addColumn("Precio");
+                dfm.addColumn("Cantidad");
+                dfm.addColumn("Subtotal");
+                CallableStatement cst = cn.prepareCall("{call ProductosVenta(?)}");
+                cst.setInt(1, getFolio());
+                ResultSet rs = cst.executeQuery();
+                while (rs.next()) {
+                    dfm.addRow(new Object[]{rs.getInt("idProducto"), rs.getString("nombreProducto"), rs.getInt("precio"), rs.getInt("cantidad"), rs.getInt("subtotal")});
+                }
+                Tabla_Reportes.setModel(dfm);
+                DisenarTabla(Tabla_Reportes, 5);  
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e);
+            }
             btnReporte2.setVisible(true);
             btnCheck2.setVisible(false);
             btnReporte3.setEnabled(true);
@@ -1866,13 +1899,32 @@ public class MainUI extends javax.swing.JFrame {
         if (cbSucursal.getSelectedIndex() == 0 || txtFecha_Inicio.getDate() == null || txtFecha_Fin.getDate() == null){
             JOptionPane.showMessageDialog(null, "Selecciona una sucursal y las fechas");
         } else{
-            System.out.println(getID_Sucursal(cbSucursal));
             java.util.Date date1 = txtFecha_Inicio.getDate();
             java.sql.Date fecha_inicio = new java.sql.Date(date1.getTime());
             java.util.Date date2 = txtFecha_Fin.getDate();
             java.sql.Date fecha_fin = new java.sql.Date(date2.getTime());
-            System.out.println(fecha_inicio);
-            System.out.println(fecha_fin);
+            try {
+                Connection cn = MyConnection.getConnection();
+                DefaultTableModel dfm = new DefaultTableModel();
+                dfm.addColumn("Folio");
+                dfm.addColumn("ID Sucursal");
+                dfm.addColumn("Subtotal");
+                dfm.addColumn("IVA");
+                dfm.addColumn("Total");
+                dfm.addColumn("Fecha");
+                CallableStatement cst = cn.prepareCall("{call VentasSucursal(?,?,?)}");
+                cst.setInt(1, getID_Sucursal(cbSucursal));
+                cst.setDate(2, fecha_inicio);
+                cst.setDate(3, fecha_fin);
+                ResultSet rs = cst.executeQuery();
+                while (rs.next()) {
+                    dfm.addRow(new Object[]{rs.getInt("folio"), rs.getInt("idSucursal"), rs.getInt("subtotal"), rs.getInt("iva"), rs.getInt("total"), rs.getDate("fecha")});
+                }
+                Tabla_Reportes.setModel(dfm);
+                DisenarTabla(Tabla_Reportes, 6);  
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e);
+            }
             btnReporte3.setVisible(true);
             btnCheck3.setVisible(false);
             btnReporte3.setEnabled(true);
@@ -1894,7 +1946,26 @@ public class MainUI extends javax.swing.JFrame {
         } else{
             java.util.Date date1 = txtFecha_Inicio.getDate();
             java.sql.Date fecha = new java.sql.Date(date1.getTime());
-            System.out.println(fecha);
+            try {
+                Connection cn = MyConnection.getConnection();
+                DefaultTableModel dfm = new DefaultTableModel();
+                dfm.addColumn("Folio");
+                dfm.addColumn("ID Sucursal");
+                dfm.addColumn("Subtotal");
+                dfm.addColumn("IVA");
+                dfm.addColumn("Total");
+                dfm.addColumn("Fecha");
+                CallableStatement cst = cn.prepareCall("{call VentasGeneral(?)}");
+                cst.setDate(1, fecha);
+                ResultSet rs = cst.executeQuery();
+                while (rs.next()) {
+                    dfm.addRow(new Object[]{rs.getInt("folio"), rs.getInt("idSucursal"), rs.getInt("subtotal"), rs.getInt("iva"), rs.getInt("total"), rs.getDate("fecha")});
+                }
+                Tabla_Reportes.setModel(dfm);
+                DisenarTabla(Tabla_Reportes, 6);  
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e);
+            }
             btnReporte4.setVisible(true);
             btnCheck4.setVisible(false);
             btnReporte3.setEnabled(true);
