@@ -28,6 +28,9 @@ public class MainUI extends javax.swing.JFrame {
         bgSucursales.setVisible(false);
         bgReportes.setVisible(false);
         setCbSucursales(cbSucursales);
+        if(cbSucursales.getItemAt(1) != null) {
+            cbSucursales.setSelectedIndex(1);
+        }
         ((JLabel)cbSucursales.getRenderer()).setHorizontalAlignment(SwingConstants.CENTER);
         this.setIconImage(new ImageIcon(getClass().getClassLoader().getResource("com/images/Icono.png")).getImage());
         lbl_icon.setIcon(new ImageIcon(new ImageIcon(getClass().getClassLoader().getResource("com/images/Icono.png")).getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH)));
