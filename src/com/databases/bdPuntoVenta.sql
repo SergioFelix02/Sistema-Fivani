@@ -15,7 +15,7 @@ create table Ventas (
 	subtotal int,
 	iva float,
 	total int,
-    fecha datetime
+    fecha date
 )
 
 create table Productos (
@@ -215,7 +215,10 @@ create procedure VentasSucursal
 @fechaFinal datetime
 as
 begin
-	--consulta
+	select *
+    from Ventas
+    where idSucursal = @idSucursal
+    and fecha between @fechaInicial and @fechaFinal
 end
 go
 
@@ -223,7 +226,9 @@ create procedure VentasGeneral
 @fecha datetime
 as
 begin
-	--consulta
+	select *
+    from Ventas
+    where fecha = @fecha
 end
 go
 
