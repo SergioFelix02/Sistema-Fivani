@@ -259,6 +259,7 @@ go
 ------------Id jumping to 1000 fix------------
 ALTER DATABASE SCOPED CONFIGURATION SET IDENTITY_CACHE = OFF
 
+------------Pruebas------------
 /*
 use bdPuntoVenta
 select * from Ventas
