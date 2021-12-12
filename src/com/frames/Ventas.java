@@ -1,8 +1,11 @@
+
 package com.frames;
 
+import static com.classes.PuntodeVenta.main;
 import com.classes.MyConnection;
 import java.sql.*;
-import javax.swing.JOptionPane;
+import javax.swing.*;
+import javax.swing.table.*;
 
 public class Ventas {
     
@@ -34,5 +37,33 @@ public class Ventas {
         }
     }
     
+    public void CrearTabla(JTable table) {
+        try {
+            Connection cn = MyConnection.getConnection();
+            DefaultTableModel dfm = new DefaultTableModel();
+            dfm.addColumn("Folio");
+            dfm.addColumn("ID Sucursal");
+            dfm.addColumn("Subtotal");
+            dfm.addColumn("IVA");
+            dfm.addColumn("Total");
+            dfm.addColumn("Fecha");
+            PreparedStatement pst = cn.prepareStatement("select * from Ventas");
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                dfm.addRow(new Object[]{rs.getInt("folio"), rs.getInt("idSucursal"), (rs.getInt("subtotal")), (rs.getInt("iva")), (rs.getInt("total")), rs.getDate("fecha")});
+            }
+            table.setModel(dfm);
+            main.DisenarTabla(table, 6);  
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }
     
+    public void vaciarTxt(JTextField id, JTextField total, JTextField subtotal, JComboBox<String> cbProductos, JComboBox<String> cbCantidad) {
+        id.setText("");
+        total.setText("");
+        subtotal.setText("");
+        cbProductos.setSelectedIndex(0);
+        cbCantidad.setSelectedIndex(0);
+    }
 }

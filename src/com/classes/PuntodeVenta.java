@@ -3,9 +3,10 @@ package com.classes;
 import com.frames.MainUI;
 
 public class PuntodeVenta {
+    
+    public static MainUI main = new MainUI();
 
     public static void main(String[] args) {
-        MainUI main = new MainUI();
         main.setVisible(true);
     }
 }
