@@ -1258,11 +1258,15 @@ public class MainUI extends javax.swing.JFrame {
             if (txtotal.equals("")) {
                 JOptionPane.showMessageDialog(null, "Llena todos los campos");
             } else {
-                int idV = Integer.valueOf(txtID_Venta.getText());
-                int subtotal = Integer.valueOf(txtSubtotal.getText());
-                int total = Integer.valueOf(txtTotal.getText());
-                ventas.Modificar(idV, subtotal, getIva(), total);
-                JOptionPane.showMessageDialog(null, "Operacion Realizada Correctamente");
+                try {
+                    int idV = Integer.valueOf(txtID_Venta.getText());
+                    int subtotal = Integer.valueOf(txtSubtotal.getText());
+                    int total = Integer.valueOf(txtTotal.getText());
+                    ventas.Modificar(idV, subtotal, getIva(), total);
+                    JOptionPane.showMessageDialog(null, "Operacion Realizada Correctamente");
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "Error en el tipo de datos");
+                }
                 ResetVentas();
             }
         }
