@@ -40,6 +40,18 @@ public class Productos {
         }
     }
 
+    public void Vendido(int id, int cantidad) {
+        try {
+            Connection cn = MyConnection.getConnection();
+            CallableStatement cst = cn.prepareCall("{call venderProducto(?,?)}");
+            cst.setInt(1, id);
+            cst.setInt(2, cantidad);
+            cst.execute();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }
+
     public void Desactivar(int id) {
         int temp = 0;
         int estatus = 0;

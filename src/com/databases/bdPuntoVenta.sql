@@ -137,6 +137,17 @@ begin
 end
 go
 
+create procedure venderProducto
+@idProducto int,
+@cantidadProducto int
+as
+begin
+    update Productos
+    set cantidadProducto = cantidadProducto - @cantidadProducto
+    where idProducto = @idProducto
+end
+go
+
 create procedure estatusProducto
 @idProducto int,
 @estatus bit
