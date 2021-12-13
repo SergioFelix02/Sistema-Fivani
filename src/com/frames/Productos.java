@@ -39,10 +39,14 @@ public class Productos {
             JOptionPane.showMessageDialog(null, e);
         }
         try { 
+            int estatus = 0;
+            if (cantidad > 0){
+                estatus = 1;
+            }
             Connection cn = MyConnection.getConnection();
             CallableStatement cst = cn.prepareCall("{call estatusProducto(?,?)}");
             cst.setInt(1, id);
-            cst.setInt(2, 1);
+            cst.setInt(2, estatus);
             cst.execute();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);

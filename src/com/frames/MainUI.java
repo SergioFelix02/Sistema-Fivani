@@ -1426,12 +1426,16 @@ public class MainUI extends javax.swing.JFrame {
             if (txtnombre.equals("") || txtdescripcion.equals("") || txtprecio.equals("") || txtcantidad.equals("")) {
                 JOptionPane.showMessageDialog(null, "Llena todos los campos");
             } else {
-                String nombre = String.valueOf(txtNombre.getText());
-                String descripcion = String.valueOf(txtDescripcion.getText());
-                int precio = Integer.parseInt(txtPrecio.getText());
-                int cantidad = Integer.parseInt(txtCantidad.getText());
-                productos.Insertar(nombre, descripcion, precio, cantidad);
-                JOptionPane.showMessageDialog(null, "Operacion Realizada Correctamente");
+                try{
+                    String nombre = String.valueOf(txtNombre.getText());
+                    String descripcion = String.valueOf(txtDescripcion.getText());
+                    int precio = Integer.parseInt(txtPrecio.getText());
+                    int cantidad = Integer.parseInt(txtCantidad.getText());
+                    productos.Insertar(nombre, descripcion, precio, cantidad);
+                    JOptionPane.showMessageDialog(null, "Operacion Realizada Correctamente");
+                } catch(Exception e){
+                    JOptionPane.showMessageDialog(null, "Error en el tipo de datos");
+                }
                 ResetProductos();
             }
         }
@@ -1471,12 +1475,16 @@ public class MainUI extends javax.swing.JFrame {
             if (txtnombre.equals("") || txtdescripcion.equals("") || txtprecio.equals("") || txtcantidad.equals("")) {
                 JOptionPane.showMessageDialog(null, "Llena todos los campos");
             } else {
-                int precio = Integer.parseInt(txtprecio);
-                int cantidad = Integer.parseInt(txtcantidad);
-                String nombre = txtNombre.getText().trim();
-                String descripcion = txtDescripcion.getText().trim();
-                productos.Modificar(ID_Producto, nombre, descripcion, precio, cantidad);
-                JOptionPane.showMessageDialog(null, "Operacion Realizada Correctamente");
+                try{
+                    int precio = Integer.parseInt(txtprecio);
+                    int cantidad = Integer.parseInt(txtcantidad);
+                    String nombre = txtNombre.getText().trim();
+                    String descripcion = txtDescripcion.getText().trim();
+                    productos.Modificar(ID_Producto, nombre, descripcion, precio, cantidad);
+                    JOptionPane.showMessageDialog(null, "Operacion Realizada Correctamente");
+                }catch(Exception e){
+                    JOptionPane.showMessageDialog(null, "Error en el tipo de datos");
+                }
                 ResetProductos();
             }
         }
