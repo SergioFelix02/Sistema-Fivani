@@ -33,7 +33,7 @@ public class Sucursales {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
-        try { 
+        try {
             Connection cn = MyConnection.getConnection();
             CallableStatement cst = cn.prepareCall("{call estatusSucursal(?,?)}");
             cst.setInt(1, id);

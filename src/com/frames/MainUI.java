@@ -8,18 +8,18 @@ import javax.swing.*;
 import javax.swing.table.*;
 
 public class MainUI extends javax.swing.JFrame {
-    
+
     ResultSet rs;
     Connection cn = MyConnection.getConnection();
-    
+
     Ventas ventas = new Ventas();
     Sucursales sucursales = new Sucursales();
     Productos productos = new Productos();
     Reportes reportes = new Reportes();
-    
+
     int ID_Sucursal = 0, ID_Producto = 0, precioProd = 0;
     boolean foundV, foundP, foundS;
-    
+
     public MainUI() {
         initComponents();
         bgVentas.setVisible(false);
@@ -1177,7 +1177,7 @@ public class MainUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Selecciona un Producto");
         }
     }
-    
+
     public void BuscarV(int id) {
         try {
             PreparedStatement pst = cn.prepareStatement("select * from Ventas where folio = ?");
@@ -1267,7 +1267,7 @@ public class MainUI extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_btnEditarVActionPerformed
-    
+
     public void InsertarDetalleVenta() {
         int idV = Integer.valueOf(txtID_Venta.getText());
         int idP = getID_Producto();
@@ -1308,7 +1308,7 @@ public class MainUI extends javax.swing.JFrame {
             ID_Producto = 0;
         }
     }//GEN-LAST:event_btnAgregarPActionPerformed
-    
+
     public void setCbProductos() {
         cbProductos.removeAllItems();
         cbProductos.addItem("Seleccionar");
@@ -1323,7 +1323,7 @@ public class MainUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, e);
         }
     }
-    
+
     public int getID_Producto() {
         String Producto = String.valueOf(cbProductos.getSelectedItem());
         try {
@@ -1338,7 +1338,7 @@ public class MainUI extends javax.swing.JFrame {
         }
         return ID_Producto;
     }
-    
+
     public void setCbCantidad(int id) {
         cbCantidad.removeAllItems();
         cbCantidad.addItem("Seleccionar");
@@ -1356,12 +1356,12 @@ public class MainUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, e);
         }
     }
-    
+
     public int getCantidad() {
         int cantidad = Integer.parseInt(String.valueOf(cbCantidad.getSelectedItem()));
         return cantidad;
     }
-    
+
     public int getIva() {
         String str;
         str = String.valueOf(cbIVA.getSelectedItem());
@@ -1426,14 +1426,14 @@ public class MainUI extends javax.swing.JFrame {
             if (txtnombre.equals("") || txtdescripcion.equals("") || txtprecio.equals("") || txtcantidad.equals("")) {
                 JOptionPane.showMessageDialog(null, "Llena todos los campos");
             } else {
-                try{
+                try {
                     String nombre = String.valueOf(txtNombre.getText());
                     String descripcion = String.valueOf(txtDescripcion.getText());
                     int precio = Integer.parseInt(txtPrecio.getText());
                     int cantidad = Integer.parseInt(txtCantidad.getText());
                     productos.Insertar(nombre, descripcion, precio, cantidad);
                     JOptionPane.showMessageDialog(null, "Operacion Realizada Correctamente");
-                } catch(Exception e){
+                } catch (Exception e) {
                     JOptionPane.showMessageDialog(null, "Error en el tipo de datos");
                 }
                 ResetProductos();
@@ -1475,14 +1475,14 @@ public class MainUI extends javax.swing.JFrame {
             if (txtnombre.equals("") || txtdescripcion.equals("") || txtprecio.equals("") || txtcantidad.equals("")) {
                 JOptionPane.showMessageDialog(null, "Llena todos los campos");
             } else {
-                try{
+                try {
                     int precio = Integer.parseInt(txtprecio);
                     int cantidad = Integer.parseInt(txtcantidad);
                     String nombre = txtNombre.getText().trim();
                     String descripcion = txtDescripcion.getText().trim();
                     productos.Modificar(ID_Producto, nombre, descripcion, precio, cantidad);
                     JOptionPane.showMessageDialog(null, "Operacion Realizada Correctamente");
-                }catch(Exception e){
+                } catch (Exception e) {
                     JOptionPane.showMessageDialog(null, "Error en el tipo de datos");
                 }
                 ResetProductos();
@@ -1630,7 +1630,7 @@ public class MainUI extends javax.swing.JFrame {
             ResetSucursales();
         }
     }//GEN-LAST:event_btnEliminarSActionPerformed
-    
+
     public void setCbSucursales(JComboBox<String> cb) {
         if (cb.getSelectedItem() == "Seleccionar") {
             cb.removeAllItems();
@@ -1650,7 +1650,7 @@ public class MainUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, e);
         }
     }
-    
+
     public int getID_Sucursal(JComboBox<String> cb) {
         String Sucursal = String.valueOf(cb.getSelectedItem());
         try {
@@ -1686,7 +1686,7 @@ public class MainUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, e);
         }
     }
-    
+
     public int getFolio() {
         String folio = String.valueOf(cbFolio.getSelectedItem());
         int folioV = 0;
@@ -1808,7 +1808,7 @@ public class MainUI extends javax.swing.JFrame {
             table.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
         }
     }
-    
+
     public void ResetVentas() {
         cbProductos.setEnabled(false);
         cbCantidad.setEnabled(false);
@@ -1825,7 +1825,7 @@ public class MainUI extends javax.swing.JFrame {
         ventas.CrearTabla(Tabla_Ventas);
         ventas.vaciarTxt(txtID_Venta, txtTotal, txtSubtotal, cbProductos, cbCantidad);
     }
-    
+
     public void ResetProductos() {
         txtNombre.setEnabled(false);
         txtDescripcion.setEnabled(false);
@@ -1844,7 +1844,7 @@ public class MainUI extends javax.swing.JFrame {
         productos.CrearTabla(Tabla_Productos, CheckBoxP);
         productos.vaciarTxt(txtID_Producto, txtNombre, txtDescripcion, txtPrecio, txtCantidad);
     }
-    
+
     public void ResetSucursales() {
         txtNombreS.setEnabled(false);
         txtDomicilio.setEnabled(false);
@@ -1864,7 +1864,7 @@ public class MainUI extends javax.swing.JFrame {
             cbSucursales.setSelectedIndex(1);
         }
     }
-    
+
     public void ResetReportes() {
         btnReporte1.setVisible(true);
         btnReporte2.setVisible(true);
@@ -1948,7 +1948,7 @@ public class MainUI extends javax.swing.JFrame {
     private void btnSalirMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalirMouseExited
         btnSalir.setForeground(new Color(255, 255, 255));
     }//GEN-LAST:event_btnSalirMouseExited
-    
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

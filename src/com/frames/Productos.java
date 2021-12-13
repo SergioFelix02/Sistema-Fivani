@@ -38,9 +38,9 @@ public class Productos {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
-        try { 
+        try {
             int estatus = 0;
-            if (cantidad > 0){
+            if (cantidad > 0) {
                 estatus = 1;
             }
             Connection cn = MyConnection.getConnection();
@@ -64,7 +64,7 @@ public class Productos {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
-        try { 
+        try {
             Connection cn = MyConnection.getConnection();
             PreparedStatement pst = cn.prepareStatement("select cantidadProducto from Productos where idProducto = ?");
             pst.setInt(1, id);
@@ -77,7 +77,7 @@ public class Productos {
                 Desactivar(id);
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null,e);
+            JOptionPane.showMessageDialog(null, e);
         }
     }
 
