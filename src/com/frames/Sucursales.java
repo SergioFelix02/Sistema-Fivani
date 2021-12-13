@@ -33,6 +33,15 @@ public class Sucursales {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
+        try { 
+            Connection cn = MyConnection.getConnection();
+            CallableStatement cst = cn.prepareCall("{call estatusSucursal(?,?)}");
+            cst.setInt(1, id);
+            cst.setInt(2, 1);
+            cst.execute();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
     }
 
     public void Desactivar(int id) {

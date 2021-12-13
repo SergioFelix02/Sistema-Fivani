@@ -38,6 +38,16 @@ public class Productos {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
+        try { 
+            Connection cn = MyConnection.getConnection();
+            CallableStatement cst = cn.prepareCall("{call estatusProducto(?,?)}");
+            cst.setInt(1, id);
+            cst.setInt(2, 1);
+            cst.execute();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+
     }
 
     public void Vendido(int id, int cantidad) {
@@ -49,6 +59,21 @@ public class Productos {
             cst.execute();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
+        }
+        try { 
+            Connection cn = MyConnection.getConnection();
+            PreparedStatement pst = cn.prepareStatement("select cantidadProducto from Productos where idProducto = ?");
+            pst.setInt(1, id);
+            ResultSet rs = pst.executeQuery();
+            int cant = 0;
+            while (rs.next()) {
+                cant = rs.getInt("cantidadProducto");
+            }
+            if (cant == 0) {
+                Desactivar(id);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,e);
         }
     }
 
