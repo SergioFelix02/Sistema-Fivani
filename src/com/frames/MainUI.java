@@ -8,18 +8,18 @@ import javax.swing.*;
 import javax.swing.table.*;
 
 public class MainUI extends javax.swing.JFrame {
-    
+
     ResultSet rs;
     Connection cn = MyConnection.getConnection();
-    
+
     Ventas ventas = new Ventas();
     Sucursales sucursales = new Sucursales();
     Productos productos = new Productos();
     Reportes reportes = new Reportes();
-    
+
     int ID_Sucursal = 0, ID_Producto = 0, precioProd = 0;
     boolean foundV, foundP, foundS;
-    
+
     public MainUI() {
         initComponents();
         bgVentas.setVisible(false);
@@ -27,13 +27,14 @@ public class MainUI extends javax.swing.JFrame {
         bgSucursales.setVisible(false);
         bgReportes.setVisible(false);
         setCbSucursales(cbSucursales);
-        if(cbSucursales.getItemAt(1) != null) {
+        if (cbSucursales.getItemAt(1) != null) {
             cbSucursales.setSelectedIndex(1);
         }
-        ((JLabel)cbSucursales.getRenderer()).setHorizontalAlignment(SwingConstants.CENTER);
+        ((JLabel) cbSucursales.getRenderer()).setHorizontalAlignment(SwingConstants.CENTER);
         this.setIconImage(new ImageIcon(getClass().getClassLoader().getResource("com/images/Icono.png")).getImage());
         lbl_icon.setIcon(new ImageIcon(new ImageIcon(getClass().getClassLoader().getResource("com/images/Icono.png")).getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH)));
     }
+
     //Inicio InitComponents
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -52,6 +53,25 @@ public class MainUI extends javax.swing.JFrame {
         barReportes = new javax.swing.JPanel();
         barSalir = new javax.swing.JPanel();
         cbSucursales = new javax.swing.JComboBox<>();
+        bgReportes = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        Tabla_Reportes = new javax.swing.JTable();
+        txtFecha_Inicio = new com.toedter.calendar.JDateChooser();
+        txtFecha_Fin = new com.toedter.calendar.JDateChooser();
+        lblFecha_Inicio = new javax.swing.JLabel();
+        lblFecha_Fin = new javax.swing.JLabel();
+        lblFolio = new javax.swing.JLabel();
+        lblSucursal = new javax.swing.JLabel();
+        cbSucursal = new javax.swing.JComboBox<>();
+        cbFolio = new javax.swing.JComboBox<>();
+        btnReporte1 = new javax.swing.JButton();
+        btnReporte2 = new javax.swing.JButton();
+        btnReporte3 = new javax.swing.JButton();
+        btnReporte4 = new javax.swing.JButton();
+        btnCheck2 = new javax.swing.JButton();
+        btnCheck3 = new javax.swing.JButton();
+        btnCheck4 = new javax.swing.JButton();
+        btnCancelarR = new javax.swing.JButton();
         bgVentas = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         Tabla_Ventas = new javax.swing.JTable();
@@ -114,25 +134,6 @@ public class MainUI extends javax.swing.JFrame {
         lblID_Producto = new javax.swing.JLabel();
         lblCantidad = new javax.swing.JLabel();
         CheckBoxP = new javax.swing.JCheckBox();
-        bgReportes = new javax.swing.JPanel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        Tabla_Reportes = new javax.swing.JTable();
-        txtFecha_Inicio = new com.toedter.calendar.JDateChooser();
-        txtFecha_Fin = new com.toedter.calendar.JDateChooser();
-        lblFecha_Inicio = new javax.swing.JLabel();
-        lblFecha_Fin = new javax.swing.JLabel();
-        lblFolio = new javax.swing.JLabel();
-        lblSucursal = new javax.swing.JLabel();
-        cbSucursal = new javax.swing.JComboBox<>();
-        cbFolio = new javax.swing.JComboBox<>();
-        btnReporte1 = new javax.swing.JButton();
-        btnReporte2 = new javax.swing.JButton();
-        btnReporte3 = new javax.swing.JButton();
-        btnReporte4 = new javax.swing.JButton();
-        btnCheck2 = new javax.swing.JButton();
-        btnCheck3 = new javax.swing.JButton();
-        btnCheck4 = new javax.swing.JButton();
-        btnCancelarV1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle(" Punto de Venta");
@@ -374,6 +375,149 @@ public class MainUI extends javax.swing.JFrame {
         );
 
         getContentPane().add(sidePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 150, 500));
+
+        bgReportes.setBackground(new java.awt.Color(255, 255, 255));
+        bgReportes.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        Tabla_Reportes.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        Tabla_Reportes.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        Tabla_Reportes.setSelectionBackground(new java.awt.Color(0, 153, 153));
+        Tabla_Reportes.setShowHorizontalLines(false);
+        Tabla_Reportes.setShowVerticalLines(false);
+        Tabla_Reportes.getTableHeader().setResizingAllowed(false);
+        Tabla_Reportes.getTableHeader().setReorderingAllowed(false);
+        jScrollPane3.setViewportView(Tabla_Reportes);
+
+        bgReportes.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 540, 300));
+
+        txtFecha_Inicio.setEnabled(false);
+        bgReportes.add(txtFecha_Inicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 120, -1));
+
+        txtFecha_Fin.setEnabled(false);
+        bgReportes.add(txtFecha_Fin, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 70, 120, -1));
+
+        lblFecha_Inicio.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblFecha_Inicio.setForeground(new java.awt.Color(153, 153, 153));
+        lblFecha_Inicio.setText("Fecha Inicio");
+        bgReportes.add(lblFecha_Inicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 120, -1));
+
+        lblFecha_Fin.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblFecha_Fin.setForeground(new java.awt.Color(153, 153, 153));
+        lblFecha_Fin.setText("Fecha Fin");
+        bgReportes.add(lblFecha_Fin, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 30, 110, -1));
+
+        lblFolio.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblFolio.setForeground(new java.awt.Color(153, 153, 153));
+        lblFolio.setText("Folio");
+        bgReportes.add(lblFolio, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 120, -1));
+
+        lblSucursal.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblSucursal.setForeground(new java.awt.Color(153, 153, 153));
+        lblSucursal.setText("Sucursal");
+        bgReportes.add(lblSucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 110, 120, -1));
+
+        cbSucursal.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar" }));
+        cbSucursal.setEnabled(false);
+        bgReportes.add(cbSucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 140, 120, 30));
+
+        cbFolio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar" }));
+        cbFolio.setEnabled(false);
+        bgReportes.add(cbFolio, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 120, 30));
+
+        btnReporte1.setBackground(new java.awt.Color(0, 153, 153));
+        btnReporte1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnReporte1.setForeground(new java.awt.Color(255, 255, 255));
+        btnReporte1.setText("Productos Mas Vendidos");
+        btnReporte1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReporte1ActionPerformed(evt);
+            }
+        });
+        bgReportes.add(btnReporte1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 20, 210, 30));
+
+        btnReporte2.setBackground(new java.awt.Color(0, 153, 153));
+        btnReporte2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnReporte2.setForeground(new java.awt.Color(255, 255, 255));
+        btnReporte2.setText("Reporte de Venta (Folio)");
+        btnReporte2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReporte2ActionPerformed(evt);
+            }
+        });
+        bgReportes.add(btnReporte2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 60, 210, 30));
+
+        btnReporte3.setBackground(new java.awt.Color(0, 153, 153));
+        btnReporte3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnReporte3.setForeground(new java.awt.Color(255, 255, 255));
+        btnReporte3.setText("Total de Ventas (Sucursal)");
+        btnReporte3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReporte3ActionPerformed(evt);
+            }
+        });
+        bgReportes.add(btnReporte3, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 100, 210, 30));
+
+        btnReporte4.setBackground(new java.awt.Color(0, 153, 153));
+        btnReporte4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnReporte4.setForeground(new java.awt.Color(255, 255, 255));
+        btnReporte4.setText("Total de Ventas (Generales)");
+        btnReporte4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReporte4ActionPerformed(evt);
+            }
+        });
+        bgReportes.add(btnReporte4, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 140, 210, 30));
+
+        btnCheck2.setBackground(new java.awt.Color(0, 153, 153));
+        btnCheck2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/checked_checkbox_32px.png"))); // NOI18N
+        btnCheck2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCheck2ActionPerformed(evt);
+            }
+        });
+        bgReportes.add(btnCheck2, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 60, 30, 30));
+
+        btnCheck3.setBackground(new java.awt.Color(0, 153, 153));
+        btnCheck3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/checked_checkbox_32px.png"))); // NOI18N
+        btnCheck3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCheck3ActionPerformed(evt);
+            }
+        });
+        bgReportes.add(btnCheck3, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 100, 30, 30));
+
+        btnCheck4.setBackground(new java.awt.Color(0, 153, 153));
+        btnCheck4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/checked_checkbox_32px.png"))); // NOI18N
+        btnCheck4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCheck4ActionPerformed(evt);
+            }
+        });
+        bgReportes.add(btnCheck4, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 140, 30, 30));
+
+        btnCancelarR.setBackground(new java.awt.Color(0, 153, 153));
+        btnCancelarR.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnCancelarR.setForeground(new java.awt.Color(255, 255, 255));
+        btnCancelarR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/cancel_2_32px.png"))); // NOI18N
+        btnCancelarR.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCancelarR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarRActionPerformed(evt);
+            }
+        });
+        bgReportes.add(btnCancelarR, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 80, 40, 40));
+
+        getContentPane().add(bgReportes, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 0, 600, 500));
 
         bgVentas.setBackground(new java.awt.Color(255, 255, 255));
         bgVentas.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -939,154 +1083,11 @@ public class MainUI extends javax.swing.JFrame {
 
         getContentPane().add(bgProductos, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 750, 500));
 
-        bgReportes.setBackground(new java.awt.Color(255, 255, 255));
-        bgReportes.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        Tabla_Reportes.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        Tabla_Reportes.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {},
-                {},
-                {},
-                {}
-            },
-            new String [] {
-
-            }
-        ));
-        Tabla_Reportes.setSelectionBackground(new java.awt.Color(0, 153, 153));
-        Tabla_Reportes.setShowHorizontalLines(false);
-        Tabla_Reportes.setShowVerticalLines(false);
-        Tabla_Reportes.getTableHeader().setResizingAllowed(false);
-        Tabla_Reportes.getTableHeader().setReorderingAllowed(false);
-        jScrollPane3.setViewportView(Tabla_Reportes);
-
-        bgReportes.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 540, 300));
-
-        txtFecha_Inicio.setEnabled(false);
-        bgReportes.add(txtFecha_Inicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 120, -1));
-
-        txtFecha_Fin.setEnabled(false);
-        bgReportes.add(txtFecha_Fin, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 70, 120, -1));
-
-        lblFecha_Inicio.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        lblFecha_Inicio.setForeground(new java.awt.Color(153, 153, 153));
-        lblFecha_Inicio.setText("Fecha Inicio");
-        bgReportes.add(lblFecha_Inicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 120, -1));
-
-        lblFecha_Fin.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        lblFecha_Fin.setForeground(new java.awt.Color(153, 153, 153));
-        lblFecha_Fin.setText("Fecha Fin");
-        bgReportes.add(lblFecha_Fin, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 30, 110, -1));
-
-        lblFolio.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        lblFolio.setForeground(new java.awt.Color(153, 153, 153));
-        lblFolio.setText("Folio");
-        bgReportes.add(lblFolio, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 120, -1));
-
-        lblSucursal.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        lblSucursal.setForeground(new java.awt.Color(153, 153, 153));
-        lblSucursal.setText("Sucursal");
-        bgReportes.add(lblSucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 110, 120, -1));
-
-        cbSucursal.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar" }));
-        cbSucursal.setEnabled(false);
-        bgReportes.add(cbSucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 140, 120, 30));
-
-        cbFolio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar" }));
-        cbFolio.setEnabled(false);
-        bgReportes.add(cbFolio, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 120, 30));
-
-        btnReporte1.setBackground(new java.awt.Color(0, 153, 153));
-        btnReporte1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnReporte1.setForeground(new java.awt.Color(255, 255, 255));
-        btnReporte1.setText("Productos Mas Vendidos");
-        btnReporte1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnReporte1ActionPerformed(evt);
-            }
-        });
-        bgReportes.add(btnReporte1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 20, 210, 30));
-
-        btnReporte2.setBackground(new java.awt.Color(0, 153, 153));
-        btnReporte2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnReporte2.setForeground(new java.awt.Color(255, 255, 255));
-        btnReporte2.setText("Reporte de Venta (Folio)");
-        btnReporte2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnReporte2ActionPerformed(evt);
-            }
-        });
-        bgReportes.add(btnReporte2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 60, 210, 30));
-
-        btnReporte3.setBackground(new java.awt.Color(0, 153, 153));
-        btnReporte3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnReporte3.setForeground(new java.awt.Color(255, 255, 255));
-        btnReporte3.setText("Total de Ventas (Sucursal)");
-        btnReporte3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnReporte3ActionPerformed(evt);
-            }
-        });
-        bgReportes.add(btnReporte3, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 100, 210, 30));
-
-        btnReporte4.setBackground(new java.awt.Color(0, 153, 153));
-        btnReporte4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnReporte4.setForeground(new java.awt.Color(255, 255, 255));
-        btnReporte4.setText("Total de Ventas (Generales)");
-        btnReporte4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnReporte4ActionPerformed(evt);
-            }
-        });
-        bgReportes.add(btnReporte4, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 140, 210, 30));
-
-        btnCheck2.setBackground(new java.awt.Color(0, 153, 153));
-        btnCheck2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/checked_checkbox_32px.png"))); // NOI18N
-        btnCheck2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCheck2ActionPerformed(evt);
-            }
-        });
-        bgReportes.add(btnCheck2, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 60, 30, 30));
-
-        btnCheck3.setBackground(new java.awt.Color(0, 153, 153));
-        btnCheck3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/checked_checkbox_32px.png"))); // NOI18N
-        btnCheck3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCheck3ActionPerformed(evt);
-            }
-        });
-        bgReportes.add(btnCheck3, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 100, 30, 30));
-
-        btnCheck4.setBackground(new java.awt.Color(0, 153, 153));
-        btnCheck4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/checked_checkbox_32px.png"))); // NOI18N
-        btnCheck4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCheck4ActionPerformed(evt);
-            }
-        });
-        bgReportes.add(btnCheck4, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 140, 30, 30));
-
-        btnCancelarV1.setBackground(new java.awt.Color(0, 153, 153));
-        btnCancelarV1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btnCancelarV1.setForeground(new java.awt.Color(255, 255, 255));
-        btnCancelarV1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/cancel_2_32px.png"))); // NOI18N
-        btnCancelarV1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnCancelarV1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelarV1ActionPerformed(evt);
-            }
-        });
-        bgReportes.add(btnCancelarV1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 80, 40, 40));
-
-        getContentPane().add(bgReportes, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 0, 600, 500));
-
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
     //Fin InitComponents
-    
+
     private void btnSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalirMouseClicked
         System.exit(0);
     }//GEN-LAST:event_btnSalirMouseClicked
@@ -1096,13 +1097,12 @@ public class MainUI extends javax.swing.JFrame {
         bgProductos.setVisible(false);
         bgSucursales.setVisible(false);
         bgReportes.setVisible(false);
-        barVentas.setBackground(new Color(0,255,0));
-        barProductos.setBackground(new Color(255,255,255));
-        barSucursales.setBackground(new Color(255,255,255));
-        barReportes.setBackground(new Color(255,255,255));
+        barVentas.setBackground(new Color(0, 255, 0));
+        barProductos.setBackground(new Color(255, 255, 255));
+        barSucursales.setBackground(new Color(255, 255, 255));
+        barReportes.setBackground(new Color(255, 255, 255));
         ventas.CrearTabla(Tabla_Ventas);
         setCbProductos();
-        txtID_Venta.requestFocus();
     }//GEN-LAST:event_btnVentasMouseClicked
 
     private void btnProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnProductosMouseClicked
@@ -1110,12 +1110,11 @@ public class MainUI extends javax.swing.JFrame {
         bgProductos.setVisible(true);
         bgSucursales.setVisible(false);
         bgReportes.setVisible(false);
-        barVentas.setBackground(new Color(255,255,255));
-        barProductos.setBackground(new Color(0,255,0));
-        barSucursales.setBackground(new Color(255,255,255));
-        barReportes.setBackground(new Color(255,255,255));
+        barVentas.setBackground(new Color(255, 255, 255));
+        barProductos.setBackground(new Color(0, 255, 0));
+        barSucursales.setBackground(new Color(255, 255, 255));
+        barReportes.setBackground(new Color(255, 255, 255));
         productos.CrearTabla(Tabla_Productos, CheckBoxP);
-        txtID_Producto.requestFocus();
     }//GEN-LAST:event_btnProductosMouseClicked
 
     private void btnSucursalesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSucursalesMouseClicked
@@ -1123,27 +1122,26 @@ public class MainUI extends javax.swing.JFrame {
         bgProductos.setVisible(false);
         bgSucursales.setVisible(true);
         bgReportes.setVisible(false);
-        barVentas.setBackground(new Color(255,255,255));
-        barProductos.setBackground(new Color(255,255,255));
-        barSucursales.setBackground(new Color(0,255,0));
-        barReportes.setBackground(new Color(255,255,255));
+        barVentas.setBackground(new Color(255, 255, 255));
+        barProductos.setBackground(new Color(255, 255, 255));
+        barSucursales.setBackground(new Color(0, 255, 0));
+        barReportes.setBackground(new Color(255, 255, 255));
         sucursales.CrearTabla(Tabla_Sucursales, CheckBoxS);
-        txtID_Sucursal.requestFocus();
     }//GEN-LAST:event_btnSucursalesMouseClicked
-    
+
     private void btnReportesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReportesMouseClicked
         bgVentas.setVisible(false);
         bgProductos.setVisible(false);
         bgSucursales.setVisible(false);
         bgReportes.setVisible(true);
-        barVentas.setBackground(new Color(255,255,255));
-        barProductos.setBackground(new Color(255,255,255));
-        barSucursales.setBackground(new Color(255,255,255));
-        barReportes.setBackground(new Color(0,255,0));
+        barVentas.setBackground(new Color(255, 255, 255));
+        barProductos.setBackground(new Color(255, 255, 255));
+        barSucursales.setBackground(new Color(255, 255, 255));
+        barReportes.setBackground(new Color(0, 255, 0));
         setCbSucursales(cbSucursal);
         setCbFolio();
     }//GEN-LAST:event_btnReportesMouseClicked
- 
+
     private void btnInformacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInformacionMouseClicked
         JOptionPane.showMessageDialog(null, "Hecho por:\n"
                 + "Sergio Armando Felix Placencia\n"
@@ -1179,7 +1177,7 @@ public class MainUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Selecciona un Producto");
         }
     }
-    
+
     public void BuscarV(int id) {
         try {
             PreparedStatement pst = cn.prepareStatement("select * from Ventas where folio = ?");
@@ -1193,7 +1191,7 @@ public class MainUI extends javax.swing.JFrame {
                 txtTotal.setText(String.valueOf(Total));
                 txtSubtotal.setText(String.valueOf(subtotal));
                 foundV = true;
-            }else{
+            } else {
                 foundV = false;
                 JOptionPane.showMessageDialog(null, "Venta no encontrada");
             }
@@ -1203,7 +1201,7 @@ public class MainUI extends javax.swing.JFrame {
     }
 
     private void btnNuevaVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevaVActionPerformed
-        if (btnNuevaV.getBackground().equals(new Color(0, 153, 153))){
+        if (btnNuevaV.getBackground().equals(new Color(0, 153, 153))) { //Iniciar Nueva
             btnNuevaV.setBackground(new Color(0, 220, 0));
             txtID_Venta.setEnabled(false);
             txtTotal.setEnabled(false);
@@ -1216,47 +1214,47 @@ public class MainUI extends javax.swing.JFrame {
             barSubtotal.setBackground(new Color(187, 187, 187));
             barTotal.setBackground(new Color(187, 187, 187));
             barID_Venta.setBackground(new Color(187, 187, 187));
-            if (getID_Sucursal(cbSucursales) == 0){
+            if (getID_Sucursal(cbSucursales) == 0) {
                 ResetVentas();
                 JOptionPane.showMessageDialog(null, "Selecciona una sucursal");
-            }else{
+            } else {
                 ventas.Insertar(getID_Sucursal(cbSucursales), getIva());
-                BuscarVP(getID_Producto());  
+                BuscarVP(getID_Producto());
             }
-        } else {
+        } else { //Confirmar Nueva
             String subtotal = txtSubtotal.getText();
-            if (subtotal.equals("0")){
+            if (subtotal.equals("0")) {
                 JOptionPane.showMessageDialog(null, "Añade un producto");
-            } else{
+            } else {
                 JOptionPane.showMessageDialog(null, "Operacion Realizada Correctamente");
                 ID_Sucursal = 0;
                 ResetVentas();
             }
         }
     }//GEN-LAST:event_btnNuevaVActionPerformed
-    
+
     private void btnEditarVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarVActionPerformed
-        String txtotal = txtTotal.getText().trim();
-        if (btnEditarV.getBackground().equals(new Color(0, 153, 153))) {
+        if (btnEditarV.getBackground().equals(new Color(0, 153, 153))) { //Iniciar Editar
             if (Tabla_Ventas.getSelectedRow() == -1) {
                 JOptionPane.showMessageDialog(null, "Selecciona una venta");
             } else {
                 Object id = Tabla_Ventas.getModel().getValueAt(Tabla_Ventas.getSelectedRow(), 0);
                 int idV = Integer.parseInt(id.toString());
                 BuscarV(idV);
-                if (foundV != false){
+                if (foundV != false) {
                     btnEditarV.setBackground(new Color(0, 220, 0));
                     txtID_Venta.setEnabled(false);
                     txtTotal.setEnabled(true);
                     txtSubtotal.setEnabled(true);
                     barTotal.setBackground(new Color(0, 153, 153));
                     barSubtotal.setBackground(new Color(187, 187, 187));
-                    barID_Venta.setBackground(new Color(187, 187, 187));   
-                }else{
+                    barID_Venta.setBackground(new Color(187, 187, 187));
+                } else {
                     ResetVentas();
                 }
             }
-        } else {
+        } else { //Confirmar Editar
+            String txtotal = txtTotal.getText().trim();
             if (txtotal.equals("")) {
                 JOptionPane.showMessageDialog(null, "Llena todos los campos");
             } else {
@@ -1298,84 +1296,84 @@ public class MainUI extends javax.swing.JFrame {
         BuscarVP(idV);
         ventas.CrearTabla(Tabla_Ventas);
     }
-    
+
     private void btnAgregarPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarPActionPerformed
-        if (cbProductos.getSelectedIndex() == 0 || cbCantidad.getSelectedIndex() == 0){
+        if (cbProductos.getSelectedIndex() == 0 || cbCantidad.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(null, "Selecciona un producto y cantidad");
-        } else{
+        } else {
             InsertarDetalleVenta();
             cbProductos.setSelectedIndex(0);
             cbCantidad.setSelectedIndex(0);
-            ID_Producto = 0;     
+            ID_Producto = 0;
         }
     }//GEN-LAST:event_btnAgregarPActionPerformed
 
-    public void setCbProductos(){
+    public void setCbProductos() {
         cbProductos.removeAllItems();
         cbProductos.addItem("Seleccionar");
-        try{
+        try {
             Connection cn = MyConnection.getConnection();
             PreparedStatement pst = cn.prepareStatement("select nombreProducto, descripcionProducto from Productos where estatus = 1");
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
                 cbProductos.addItem(rs.getString("nombreProducto"));
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
-        } 
-    }   
-    
-    public int getID_Producto(){
+        }
+    }
+
+    public int getID_Producto() {
         String Producto = String.valueOf(cbProductos.getSelectedItem());
-        try{
+        try {
             PreparedStatement pst = cn.prepareStatement("select idProducto from Productos where nombreProducto = ?");
             pst.setString(1, Producto);
             rs = pst.executeQuery();
             if (rs.next()) {
                 ID_Producto = rs.getInt("idProducto");
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
         return ID_Producto;
     }
-    
-    public void setCbCantidad(int id){
+
+    public void setCbCantidad(int id) {
         cbCantidad.removeAllItems();
         cbCantidad.addItem("Seleccionar");
-        try{
+        try {
             Connection cn = MyConnection.getConnection();
             PreparedStatement pst = cn.prepareStatement("select cantidadProducto from Productos where idProducto = ?");
             pst.setInt(1, id);
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
-                for (int i = 1; i <= rs.getInt("cantidadProducto"); i++){
+                for (int i = 1; i <= rs.getInt("cantidadProducto"); i++) {
                     cbCantidad.addItem(String.valueOf(i));
                 }
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
-        } 
+        }
     }
-    
-    public int getCantidad(){
+
+    public int getCantidad() {
         int cantidad = Integer.parseInt(String.valueOf(cbCantidad.getSelectedItem()));
         return cantidad;
     }
 
-    public int getIva(){
+    public int getIva() {
         String str;
         str = String.valueOf(cbIVA.getSelectedItem());
-        str = str.substring(0, str.length()-1);
+        str = str.substring(0, str.length() - 1);
         int iva = Integer.valueOf(str);
         return iva;
     }
-    
+
     private void btnCancelarVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarVActionPerformed
         ResetVentas();
     }//GEN-LAST:event_btnCancelarVActionPerformed
     //Fin Ventas
-    
+
     //Productos
     public void BuscarP(int id) {
         try {
@@ -1394,7 +1392,7 @@ public class MainUI extends javax.swing.JFrame {
                 txtPrecio.setText(String.valueOf(precio));
                 txtCantidad.setText(String.valueOf(cantidad));
                 foundP = true;
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(null, "Producto no encontrado");
                 foundP = false;
             }
@@ -1404,11 +1402,7 @@ public class MainUI extends javax.swing.JFrame {
     }
 
     private void btnNuevoPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoPActionPerformed
-        String txtnombre = txtNombre.getText();
-        String txtdescripcion = txtDescripcion.getText();
-        String txtprecio = txtPrecio.getText().trim();
-        String txtcantidad = txtCantidad.getText().trim();
-        if (btnNuevoP.getBackground().equals(new Color(0, 153, 153))) {
+        if (btnNuevoP.getBackground().equals(new Color(0, 153, 153))) { //Iniciar Nuevo
             btnNuevoP.setBackground(new Color(0, 220, 0));
             txtNombre.requestFocus();
             txtNombre.setEnabled(true);
@@ -1423,7 +1417,11 @@ public class MainUI extends javax.swing.JFrame {
             barCantidad.setBackground(new Color(0, 153, 153));
             barPrecio.setBackground(new Color(0, 153, 153));
             barID_Producto.setBackground(new Color(187, 187, 187));
-        } else {
+        } else { //Confirmar Nuevo
+            String txtnombre = txtNombre.getText();
+            String txtdescripcion = txtDescripcion.getText();
+            String txtprecio = txtPrecio.getText().trim();
+            String txtcantidad = txtCantidad.getText().trim();
             if (txtnombre.equals("") || txtdescripcion.equals("") || txtprecio.equals("") || txtcantidad.equals("")) {
                 JOptionPane.showMessageDialog(null, "Llena todos los campos");
             } else {
@@ -1440,13 +1438,13 @@ public class MainUI extends javax.swing.JFrame {
 
     private void btnEditarPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarPActionPerformed
         if (btnEditarP.getBackground().equals(new Color(0, 153, 153))) {
-            if (Tabla_Productos.getSelectedRow() == -1) {
+            if (Tabla_Productos.getSelectedRow() == -1) { //Iniciar Editar
                 JOptionPane.showMessageDialog(null, "Selecciona un producto");
             } else {
                 Object id = Tabla_Productos.getModel().getValueAt(Tabla_Productos.getSelectedRow(), 0);
                 int idP = Integer.parseInt(id.toString());
                 BuscarP(idP);
-                if (foundP != false){
+                if (foundP != false) {
                     btnEditarP.setBackground(new Color(0, 220, 0));
                     txtNombre.setEnabled(true);
                     txtDescripcion.setEnabled(true);
@@ -1460,11 +1458,11 @@ public class MainUI extends javax.swing.JFrame {
                     barCantidad.setBackground(new Color(0, 153, 153));
                     barPrecio.setBackground(new Color(0, 153, 153));
                     barID_Producto.setBackground(new Color(187, 187, 187));
-                }else{
+                } else {
                     ResetProductos();
                 }
             }
-        } else {
+        } else { //Confirmar Editar
             String txtnombre = txtNombre.getText();
             String txtdescripcion = txtDescripcion.getText();
             String txtprecio = txtPrecio.getText().trim();
@@ -1484,24 +1482,24 @@ public class MainUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEditarPActionPerformed
 
     private void btnEliminarPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarPActionPerformed
-        if (btnEliminarP.getBackground().equals(new Color(0, 153, 153))) {
+        if (btnEliminarP.getBackground().equals(new Color(0, 153, 153))) { //Iniciar Eliminar
             if (Tabla_Productos.getSelectedRow() == -1) {
                 JOptionPane.showMessageDialog(null, "Selecciona un producto");
             } else {
                 Object id = Tabla_Productos.getModel().getValueAt(Tabla_Productos.getSelectedRow(), 0);
                 int idP = Integer.parseInt(id.toString());
                 BuscarP(idP);
-                if (foundP != false){
+                if (foundP != false) {
                     btnEliminarP.setBackground(new Color(0, 220, 0));
                     txtID_Producto.setEnabled(false);
                     btnNuevoP.setEnabled(false);
                     btnEditarP.setEnabled(false);
-                    barID_Producto.setBackground(new Color(187, 187, 187));       
-                }else{
+                    barID_Producto.setBackground(new Color(187, 187, 187));
+                } else {
                     ResetProductos();
                 }
             }
-        } else {
+        } else { //Confirmar Eliminar
             productos.Desactivar(ID_Producto);
             JOptionPane.showMessageDialog(null, "Operacion Realizada Correctamente");
             ResetProductos();
@@ -1527,7 +1525,7 @@ public class MainUI extends javax.swing.JFrame {
                 txtNombreS.setText(nombre);
                 txtDomicilio.setText(domicilio);
                 foundS = true;
-            }else{
+            } else {
                 foundS = false;
                 JOptionPane.showMessageDialog(null, "Sucursal no encontrada");
             }
@@ -1537,9 +1535,7 @@ public class MainUI extends javax.swing.JFrame {
     }
 
     private void btnNuevaSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevaSActionPerformed
-        String txtnombre = txtNombreS.getText();
-        String txtdescripcion = txtDomicilio.getText();
-        if (btnNuevaS.getBackground().equals(new Color(0, 153, 153))) {
+        if (btnNuevaS.getBackground().equals(new Color(0, 153, 153))) { //Iniciar Nueva
             btnNuevaS.setBackground(new Color(0, 220, 0));
             txtNombreS.requestFocus();
             txtNombreS.setEnabled(true);
@@ -1550,7 +1546,9 @@ public class MainUI extends javax.swing.JFrame {
             barNombreS.setBackground(new Color(0, 153, 153));
             barDomicilio.setBackground(new Color(0, 153, 153));
             barID_Sucursal.setBackground(new Color(187, 187, 187));
-        } else {
+        } else { //Confirmar Nueva
+            String txtnombre = txtNombreS.getText();
+            String txtdescripcion = txtDomicilio.getText();
             if (txtnombre.equals("") || txtdescripcion.equals("")) {
                 JOptionPane.showMessageDialog(null, "Llena todos los campos");
             } else {
@@ -1565,14 +1563,14 @@ public class MainUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnNuevaSActionPerformed
 
     private void btnEditarSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarSActionPerformed
-        if (btnEditarS.getBackground().equals(new Color(0, 153, 153))) {
+        if (btnEditarS.getBackground().equals(new Color(0, 153, 153))) { //Iniciar Editar
             if (Tabla_Sucursales.getSelectedRow() == -1) {
                 JOptionPane.showMessageDialog(null, "Selecciona una sucursal");
             } else {
                 Object id = Tabla_Sucursales.getModel().getValueAt(Tabla_Sucursales.getSelectedRow(), 0);
                 int idS = Integer.parseInt(id.toString());
                 BuscarS(idS);
-                if (foundS != false){
+                if (foundS != false) {
                     btnEditarS.setBackground(new Color(0, 220, 0));
                     txtNombreS.setEnabled(true);
                     txtDomicilio.setEnabled(true);
@@ -1581,12 +1579,12 @@ public class MainUI extends javax.swing.JFrame {
                     btnEliminarS.setEnabled(false);
                     barNombreS.setBackground(new Color(0, 153, 153));
                     barDomicilio.setBackground(new Color(0, 153, 153));
-                    barID_Sucursal.setBackground(new Color(187, 187, 187)); 
-                }else{
+                    barID_Sucursal.setBackground(new Color(187, 187, 187));
+                } else {
                     ResetSucursales();
                 }
             }
-        } else {
+        } else { //Confirmar Editar
             String nombre = txtNombreS.getText();
             String domicilio = txtDomicilio.getText();
             if (nombre.equals("") || domicilio.equals("")) {
@@ -1600,102 +1598,102 @@ public class MainUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEditarSActionPerformed
 
     private void btnEliminarSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarSActionPerformed
-        if (btnEliminarS.getBackground().equals(new Color(0, 153, 153))) {
+        if (btnEliminarS.getBackground().equals(new Color(0, 153, 153))) { //Iniciar Eliminar
             if (Tabla_Sucursales.getSelectedRow() == -1) {
                 JOptionPane.showMessageDialog(null, "Selecciona una sucursal");
             } else {
                 Object id = Tabla_Sucursales.getModel().getValueAt(Tabla_Sucursales.getSelectedRow(), 0);
                 int idS = Integer.parseInt(id.toString());
                 BuscarS(idS);
-                if (foundS != false){
+                if (foundS != false) {
                     btnEliminarS.setBackground(new Color(0, 220, 0));
                     txtID_Sucursal.setEnabled(false);
                     btnNuevaS.setEnabled(false);
                     btnEditarS.setEnabled(false);
-                    barID_Sucursal.setBackground(new Color(187, 187, 187));      
-                }else{
+                    barID_Sucursal.setBackground(new Color(187, 187, 187));
+                } else {
                     ResetSucursales();
                 }
             }
-        } else {
+        } else { //Confirmar Eliminar
             sucursales.Desactivar(ID_Sucursal);
             JOptionPane.showMessageDialog(null, "Operacion Realizada Correctamente");
             ResetSucursales();
         }
     }//GEN-LAST:event_btnEliminarSActionPerformed
 
-    public void setCbSucursales(JComboBox<String> cb){
-        if (cb.getSelectedItem() == "Seleccionar"){
+    public void setCbSucursales(JComboBox<String> cb) {
+        if (cb.getSelectedItem() == "Seleccionar") {
             cb.removeAllItems();
             cb.addItem("Seleccionar");
-        } else{
+        } else {
             cb.removeAllItems();
-            cb.addItem("Sucursales");  
+            cb.addItem("Sucursales");
         }
-        try{
+        try {
             Connection cn = MyConnection.getConnection();
             PreparedStatement pst = cn.prepareStatement("select nombre from Sucursales where estatus = 1");
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
                 cb.addItem(rs.getString("nombre"));
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
-        } 
-    }   
-    
-    public int getID_Sucursal(JComboBox<String> cb){
+        }
+    }
+
+    public int getID_Sucursal(JComboBox<String> cb) {
         String Sucursal = String.valueOf(cb.getSelectedItem());
-        try{
+        try {
             PreparedStatement pst = cn.prepareStatement("select idSucursal from Sucursales where nombre = ?");
             pst.setString(1, Sucursal);
             rs = pst.executeQuery();
             if (rs.next()) {
                 ID_Sucursal = rs.getInt("idSucursal");
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
         return ID_Sucursal;
     }
-    
+
     private void btnCancelarSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarSActionPerformed
-        ResetSucursales();  
+        ResetSucursales();
     }//GEN-LAST:event_btnCancelarSActionPerformed
     //Fin Sucursales
 
     //Reportes
-    public void setCbFolio(){
+    public void setCbFolio() {
         cbFolio.removeAllItems();
         cbFolio.addItem("Seleccionar");
-        try{
+        try {
             Connection cn = MyConnection.getConnection();
             PreparedStatement pst = cn.prepareStatement("select folio from Ventas");
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
                 cbFolio.addItem(String.valueOf(rs.getInt("folio")));
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
-        } 
+        }
     }
-    
-    public int getFolio(){
+
+    public int getFolio() {
         String folio = String.valueOf(cbFolio.getSelectedItem());
         int folioV = 0;
-        try{
+        try {
             PreparedStatement pst = cn.prepareStatement("select folio from ventas where folio = ?");
             pst.setString(1, folio);
             rs = pst.executeQuery();
             if (rs.next()) {
                 folioV = rs.getInt("folio");
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
         return folioV;
     }
-    
+
     private void btnReporte1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporte1ActionPerformed
         reportes.Reporte1(Tabla_Reportes);
     }//GEN-LAST:event_btnReporte1ActionPerformed
@@ -1708,7 +1706,7 @@ public class MainUI extends javax.swing.JFrame {
         btnCheck2.setVisible(true);
         cbFolio.setEnabled(true);
     }//GEN-LAST:event_btnReporte2ActionPerformed
- 
+
     private void btnReporte3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporte3ActionPerformed
         btnReporte3.setVisible(false);
         btnReporte4.setEnabled(false);
@@ -1730,9 +1728,9 @@ public class MainUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnReporte4ActionPerformed
 
     private void btnCheck2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheck2ActionPerformed
-        if (cbFolio.getSelectedIndex() == 0 ){
+        if (cbFolio.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(null, "Selecciona un folio");
-        } else{
+        } else {
             reportes.Reporte2(Tabla_Reportes);
             btnReporte2.setVisible(true);
             btnCheck2.setVisible(false);
@@ -1746,9 +1744,9 @@ public class MainUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCheck2ActionPerformed
 
     private void btnCheck3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheck3ActionPerformed
-        if (cbSucursal.getSelectedIndex() == 0 || txtFecha_Inicio.getDate() == null || txtFecha_Fin.getDate() == null){
+        if (cbSucursal.getSelectedIndex() == 0 || txtFecha_Inicio.getDate() == null || txtFecha_Fin.getDate() == null) {
             JOptionPane.showMessageDialog(null, "Selecciona una sucursal y las fechas");
-        } else{
+        } else {
             java.util.Date date1 = txtFecha_Inicio.getDate();
             java.sql.Date fecha_inicio = new java.sql.Date(date1.getTime());
             java.util.Date date2 = txtFecha_Fin.getDate();
@@ -1766,13 +1764,13 @@ public class MainUI extends javax.swing.JFrame {
             txtFecha_Fin.setEnabled(false);
             txtFecha_Inicio.setDate(null);
             txtFecha_Fin.setDate(null);
-        } 
+        }
     }//GEN-LAST:event_btnCheck3ActionPerformed
 
     private void btnCheck4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheck4ActionPerformed
-        if (txtFecha_Inicio.getDate() == null){
+        if (txtFecha_Inicio.getDate() == null) {
             JOptionPane.showMessageDialog(null, "Selecciona una fecha");
-        } else{
+        } else {
             java.util.Date date1 = txtFecha_Inicio.getDate();
             java.sql.Date fecha = new java.sql.Date(date1.getTime());
             reportes.Reporte4(Tabla_Reportes, fecha);
@@ -1787,9 +1785,9 @@ public class MainUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnCheck4ActionPerformed
     //Fin Reportes
-    
+
     //Extras
-    public void DisenarTabla(JTable table, int x){
+    public void DisenarTabla(JTable table, int x) {
         table.getTableHeader().setFont(new java.awt.Font("Tahoma", java.awt.Font.BOLD, 12));
         table.getTableHeader().setOpaque(false);
         table.getTableHeader().setBackground(new Color(0, 153, 153));
@@ -1797,12 +1795,12 @@ public class MainUI extends javax.swing.JFrame {
         table.setRowHeight(25);
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
         centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
-        for(int i = 0; i < x; i++){
+        for (int i = 0; i < x; i++) {
             table.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
         }
     }
-    
-    public void ResetVentas(){
+
+    public void ResetVentas() {
         cbProductos.setEnabled(false);
         cbCantidad.setEnabled(false);
         cbIVA.setEnabled(true);
@@ -1811,19 +1809,19 @@ public class MainUI extends javax.swing.JFrame {
         btnEditarV.setEnabled(true);
         btnAgregarP.setEnabled(false);
         barSubtotal.setBackground(new Color(187, 187, 187));
-        barTotal.setBackground(new Color(187, 187, 187));        
+        barTotal.setBackground(new Color(187, 187, 187));
         btnNuevaV.setBackground(new Color(0, 153, 153));
         btnEditarV.setBackground(new Color(0, 153, 153));
         cbIVA.setSelectedIndex(16);
         ventas.CrearTabla(Tabla_Ventas);
-        ventas.vaciarTxt(txtID_Venta, txtTotal, txtSubtotal, cbProductos, cbCantidad); 
+        ventas.vaciarTxt(txtID_Venta, txtTotal, txtSubtotal, cbProductos, cbCantidad);
     }
-    
-    public void ResetProductos(){
+
+    public void ResetProductos() {
         txtNombre.setEnabled(false);
         txtDescripcion.setEnabled(false);
         txtPrecio.setEnabled(false);
-        txtCantidad.setEnabled(false);                                                          
+        txtCantidad.setEnabled(false);
         btnNuevoP.setEnabled(true);
         btnEditarP.setEnabled(true);
         btnEliminarP.setEnabled(true);
@@ -1837,8 +1835,8 @@ public class MainUI extends javax.swing.JFrame {
         productos.CrearTabla(Tabla_Productos, CheckBoxP);
         productos.vaciarTxt(txtID_Producto, txtNombre, txtDescripcion, txtPrecio, txtCantidad);
     }
-    
-    public void ResetSucursales(){
+
+    public void ResetSucursales() {
         txtNombreS.setEnabled(false);
         txtDomicilio.setEnabled(false);
         btnNuevaS.setEnabled(true);
@@ -1853,12 +1851,12 @@ public class MainUI extends javax.swing.JFrame {
         sucursales.CrearTabla(Tabla_Sucursales, CheckBoxS);
         sucursales.vaciarTxt(txtID_Sucursal, txtNombreS, txtDomicilio);
         setCbSucursales(cbSucursales);
-        if(cbSucursales.getItemAt(1) != null) {
+        if (cbSucursales.getItemAt(1) != null) {
             cbSucursales.setSelectedIndex(1);
         }
     }
-    
-    public void ResetReportes(){
+
+    public void ResetReportes() {
         btnReporte1.setVisible(true);
         btnReporte2.setVisible(true);
         btnReporte3.setVisible(true);
@@ -1881,15 +1879,15 @@ public class MainUI extends javax.swing.JFrame {
         DefaultTableModel dfm = new DefaultTableModel();
         Tabla_Reportes.setModel(dfm);
     }
-    
+
     private void cbProductosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbProductosItemStateChanged
-        if (cbProductos.getSelectedIndex() == 0){
+        if (cbProductos.getSelectedIndex() == 0) {
             //
-        }else{
+        } else {
             setCbCantidad(getID_Producto());
         }
     }//GEN-LAST:event_cbProductosItemStateChanged
-    
+
     private void CheckBoxSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckBoxSActionPerformed
         sucursales.CrearTabla(Tabla_Sucursales, CheckBoxS);
     }//GEN-LAST:event_CheckBoxSActionPerformed
@@ -1898,9 +1896,9 @@ public class MainUI extends javax.swing.JFrame {
         productos.CrearTabla(Tabla_Productos, CheckBoxP);
     }//GEN-LAST:event_CheckBoxPActionPerformed
 
-    private void btnCancelarV1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarV1ActionPerformed
+    private void btnCancelarRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarRActionPerformed
         ResetReportes();
-    }//GEN-LAST:event_btnCancelarV1ActionPerformed
+    }//GEN-LAST:event_btnCancelarRActionPerformed
 
     //Eventos Mouse Entered / Mouse Exited
     private void btnReportesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReportesMouseEntered
@@ -1910,7 +1908,7 @@ public class MainUI extends javax.swing.JFrame {
     private void btnReportesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReportesMouseExited
         btnReportes.setForeground(new Color(255, 255, 255));
     }//GEN-LAST:event_btnReportesMouseExited
-    
+
     private void btnInformacionMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInformacionMouseEntered
         btnInformacion.setForeground(new Color(0, 220, 0));
     }//GEN-LAST:event_btnInformacionMouseEntered
@@ -2000,9 +1998,9 @@ public class MainUI extends javax.swing.JFrame {
     private javax.swing.JPanel bgVentas;
     private javax.swing.JButton btnAgregarP;
     private javax.swing.JButton btnCancelarP;
+    private javax.swing.JButton btnCancelarR;
     private javax.swing.JButton btnCancelarS;
     private javax.swing.JButton btnCancelarV;
-    private javax.swing.JButton btnCancelarV1;
     private javax.swing.JButton btnCheck2;
     private javax.swing.JButton btnCheck3;
     private javax.swing.JButton btnCheck4;

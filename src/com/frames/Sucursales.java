@@ -1,4 +1,3 @@
-
 package com.frames;
 
 import static com.classes.PuntodeVenta.main;
@@ -8,8 +7,8 @@ import java.sql.*;
 import javax.swing.*;
 import javax.swing.table.*;
 
-public class Sucursales{
-    
+public class Sucursales {
+
     public void Insertar(String sucursal, String domicilio) {
         int estatus = 1;
         try {
@@ -18,11 +17,11 @@ public class Sucursales{
             cst.setString(1, sucursal);
             cst.setString(2, domicilio);
             cst.setInt(3, estatus);
-        }catch(Exception e){
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
     }
-    
+
     public void Modificar(int id, String sucursal, String domicilio) {
         try {
             Connection cn = MyConnection.getConnection();
@@ -35,7 +34,7 @@ public class Sucursales{
             JOptionPane.showMessageDialog(null, e);
         }
     }
-        
+
     public void Desactivar(int id) {
         int temp = 0;
         int estatus = 0;
@@ -48,9 +47,9 @@ public class Sucursales{
             if (rs.next()) {
                 temp = rs.getInt("estatus");
             }
-            if (temp == 1){
+            if (temp == 1) {
                 estatus = 0;
-            }else{
+            } else {
                 estatus = 1;
             }
             CallableStatement cst = cn.prepareCall("{call estatusSucursal(?,?)}");
@@ -61,12 +60,12 @@ public class Sucursales{
             JOptionPane.showMessageDialog(null, e);
         }
     }
-    
-   public void CrearTabla(JTable table, JCheckBox cb) {
+
+    public void CrearTabla(JTable table, JCheckBox cb) {
         try {
             Connection cn = MyConnection.getConnection();
             DefaultTableModel dfm = new DefaultTableModel();
-            if (cb.isSelected() == true){
+            if (cb.isSelected() == true) {
                 dfm.addColumn("ID");
                 dfm.addColumn("Nombre");
                 dfm.addColumn("Domicilio");
@@ -79,10 +78,10 @@ public class Sucursales{
                 table.setModel(dfm);
                 main.DisenarTabla(table, 4);
                 //Poner en rojo los inactivos
-                for (int i = 0; i < table.getColumnCount(); i++){
+                for (int i = 0; i < table.getColumnCount(); i++) {
                     table.getColumnModel().getColumn(i).setCellRenderer(new MyCellRenderer());
                 }
-            } else{
+            } else {
                 dfm.addColumn("ID");
                 dfm.addColumn("Nombre");
                 dfm.addColumn("Domicilio");
@@ -97,8 +96,8 @@ public class Sucursales{
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
-    }   
-   
+    }
+
     public void vaciarTxt(JTextField id, JTextField nombre, JTextField domicilio) {
         id.setText("");
         nombre.setText("");

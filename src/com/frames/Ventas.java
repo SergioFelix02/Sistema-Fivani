@@ -1,4 +1,3 @@
-
 package com.frames;
 
 import static com.classes.PuntodeVenta.main;
@@ -8,7 +7,7 @@ import javax.swing.*;
 import javax.swing.table.*;
 
 public class Ventas {
-    
+
     public void Insertar(int id, int iva) {
         try {
             Connection cn = MyConnection.getConnection();
@@ -36,7 +35,7 @@ public class Ventas {
             JOptionPane.showMessageDialog(null, e);
         }
     }
-    
+
     public void CrearTabla(JTable table) {
         try {
             Connection cn = MyConnection.getConnection();
@@ -53,12 +52,12 @@ public class Ventas {
                 dfm.addRow(new Object[]{rs.getInt("folio"), rs.getInt("idSucursal"), (rs.getInt("subtotal")), (rs.getInt("iva")), (rs.getInt("total")), rs.getDate("fecha")});
             }
             table.setModel(dfm);
-            main.DisenarTabla(table, 6);  
+            main.DisenarTabla(table, 6);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
     }
-    
+
     public void vaciarTxt(JTextField id, JTextField total, JTextField subtotal, JComboBox<String> cbProductos, JComboBox<String> cbCantidad) {
         id.setText("");
         total.setText("");

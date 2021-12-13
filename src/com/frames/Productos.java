@@ -1,4 +1,3 @@
-
 package com.frames;
 
 import static com.classes.PuntodeVenta.main;
@@ -8,8 +7,8 @@ import java.sql.*;
 import javax.swing.*;
 import javax.swing.table.*;
 
-public class Productos {   
-    
+public class Productos {
+
     public void Insertar(String nombre, String descripcion, int precio, int cantidad) {
         int estatus = 1;
         try {
@@ -25,7 +24,7 @@ public class Productos {
             JOptionPane.showMessageDialog(null, e);
         }
     }
-    
+
     public void Modificar(int id, String nombre, String descripcion, int precio, int cantidad) {
         try {
             Connection cn = MyConnection.getConnection();
@@ -40,7 +39,7 @@ public class Productos {
             JOptionPane.showMessageDialog(null, e);
         }
     }
-    
+
     public void Desactivar(int id) {
         int temp = 0;
         int estatus = 0;
@@ -53,9 +52,9 @@ public class Productos {
             if (rs.next()) {
                 temp = rs.getInt("estatus");
             }
-            if (temp == 1){
+            if (temp == 1) {
                 estatus = 0;
-            }else{
+            } else {
                 estatus = 1;
             }
             CallableStatement cst = cn.prepareCall("{call estatusProducto(?,?)}");
@@ -66,12 +65,12 @@ public class Productos {
             JOptionPane.showMessageDialog(null, e);
         }
     }
-    
+
     public void CrearTabla(JTable table, JCheckBox cb) {
         try {
             Connection cn = MyConnection.getConnection();
             DefaultTableModel dfm = new DefaultTableModel();
-            if (cb.isSelected() == true){
+            if (cb.isSelected() == true) {
                 dfm.addColumn("ID");
                 dfm.addColumn("Nombre");
                 dfm.addColumn("Descripcion");
@@ -86,10 +85,10 @@ public class Productos {
                 table.setModel(dfm);
                 main.DisenarTabla(table, 6);
                 //Poner en rojo los inactivos
-                for (int i = 0; i < table.getColumnCount(); i++){
+                for (int i = 0; i < table.getColumnCount(); i++) {
                     table.getColumnModel().getColumn(i).setCellRenderer(new MyCellRenderer());
                 }
-            } else{
+            } else {
                 dfm.addColumn("ID");
                 dfm.addColumn("Nombre");
                 dfm.addColumn("Descripcion");
@@ -115,5 +114,5 @@ public class Productos {
         descripcion.setText("");
         precio.setText("");
         cantidad.setText("");
-    }    
+    }
 }
