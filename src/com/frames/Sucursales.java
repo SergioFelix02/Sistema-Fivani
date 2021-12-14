@@ -1,7 +1,7 @@
 package com.frames;
 
 import static com.classes.PuntodeVenta.main;
-import com.classes.MyCellRenderer;
+//import com.classes.MyCellRenderer;
 import com.classes.MyConnection;
 import java.sql.*;
 import javax.swing.*;
@@ -17,6 +17,7 @@ public class Sucursales {
             cst.setString(1, sucursal);
             cst.setString(2, domicilio);
             cst.setInt(3, estatus);
+            cst.execute();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
@@ -87,9 +88,11 @@ public class Sucursales {
                 table.setModel(dfm);
                 main.DisenarTabla(table, 4);
                 //Poner en rojo los inactivos
+                /*
                 for (int i = 0; i < table.getColumnCount(); i++) {
                     table.getColumnModel().getColumn(i).setCellRenderer(new MyCellRenderer());
                 }
+                */
             } else {
                 dfm.addColumn("ID");
                 dfm.addColumn("Nombre");
