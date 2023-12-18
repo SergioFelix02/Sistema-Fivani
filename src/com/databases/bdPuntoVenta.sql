@@ -3,6 +3,13 @@ go
 use bdPuntoVenta
 go
 
+create table Usuarios (
+    idUsuario int primary key identity (1, 1),
+    usuario varchar(50) not null,
+    contrasena varchar(50) not null,
+    estatus bit
+)
+
 create table Sucursales (
     idSucursal int primary key identity (1, 1),
     nombre varchar(50) not null,
@@ -12,6 +19,7 @@ create table Sucursales (
 create table Ventas (
     folio int primary key identity (1, 1),
     idSucursal int foreign key references Sucursales (idSucursal),
+	idUsuario int foreign key references Usuarios (idUsuario),
 	subtotal int,
 	iva float,
 	total int,
@@ -195,6 +203,43 @@ begin
 end
 go
 
+-----------Usuarios-----------
+
+create procedure agregarUsuario
+@usuario varchar(50),
+@contrasena varchar(50),
+@estatus bit
+as
+begin
+    insert into Usuarios (usuario, contrasena, estatus)
+    values (@usuario, @contrasena, @estatus)
+end
+go
+
+create procedure modificarUsuario
+@idUsuario int,
+@usuario varchar(50),
+@contrasena varchar(50)
+as
+begin
+    update Usuarios
+    set usuario = @usuario,
+        contrasena = @contrasena
+    where idUsuario = @idUsuario
+end
+go
+
+create procedure estatusUsuario
+@idUsuario int,
+@estatus bit
+as
+begin
+    update Usuarios
+    set estatus = @estatus
+    where idUsuario = @idUsuario
+end
+go
+
 ------------Extras------------
 create procedure calcularTotalVenta
 @folio int
@@ -271,14 +316,14 @@ go
 ALTER DATABASE SCOPED CONFIGURATION SET IDENTITY_CACHE = OFF
 
 ------------Pruebas------------
-/*
+
 use bdPuntoVenta
 select * from Ventas
 select * from Detalle_Ventas
 select * from Productos
 select * from Sucursales
 
-
+/*
 exec agregarVenta 1, 0, 12, 0
 exec eliminarVenta 2
 

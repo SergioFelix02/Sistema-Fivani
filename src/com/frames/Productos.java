@@ -8,7 +8,7 @@ import javax.swing.*;
 import javax.swing.table.*;
 
 public class Productos {
-
+   
     public void Insertar(String nombre, String descripcion, int precio, int cantidad) {
         int estatus = 1;
         try {

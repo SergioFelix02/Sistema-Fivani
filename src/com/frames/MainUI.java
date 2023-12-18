@@ -367,7 +367,7 @@ public class MainUI extends javax.swing.JFrame {
                 .addComponent(btnSalir)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(barSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
                 .addComponent(cbSucursales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnInformacion)
@@ -392,8 +392,6 @@ public class MainUI extends javax.swing.JFrame {
             }
         ));
         Tabla_Reportes.setSelectionBackground(new java.awt.Color(0, 153, 153));
-        Tabla_Reportes.setShowHorizontalLines(false);
-        Tabla_Reportes.setShowVerticalLines(false);
         Tabla_Reportes.getTableHeader().setResizingAllowed(false);
         Tabla_Reportes.getTableHeader().setReorderingAllowed(false);
         jScrollPane3.setViewportView(Tabla_Reportes);
@@ -535,8 +533,6 @@ public class MainUI extends javax.swing.JFrame {
             }
         ));
         Tabla_Ventas.setSelectionBackground(new java.awt.Color(0, 153, 153));
-        Tabla_Ventas.setShowHorizontalLines(false);
-        Tabla_Ventas.setShowVerticalLines(false);
         Tabla_Ventas.getTableHeader().setResizingAllowed(false);
         Tabla_Ventas.getTableHeader().setReorderingAllowed(false);
         jScrollPane2.setViewportView(Tabla_Ventas);
@@ -1201,7 +1197,7 @@ public class MainUI extends javax.swing.JFrame {
     }
 
     private void btnNuevaVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevaVActionPerformed
-        if (btnNuevaV.getBackground().equals(new Color(0, 153, 153))) { //Iniciar Nueva
+        if (btnNuevaV.getBackground().equals(new Color(0,153,153))) { //Iniciar Nueva
             btnNuevaV.setBackground(new Color(0, 220, 0));
             txtID_Venta.setEnabled(false);
             txtTotal.setEnabled(false);
@@ -1234,7 +1230,7 @@ public class MainUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnNuevaVActionPerformed
 
     private void btnEditarVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarVActionPerformed
-        if (btnEditarV.getBackground().equals(new Color(0, 153, 153))) { //Iniciar Editar
+        if (btnEditarV.getBackground().equals(new Color(0,153,153))) { //Iniciar Editar
             if (Tabla_Ventas.getSelectedRow() == -1) {
                 JOptionPane.showMessageDialog(null, "Selecciona una venta");
             } else {
@@ -1246,7 +1242,7 @@ public class MainUI extends javax.swing.JFrame {
                     txtID_Venta.setEnabled(false);
                     txtTotal.setEnabled(true);
                     txtSubtotal.setEnabled(true);
-                    barTotal.setBackground(new Color(0, 153, 153));
+                    barTotal.setBackground(new Color(0,153,153));
                     barSubtotal.setBackground(new Color(187, 187, 187));
                     barID_Venta.setBackground(new Color(187, 187, 187));
                 } else {
@@ -1407,7 +1403,7 @@ public class MainUI extends javax.swing.JFrame {
     }
 
     private void btnNuevoPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoPActionPerformed
-        if (btnNuevoP.getBackground().equals(new Color(0, 153, 153))) { //Iniciar Nuevo
+        if (btnNuevoP.getBackground().equals(new Color(0,153,153))) { //Iniciar Nuevo
             btnNuevoP.setBackground(new Color(0, 220, 0));
             txtNombre.requestFocus();
             txtNombre.setEnabled(true);
@@ -1417,10 +1413,10 @@ public class MainUI extends javax.swing.JFrame {
             txtID_Producto.setEnabled(false);
             btnEliminarP.setEnabled(false);
             btnEditarP.setEnabled(false);
-            barNombre.setBackground(new Color(0, 153, 153));
-            barDescripcion.setBackground(new Color(0, 153, 153));
-            barCantidad.setBackground(new Color(0, 153, 153));
-            barPrecio.setBackground(new Color(0, 153, 153));
+            barNombre.setBackground(new Color(0,153,153));
+            barDescripcion.setBackground(new Color(0,153,153));
+            barCantidad.setBackground(new Color(0,153,153));
+            barPrecio.setBackground(new Color(0,153,153));
             barID_Producto.setBackground(new Color(187, 187, 187));
         } else { //Confirmar Nuevo
             String txtnombre = txtNombre.getText();
@@ -1446,7 +1442,7 @@ public class MainUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnNuevoPActionPerformed
 
     private void btnEditarPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarPActionPerformed
-        if (btnEditarP.getBackground().equals(new Color(0, 153, 153))) {
+        if (btnEditarP.getBackground().equals(new Color(0,153,153))) {
             if (Tabla_Productos.getSelectedRow() == -1) { //Iniciar Editar
                 JOptionPane.showMessageDialog(null, "Selecciona un producto");
             } else {
@@ -1462,10 +1458,10 @@ public class MainUI extends javax.swing.JFrame {
                     txtID_Producto.setEnabled(false);
                     btnEliminarP.setEnabled(false);
                     btnNuevoP.setEnabled(false);
-                    barNombre.setBackground(new Color(0, 153, 153));
-                    barDescripcion.setBackground(new Color(0, 153, 153));
-                    barCantidad.setBackground(new Color(0, 153, 153));
-                    barPrecio.setBackground(new Color(0, 153, 153));
+                    barNombre.setBackground(new Color(0,153,153));
+                    barDescripcion.setBackground(new Color(0,153,153));
+                    barCantidad.setBackground(new Color(0,153,153));
+                    barPrecio.setBackground(new Color(0,153,153));
                     barID_Producto.setBackground(new Color(187, 187, 187));
                 } else {
                     ResetProductos();
@@ -1495,7 +1491,7 @@ public class MainUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEditarPActionPerformed
 
     private void btnEliminarPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarPActionPerformed
-        if (btnEliminarP.getBackground().equals(new Color(0, 153, 153))) { //Iniciar Eliminar
+        if (btnEliminarP.getBackground().equals(new Color(0,153,153))) { //Iniciar Eliminar
             if (Tabla_Productos.getSelectedRow() == -1) {
                 JOptionPane.showMessageDialog(null, "Selecciona un producto");
             } else {
@@ -1548,7 +1544,7 @@ public class MainUI extends javax.swing.JFrame {
     }
 
     private void btnNuevaSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevaSActionPerformed
-        if (btnNuevaS.getBackground().equals(new Color(0, 153, 153))) { //Iniciar Nueva
+        if (btnNuevaS.getBackground().equals(new Color(0,153,153))) { //Iniciar Nueva
             btnNuevaS.setBackground(new Color(0, 220, 0));
             txtNombreS.requestFocus();
             txtNombreS.setEnabled(true);
@@ -1556,8 +1552,8 @@ public class MainUI extends javax.swing.JFrame {
             txtID_Sucursal.setEnabled(false);
             btnEliminarS.setEnabled(false);
             btnEditarS.setEnabled(false);
-            barNombreS.setBackground(new Color(0, 153, 153));
-            barDomicilio.setBackground(new Color(0, 153, 153));
+            barNombreS.setBackground(new Color(0, 90, 195));
+            barDomicilio.setBackground(new Color(0, 90, 195));
             barID_Sucursal.setBackground(new Color(187, 187, 187));
         } else { //Confirmar Nueva
             String txtnombre = txtNombreS.getText();
@@ -1567,8 +1563,8 @@ public class MainUI extends javax.swing.JFrame {
             } else {
                 String sucursal = String.valueOf(txtNombreS.getText());
                 String domicilio = String.valueOf(txtDomicilio.getText());
-                sucursales.Insertar(sucursal, domicilio);
                 JOptionPane.showMessageDialog(null, "Operacion Realizada Correctamente");
+                sucursales.Insertar(sucursal, domicilio);
                 setCbSucursales(cbSucursales);
                 ResetSucursales();
             }
@@ -1576,7 +1572,7 @@ public class MainUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnNuevaSActionPerformed
 
     private void btnEditarSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarSActionPerformed
-        if (btnEditarS.getBackground().equals(new Color(0, 153, 153))) { //Iniciar Editar
+        if (btnEditarS.getBackground().equals(new Color(0,153,153))) { //Iniciar Editar
             if (Tabla_Sucursales.getSelectedRow() == -1) {
                 JOptionPane.showMessageDialog(null, "Selecciona una sucursal");
             } else {
@@ -1590,8 +1586,8 @@ public class MainUI extends javax.swing.JFrame {
                     txtID_Sucursal.setEnabled(false);
                     btnNuevaS.setEnabled(false);
                     btnEliminarS.setEnabled(false);
-                    barNombreS.setBackground(new Color(0, 153, 153));
-                    barDomicilio.setBackground(new Color(0, 153, 153));
+                    barNombreS.setBackground(new Color(0,153,153));
+                    barDomicilio.setBackground(new Color(0,153,153));
                     barID_Sucursal.setBackground(new Color(187, 187, 187));
                 } else {
                     ResetSucursales();
@@ -1611,7 +1607,7 @@ public class MainUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEditarSActionPerformed
 
     private void btnEliminarSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarSActionPerformed
-        if (btnEliminarS.getBackground().equals(new Color(0, 153, 153))) { //Iniciar Eliminar
+        if (btnEliminarS.getBackground().equals(new Color(0,153,153))) { //Iniciar Eliminar
             if (Tabla_Sucursales.getSelectedRow() == -1) {
                 JOptionPane.showMessageDialog(null, "Selecciona una sucursal");
             } else {
@@ -1803,7 +1799,7 @@ public class MainUI extends javax.swing.JFrame {
     public void DisenarTabla(JTable table, int x) {
         table.getTableHeader().setFont(new java.awt.Font("Tahoma", java.awt.Font.BOLD, 12));
         table.getTableHeader().setOpaque(false);
-        table.getTableHeader().setBackground(new Color(0, 153, 153));
+        table.getTableHeader().setBackground(new Color(0,153,153));
         table.getTableHeader().setForeground(new Color(255, 255, 255));
         table.setRowHeight(25);
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
@@ -1823,8 +1819,8 @@ public class MainUI extends javax.swing.JFrame {
         btnAgregarP.setEnabled(false);
         barSubtotal.setBackground(new Color(187, 187, 187));
         barTotal.setBackground(new Color(187, 187, 187));
-        btnNuevaV.setBackground(new Color(0, 153, 153));
-        btnEditarV.setBackground(new Color(0, 153, 153));
+        btnNuevaV.setBackground(new Color(0,153,153));
+        btnEditarV.setBackground(new Color(0,153,153));
         cbIVA.setSelectedIndex(16);
         ventas.CrearTabla(Tabla_Ventas);
         ventas.vaciarTxt(txtID_Venta, txtTotal, txtSubtotal, cbProductos, cbCantidad);
@@ -1842,9 +1838,9 @@ public class MainUI extends javax.swing.JFrame {
         barDescripcion.setBackground(new Color(187, 187, 187));
         barCantidad.setBackground(new Color(187, 187, 187));
         barPrecio.setBackground(new Color(187, 187, 187));
-        btnNuevoP.setBackground(new Color(0, 153, 153));
-        btnEditarP.setBackground(new Color(0, 153, 153));
-        btnEliminarP.setBackground(new Color(0, 153, 153));
+        btnNuevoP.setBackground(new Color(0,153,153));
+        btnEditarP.setBackground(new Color(0,153,153));
+        btnEliminarP.setBackground(new Color(0,153,153));
         productos.CrearTabla(Tabla_Productos, CheckBoxP);
         productos.vaciarTxt(txtID_Producto, txtNombre, txtDescripcion, txtPrecio, txtCantidad);
     }
@@ -1857,10 +1853,9 @@ public class MainUI extends javax.swing.JFrame {
         btnEliminarS.setEnabled(true);
         barNombreS.setBackground(new Color(187, 187, 187));
         barDomicilio.setBackground(new Color(187, 187, 187));
-        btnNuevaS.setBackground(new Color(0, 153, 153));
-        btnEditarS.setBackground(new Color(0, 153, 153));
-        btnEliminarS.setBackground(new Color(0, 153, 153));
-        btnEliminarS.setBackground(new Color(0, 153, 153));
+        btnNuevaS.setBackground(new Color(0,153,153));
+        btnEditarS.setBackground(new Color(0,153,153));
+        btnEliminarS.setBackground(new Color(0,153,153));
         sucursales.CrearTabla(Tabla_Sucursales, CheckBoxS);
         sucursales.vaciarTxt(txtID_Sucursal, txtNombreS, txtDomicilio);
         setCbSucursales(cbSucursales);
