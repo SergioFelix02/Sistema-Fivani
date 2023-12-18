@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="lib1">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/dist/lib/mssql-jdbc-9.4.0.jre11.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/mssql-jdbc-9.4.0.jre8.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/mssql-jdbc-9.4.0.jre16.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/jcalendar-1.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/AbsoluteLayout.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
