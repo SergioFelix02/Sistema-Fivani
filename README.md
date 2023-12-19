@@ -2,6 +2,8 @@
 <img src="src/com/images/readmeBlueLine.png" alt="Logo" width="280" height="20" align="center">
 <h3>Sistema Fivani</h3>
 
+Sistema de ventas e inventarios realizado para la empresa Refacccionaria Fivani
+
 <h3>Desarrollado en</h3>
 Java <br>
 SQL Server <br>
