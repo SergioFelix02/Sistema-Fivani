@@ -8,7 +8,7 @@ Sistema de ventas e inventarios realizado para la empresa Refaccionaria Fivani
 Java <br>
 SQL Server <br>
 <h3>Ejecucion</h3>
-El archivo a ejecutar para la base de datos para el sistema se encuentra en la ruta: src/com/databases/bdPuntoVenta.sql <br><br>
+El archivo a ejecutar para la base de datos para el sistema se encuentra en la ruta: src/com/databases/bdPDV.bak <br><br>
 El Jar necesario para ejecutar el sistema se llama: Punto-de-Venta.jar <br><br>
 Ademas este Jar requiere un archivo de texto llamado: CredencialesSQL.txt <br><br>
 En este archivo de texto se deben escribir las credenciales de inicio de sesion para SQL Server, de la siguiente manera: <br><br>
