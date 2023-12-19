@@ -1,6 +1,6 @@
 <div id="top"></div>
 <img src="src/com/images/readmeBlueLine.png" alt="Logo" width="280" height="20" align="center">
-<h3>Proyecto Final: Punto de venta</h3>
+<h3>Sistema de Ventas Fivani</h3>
   <p>
     Integrantes:<br><br>
     Sergio Armando Felix Placencia<br>
