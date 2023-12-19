@@ -14,7 +14,7 @@ En este archivo de texto se deben escribir las credenciales de inicio de sesion 
 2 - Usuario <br>
 3 - Contraseña <br><br>
 Ejemplo: <br><br>
-<img src="src/com/images/readmeEx.png" alt="Logo" height="150"> <br><br>
+<img src="src/com/images/readmeEx.png" alt="Logo" height="150"> <br>
 Una vez ejecutada la base de datos en SQL Server, creado el archivo con credenciales (Debe estar en la misma ruta del Jar), ya se puede ejecutar el sistema desde el Jar para ser utilizado.
 <h3>Informacion</h3>
 La clase principal para ejecutar el sistema se encuentra en la ruta: <br>
