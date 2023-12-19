@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Sistema_PDV_2.0">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/dist/Sistema_PDV_2.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -2,41 +2,41 @@ package com.classes;
 
 import java.io.*;
 import java.sql.*;
-
 import javax.swing.JOptionPane;
 
 public class MyConnection {
 
     public static Connection getConnection() {
-        String User = "";
-        String Password = "";
-        String  Server = "";
+        String user = "";
+        String password = "";
+        String server = "";
+        String db = "";
         try {
             File File2 = new File("CredencialesSQL.txt");
             if (!File2.exists()) {
-                System.out.println("Archivo -CredencialesSQL.txt- no existe");
+                JOptionPane.showMessageDialog(null,"Archivo 'CredencialesSQL.txt' no existe");
+            } else{
+                FileReader File = new FileReader(File2);
+                BufferedReader Buffer = new BufferedReader(File);
+                server = Buffer.readLine();
+                db = "bdPDV";
+                user = Buffer.readLine();
+                password = Buffer.readLine();
+                File.close();
             }
-            FileReader File = new FileReader(File2);
-            BufferedReader Buffer = new BufferedReader(File);
-            Server = Buffer.readLine();
-            User = Buffer.readLine();
-            Password = Buffer.readLine();
-            File.close();
         } catch (IOException e) {
             System.out.println("Error: " + e.getMessage());
         }
-        
         String connectionUrl = "jdbc:sqlserver://"
-                + Server + ";"
-                + "database=bdFivani;"
-                + "user=" + User + ";"
-                + "password=" + Password + ";"
+                + server + ";"
+                + "database="+ db + ";"
+                + "user=" + user + ";"
+                + "password=" + password + ";"
                 + "loginTimeout=0;";
         try {
-            Connection cn = DriverManager.getConnection(connectionUrl);
-            return cn;
+            return DriverManager.getConnection(connectionUrl);
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, e);
+            JOptionPane.showMessageDialog(null, "Error de Conexion");
             return null;
         }
     }

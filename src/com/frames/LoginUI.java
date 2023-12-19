@@ -1,17 +1,23 @@
 package com.frames;
 
-import java.awt.Image;
-import javax.swing.ImageIcon;
+import com.classes.MyConnection;
+import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.Objects;
+import javax.swing.*;
 
 public class LoginUI extends javax.swing.JFrame {
 
-    String User;
-    String Password;
-
+    boolean Found = false;
+    public static int ID_Usuario = 0;
+    
     public LoginUI() {
-        initComponents();
-        this.setIconImage(new ImageIcon(getClass().getClassLoader().getResource("com/images/Icono.png")).getImage());
-        lbl_icon.setIcon(new ImageIcon(new ImageIcon(getClass().getClassLoader().getResource("com/images/Icono.png")).getImage().getScaledInstance(159, 150, Image.SCALE_SMOOTH)));
+        initComponents();        
+        this.setIconImage(new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("com/images/Icono.png"))).getImage());
+        lbl_icon.setIcon(new ImageIcon(new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("com/images/Icono.png"))).getImage().getScaledInstance(159, 150, Image.SCALE_SMOOTH)));
     }
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -74,6 +80,11 @@ public class LoginUI extends javax.swing.JFrame {
         lblHeader.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         lblHeader.setForeground(new java.awt.Color(102, 102, 102));
         lblHeader.setText("Iniciar Sesion");
+        lblHeader.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblHeaderMouseClicked(evt);
+            }
+        });
 
         lblUsuario.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         lblUsuario.setForeground(new java.awt.Color(153, 153, 153));
@@ -95,6 +106,11 @@ public class LoginUI extends javax.swing.JFrame {
 
         txtUsuario.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         txtUsuario.setBorder(null);
+        txtUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtUsuarioKeyReleased(evt);
+            }
+        });
 
         lblContrasena.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         lblContrasena.setForeground(new java.awt.Color(153, 153, 153));
@@ -117,6 +133,11 @@ public class LoginUI extends javax.swing.JFrame {
         txtContrasena.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         txtContrasena.setBorder(null);
         txtContrasena.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        txtContrasena.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtContrasenaKeyReleased(evt);
+            }
+        });
 
         btnIngresar.setBackground(new java.awt.Color(0, 90, 195));
         btnIngresar.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
@@ -134,6 +155,11 @@ public class LoginUI extends javax.swing.JFrame {
         btnIngresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnIngresarActionPerformed(evt);
+            }
+        });
+        btnIngresar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                btnIngresarKeyReleased(evt);
             }
         });
 
@@ -176,7 +202,7 @@ public class LoginUI extends javax.swing.JFrame {
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnIngresar)
-                .addContainerGap(109, Short.MAX_VALUE))
+                .addContainerGap(110, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 520, 410));
@@ -187,44 +213,92 @@ public class LoginUI extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
-        MainUI main = new MainUI();
-        //User = txtUsuario.getText().trim();
-        //Password = txtContrasena.getText().trim();
-        /*
-        try { 
-            File F = new File("CredencialesSQL.txt");
-            FileWriter File = new FileWriter("CredencialesSQL.txt",true);
-            PrintWriter PW = new PrintWriter(File);
-            PW.println(User);
-            PW.println(Password);
-            File.close();
-            F.delete();
-        } catch (IOException MM) {
-            System.out.println("Error en ingresar: "+MM.getMessage());
+    public int BuscarU(String user, String pass) {
+        try {
+            ResultSet rs;
+            Connection cn = MyConnection.getConnection();
+            assert cn != null;
+            PreparedStatement pst = cn.prepareStatement("select idUsuario from Usuarios where usuario = ? and contrasena = ? and estatus = 1");
+            pst.setString(1, user);
+            pst.setString(2, pass);
+            rs = pst.executeQuery();
+            if (rs.next()) {
+                ID_Usuario = rs.getInt("idUsuario");
+                Found = true;
+            } else{
+                Found = false;
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
-        */
-        main.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_btnIngresarActionPerformed
-
-    public String getUser() {
-        return User;
+        return ID_Usuario;
     }
 
-    public String getPassword() {
-        return Password;
+    public void IniciarSesion(){
+        String User = txtUsuario.getText();
+        String Password = new String(txtContrasena.getPassword());
+        
+        if (MyConnection.getConnection() != null){
+            int id = BuscarU(User, Password);       
+            if (Found) {
+                this.setVisible(false);
+                MainUI main = new MainUI();
+                main.setVisible(true);
+                main.btnVentasClick();
+                main.setCbUsuarios(id);
+            } else {
+                JOptionPane.showMessageDialog(null, "Usuario Invalido");
+            }
+            Found = false;
+        }
+        txtUsuario.setText("");
+        txtContrasena.setText("");
     }
-    
-    private void btnIngresarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnIngresarMouseEntered
+
+    public static int getID_Usuario() {
+        return ID_Usuario;
+    }
+
+    public void setID_Usuario(int ID_Usuario) {
+        LoginUI.ID_Usuario = ID_Usuario;
+    }
+
+    private void btnIngresarMouseEntered(java.awt.event.MouseEvent ignoredEvt) {//GEN-FIRST:event_btnIngresarMouseEntered
         btnIngresar.setBackground(new java.awt.Color(0, 90, 150));
     }//GEN-LAST:event_btnIngresarMouseEntered
 
-    private void btnIngresarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnIngresarMouseExited
+    private void btnIngresarMouseExited(java.awt.event.MouseEvent ignoredEvt) {//GEN-FIRST:event_btnIngresarMouseExited
         btnIngresar.setBackground(new java.awt.Color(0, 90, 195));
     }//GEN-LAST:event_btnIngresarMouseExited
 
-    public static void main(String args[]) {
+    private void txtUsuarioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsuarioKeyReleased
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER){
+            IniciarSesion();
+        }
+    }//GEN-LAST:event_txtUsuarioKeyReleased
+
+    private void txtContrasenaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtContrasenaKeyReleased
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER){
+            IniciarSesion();
+        }
+    }//GEN-LAST:event_txtContrasenaKeyReleased
+
+    private void btnIngresarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnIngresarKeyReleased
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER){
+            IniciarSesion();
+        }
+    }//GEN-LAST:event_btnIngresarKeyReleased
+
+    private void lblHeaderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblHeaderMouseClicked
+        txtUsuario.setText("admin");
+        txtContrasena.setText("root");
+    }//GEN-LAST:event_lblHeaderMouseClicked
+
+    private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
+        IniciarSesion();
+    }//GEN-LAST:event_btnIngresarActionPerformed
+
+    public static void main(String[] args) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         try {
@@ -234,23 +308,15 @@ public class LoginUI extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(LoginUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(LoginUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(LoginUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException |
+                 UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(LoginUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new LoginUI().setVisible(true);
-            }
-        });
+        java.awt.EventQueue.invokeLater(() -> new LoginUI().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -267,4 +333,8 @@ public class LoginUI extends javax.swing.JFrame {
     private javax.swing.JPasswordField txtContrasena;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
+
+    int ID_Usuario() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
